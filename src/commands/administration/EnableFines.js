@@ -12,7 +12,7 @@ class EnableFines extends patron.Command {
   }
 
   async run(msg) {
-    if (msg.dbGuild.settings.fines === false) {
+    if (msg.dbGuild.settings.fines === true) {
       return util.Messenger.replyError(msg.channel, msg.author, 'Fines are already enabled.');
     }
 

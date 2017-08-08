@@ -26,7 +26,6 @@ initiate();
 
 async function initiate() {
   await db.connect(credentials.mongodbConnectionURL);
-  db.userRepo.updateMany({}, { $unset: { bounty: '', health: '', inventory: '', slaveOwnerId: '' } }).catch(() => null);
   await client.login(credentials.token);
   await Documentation.createAndSave(registry);
 }

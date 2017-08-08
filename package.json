@@ -27,8 +27,8 @@
   "homepage": "https://github.com/RealBlazeIt/dea#readme",
   "dependencies": {
     "discord.js": "^11.1.0",
-    "mongodb": "^2.2.30",
-    "patron.js": "^2.0.2"
+    "mongodb": "^2.2.31",
+    "patron.js": "^2.1.0"
   },
   "optionalDependencies": {
     "bufferutil": "^3.0.2",

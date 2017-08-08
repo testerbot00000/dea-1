@@ -12,10 +12,10 @@ class Unban extends patron.Command {
       botPermissions: ['BAN_MEMBERS'],
       args: [
         new patron.Argument({
-          name: 'username',
-          key: 'username',
-          type: 'string',
-          example: '"Nig Nog Nag#8686"'
+          name: 'user',
+          key: 'user',
+          type: 'banneduser',
+          example: '"Jimmy Steve#8686"'
         }),
         new patron.Argument({
           name: 'reason',
@@ -30,24 +30,10 @@ class Unban extends patron.Command {
   }
 
   async run(msg, args) {
-    const fetchedBans = await msg.guild.fetchBans();
-    const lowerInput = args.username.toLowerCase();
-    const matches = fetchedBans.filterValues((v) => (v.username + '#' + v.discriminator).toLowerCase().includes(lowerInput));
-
-    if (matches.length === 1) {
-      const user = matches[0];
-
-      await msg.guild.unban(user);
-      await util.Messenger.reply(msg.channel, msg.author, 'You have successfully unbanned ' + user.tag + '.');
-      await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Unban', config.unbanColor, args.reason, msg.author, user);
-      return ModerationService.tryInformUser(msg.guild, msg.author, 'unbanned', user, args.reason);
-    } else if (matches.length > 5) {
-      return util.Messenger.replyError(msg.channel, msg.author, 'Multiple matches found, please be more specific.');
-    } else if (matches.length > 1) {
-      return util.Messenger.replyError(msg.channel, msg.author, 'Multiple matches found: ' + util.StringUtil.formatUsers(matches) + '.');
-    }
-
-    return util.Messenger.replyError(msg.channel, msg.author, 'No matches found.');
+    await msg.guild.unban(args.user);
+    await util.Messenger.reply(msg.channel, msg.author, 'You have successfully unbanned ' + args.user.tag + '.');
+    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Unban', config.unbanColor, args.reason, msg.author, args.user);
+    return ModerationService.tryInformUser(msg.guild, msg.author, 'unbanned', args.user, args.reason);
   }
 }
 

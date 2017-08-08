@@ -23,7 +23,7 @@ class Transfer extends patron.Command {
         new patron.Argument({
           name: 'transfer',
           key: 'transfer',
-          type: 'float',
+          type: 'currency',
           example: '500',
           preconditions: [Cash, new MinimumCash(config.minTransfer)]
         })
