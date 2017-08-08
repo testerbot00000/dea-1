@@ -21,7 +21,7 @@ class SetModLog extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.guildRepo.upsertGuild(msg.guild.id, new db.updates.Set('channels.modLog', args.channel.id));
+    await db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'channels.modLog': args.channel.id } });
 
     return util.Messenger.reply(msg.channel, msg.author, 'You have successfully set the mod log channel to ' + args.channel + '.');
   }

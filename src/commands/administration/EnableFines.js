@@ -16,7 +16,7 @@ class EnableFines extends patron.Command {
       return util.Messenger.replyError(msg.channel, msg.author, 'Fines are already enabled.');
     }
 
-    await db.guildRepo.upsertGuild(msg.guild.id, new db.updates.Set('settings.fines', true));
+    await db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'settings.fines': true } });
 
     return util.Messenger.reply(msg.channel, msg.author, 'You have successfully enabled fines.');
   }

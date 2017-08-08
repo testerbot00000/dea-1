@@ -21,7 +21,7 @@ class SetMutedRole extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.guildRepo.upsertGuild(msg.guild.id, new db.updates.Set('roles.muted', args.role.id));
+    await db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'roles.muted': args.role.id } });
 
     return util.Messenger.reply(msg.channel, msg.author, 'You have successfully set the muted role to ' + args.role + '.');
   }

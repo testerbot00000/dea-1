@@ -21,7 +21,7 @@ class SetWelcome extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.guildRepo.upsertGuild(msg.guild.id, new db.updates.Set('settings.welcomeMessage', args.message));
+    await db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'settings.welcomeMessage': args.message } });
 
     return util.Messenger.reply(msg.channel, msg.author, 'You have successfully set the welcome message to "' + args.message + '".');
   }

@@ -16,7 +16,7 @@ class DisableFines extends patron.Command {
       return util.Messenger.replyError(msg.channel, msg.author, 'Fines are already disabled.');
     }
 
-    await db.guildRepo.upsertGuild(msg.guild.id, new db.updates.Set('settings.fines', false));
+    await db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'settings.fines': false } });
 
     return util.Messenger.reply(msg.channel, msg.author, 'You have successfully disabled fines.');
   }
