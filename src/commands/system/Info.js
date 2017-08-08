@@ -5,9 +5,8 @@ const config = require('../../config.json');
 class Info extends patron.Command {
   constructor() {
     super({
-      name: 'info',
-      aliases: ['cashinfo'],
-      group: 'system',
+      names: ['info', 'information', 'cashinfo', 'cashhelp'],
+      groupName: 'system',
       description: 'All the information about the DEA cash system.',
       guildOnly: false
     });

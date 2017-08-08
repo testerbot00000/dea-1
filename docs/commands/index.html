@@ -155,9 +155,9 @@
 <td><code>$addrank &lt;@role&gt; &lt;cashRequired&gt;</code></td>
 </tr>
 <tr>
-<td>Changefinesettings</td>
-<td>Toggles the fine settings.</td>
-<td><code>$changefinesettings</code></td>
+<td>Disablefines</td>
+<td>Disable fines.</td>
+<td><code>$disablefines</code></td>
 </tr>
 <tr>
 <td>Disablewelcome</td>
@@ -165,19 +165,24 @@
 <td><code>$disablewelcome</code></td>
 </tr>
 <tr>
+<td>Enablefines</td>
+<td>Enable fines.</td>
+<td><code>$enablefines</code></td>
+</tr>
+<tr>
 <td>Removerank</td>
 <td>Remove a rank role.</td>
 <td><code>$removerank &lt;@role&gt;</code></td>
 </tr>
 <tr>
-<td>Setmodlogchannel</td>
+<td>Setmodlog</td>
 <td>Sets the mod log channel.</td>
-<td><code>$setmodlogchannel &lt;#mod log channel&gt;</code></td>
+<td><code>$setmodlog &lt;#channel&gt;</code></td>
 </tr>
 <tr>
 <td>Setmutedrole</td>
 <td>Sets the muted role.</td>
-<td><code>$setmutedrole &lt;@Muted Role&gt;</code></td>
+<td><code>$setmutedrole &lt;@role&gt;</code></td>
 </tr>
 <tr>
 <td>Setwelcome</td>
@@ -252,9 +257,9 @@
 </thead>
 <tbody>
 <tr>
-<td>Bal</td>
+<td>Cash</td>
 <td>View the wealth of anyone.</td>
-<td><code>$bal [@member]</code></td>
+<td><code>$cash [@member]</code></td>
 </tr>
 <tr>
 <td>Leaderboards</td>
@@ -301,8 +306,8 @@
 </tr>
 <tr>
 <td>Clear</td>
-<td>Prune an amount of messages in a text channel.</td>
-<td><code>$clear &lt;messages to clear&gt; [reason]</code></td>
+<td>Clear up to 1000 messages in any text channel.</td>
+<td><code>$clear &lt;quantity&gt; [reason]</code></td>
 </tr>
 <tr>
 <td>Kick</td>
@@ -312,7 +317,7 @@
 <tr>
 <td>Mute</td>
 <td>Mute any member.</td>
-<td><code>$mute &lt;@member&gt; [number of hours] [reason]</code></td>
+<td><code>$mute &lt;@member&gt; [quantity of hours] [reason]</code></td>
 </tr>
 <tr>
 <td>Unban</td>
@@ -345,7 +350,7 @@
 <tr>
 <td>Addmodrole</td>
 <td>Add a mod role.</td>
-<td><code>$addmodrole &lt;@role&gt; &lt;permissonLevel&gt;</code></td>
+<td><code>$addmodrole &lt;@role&gt; &lt;permissionLevel&gt;</code></td>
 </tr>
 <tr>
 <td>Removemodrole</td>
@@ -376,9 +381,9 @@
 </thead>
 <tbody>
 <tr>
-<td>Lowreps</td>
+<td>Lowrepleaderboards</td>
 <td>View the users with the lowest reputation.</td>
-<td><code>$lowreps</code></td>
+<td><code>$lowrepleaderboards</code></td>
 </tr>
 <tr>
 <td>Rep</td>
@@ -386,9 +391,9 @@
 <td><code>$rep &lt;@member&gt;</code></td>
 </tr>
 <tr>
-<td>Reps</td>
+<td>Repleaderboards</td>
 <td>View the users with the highest reputation.</td>
-<td><code>$reps</code></td>
+<td><code>$repleaderboards</code></td>
 </tr>
 <tr>
 <td>Unrep</td>

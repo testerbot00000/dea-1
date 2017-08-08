@@ -6,9 +6,8 @@ const util = require('../../utility');
 class Leaderboards extends patron.Command {
   constructor() {
     super({
-      name: 'leaderboards',
-      aliases: ['lb', 'highscores', 'highscore', 'leaderboard'],
-      group: 'general',
+      names: ['leaderboards', 'lb', 'highscores', 'highscore', 'leaderboard'],
+      groupName: 'general',
       description: 'View the richest Drug Traffickers.'
     });
   }

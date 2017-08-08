@@ -4,9 +4,8 @@ const util = require('../../utility');
 class Statistics extends patron.Command {
   constructor() {
     super({
-      name: 'statistics',
-      aliases: ['stats'],
-      group: 'system',
+      names: ['statistics', 'stats'],
+      groupName: 'system',
       description: 'Statistics about DEA.',
       guildOnly: false
     });

@@ -5,13 +5,12 @@ const util = require('../../utility');
 class SetMutedRole extends patron.Command {
   constructor() {
     super({
-      name: 'setmutedrole',
-      aliases: ['setmuterole', 'setmute', 'setmuted'],
-      group: 'administration',
+      names: ['setmutedrole', 'setmuterole', 'setmute', 'setmuted'],
+      groupName: 'administration',
       description: 'Sets the muted role.',
       args: [
         new patron.Argument({
-          name: 'Muted Role',
+          name: 'role',
           key: 'role',
           type: 'role',
           example: 'Muted',

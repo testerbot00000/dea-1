@@ -8,8 +8,8 @@ const NoModerator = require('../../preconditions/NoModerator.js');
 class Mute extends patron.Command {
   constructor() {
     super({
-      name: 'mute',
-      group: 'moderation',
+      names: ['mute'],
+      groupName: 'moderation',
       description: 'Mute any member.',
       botPermissions: ['MANAGE_ROLES'],
       args: [
@@ -21,7 +21,7 @@ class Mute extends patron.Command {
           preconditions: [NoModerator]
         }),
         new patron.Argument({
-          name: 'number of hours',
+          name: 'quantity of hours',
           key: 'hours',
           type: 'float',
           example: '48',
@@ -58,7 +58,7 @@ class Mute extends patron.Command {
     await util.Messenger.reply(msg.channel, msg.author, 'You have successfully muted ' + args.member.user.tag + ' for ' + formattedHours + '.');
     await db.muteRepo.insertMute(args.member.id, msg.guild.id, util.NumberUtil.hoursToMs(args.hours));
     await ModerationService.tryInformUser(msg.guild, msg.author, 'muted', args.member.user, args.reason);
-    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Mute', config.muteColor, args.reason, msg.author, args.member.user, 'Length', formattedHours);
+    return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Mute', config.muteColor, args.reason, msg.author, args.member.user, 'Length', formattedHours);
   }
 }
 

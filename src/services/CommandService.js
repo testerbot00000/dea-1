@@ -26,7 +26,7 @@ class CommandService {
 
       const result = await handler.run(msg, config.prefix);
 
-      if (!result.success) {
+      if (result.success === false) {
         let message;
 
         switch (result.commandError) {
@@ -34,8 +34,7 @@ class CommandService {
             return;
           case patron.CommandError.Cooldown: {
             const cooldown = util.NumberUtil.msToTime(result.remaining);
-            return util.Messenger.trySendError(msg.channel, 'Hours: ' + cooldown.hours + '\nMinutes: ' + cooldown.minutes + '\nSeconds: ' + cooldown.seconds,
-              util.StringUtil.upperFirstChar(result.command.name) + ' Cooldown');
+            return util.Messenger.trySendError(msg.channel, 'Hours: ' + cooldown.hours + '\nMinutes: ' + cooldown.minutes + '\nSeconds: ' + cooldown.seconds, util.StringUtil.upperFirstChar(result.command.names[0]) + ' Cooldown');
           }
           case patron.CommandError.Exception:
             if (result.error.code !== undefined) { // TODO: Check if instance of DiscordApiError when 12.0 is stable.

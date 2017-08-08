@@ -7,9 +7,8 @@ const NoSelf = require('../../preconditions/NoSelf.js');
 class GiveReputation extends patron.Command {
   constructor() {
     super({
-      name: 'rep',
-      aliases: ['givereputation', 'giverep'],
-      group: 'reputation',
+      names: ['rep', 'givereputation', 'giverep'],
+      groupName: 'reputation',
       description: 'Give reputation to any member.',
       cooldown: 21600000,
       args: [

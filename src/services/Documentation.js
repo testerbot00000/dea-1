@@ -11,23 +11,25 @@ class Documentation {
     let tableOfContents = '';
     let commandInfo = '';
 
-    const sortedGroups = registry.groups.sort(util.StringUtil.alphabeticallySort).values();
+    const groups = registry.groups.sort((a, b) => a.name.localeCompare(b.name));
 
-    for (const group of sortedGroups) {
-      const formattedGroupName = util.StringUtil.upperFirstChar(group.name);
+    for (let i = 0; i < groups.length; i++) {
+      const formattedGroupName = util.StringUtil.upperFirstChar(groups[i].name);
 
-      tableOfContents += '- [' + formattedGroupName + '](#' + group.name.toLowerCase() + ')\n';
+      tableOfContents += '- [' + formattedGroupName + '](#' + groups[i].name.toLowerCase() + ')\n';
 
       commandInfo += '\n### '+ formattedGroupName +'\n';
 
-      if (!util.StringUtil.isNullOrWhiteSpace(group.description)) {
-        commandInfo += '\n' + group.description + '\n\n';
+      if (util.StringUtil.isNullOrWhiteSpace(groups[i].description) === false) {
+        commandInfo += '\n' + groups[i].description + '\n\n';
       }
 
       commandInfo += 'Command | Description | Usage\n---------------- | --------------| -------\n';
 
-      for (const command of group.commands.sort(util.StringUtil.alphabeticallySort).values()) {
-        commandInfo += util.StringUtil.upperFirstChar(command.name) + '|' + command.description + '|`' + config.prefix + command.getUsage() + '`\n';
+      const commands = groups[i].commands.sort((a, b) => a.names[0].localeCompare(b.names[0]));
+
+      for (let j = 0; j < commands.length; j++) {
+        commandInfo += util.StringUtil.upperFirstChar(commands[j].names[0]) + '|' + commands[j].description + '|`' + config.prefix + commands[j].getUsage() + '`\n';
       }
     }
 

@@ -5,9 +5,8 @@ const config = require('../../config.json');
 class Help extends patron.Command {
   constructor() {
     super({
-      name: 'help',
-      aliases: ['commands', 'command', 'cmd', 'cmds', 'support', 'docs'],
-      group: 'system',
+      names: ['help', 'commands', 'command', 'cmd', 'cmds', 'support', 'docs'],
+      groupName: 'system',
       description: 'All command information.',
       guildOnly: false,
       args: [
@@ -35,19 +34,13 @@ class Help extends patron.Command {
 
       const lowerInput = args.command.toLowerCase();
 
-      let command = msg.client.registry.commands.get(lowerInput);
+      const command = msg.client.registry.commands.find((x) => x.names.some((y) => y === lowerInput));
 
       if (command === undefined) {
-        const matches = msg.client.registry.commands.filterArray((value) => value.aliases.some((v) => v === lowerInput));
-
-        if (matches.length > 0) {
-          command = matches[0];
-        } else {
-          return util.Messenger.replyError(msg.channel, msg.author, 'This command does not exist.');
-        }
+        return util.Messenger.replyError(msg.channel, msg.author, 'This command does not exist.');
       }
 
-      return util.Messenger.send(msg.channel, '**Description:** ' + command.description + '\n**Usage:** `' + config.prefix + command.getUsage() + '`\n**Example:** `' + config.prefix + command.getExample() + '`', util.StringUtil.upperFirstChar(command.name));
+      return util.Messenger.send(msg.channel, '**Description:** ' + command.description + '\n**Usage:** `' + config.prefix + command.getUsage() + '`\n**Example:** `' + config.prefix + command.getExample() + '`', util.StringUtil.upperFirstChar(command.names[0]));
     }
   }
 }

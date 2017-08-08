@@ -4,8 +4,8 @@ const util = require('../../utility');
 class Ranks extends patron.Command {
   constructor() {
     super({
-      name: 'ranks',
-      group: 'general',
+      names: ['ranks'],
+      groupName: 'general',
       description: 'View all ranks in this guild.'
     });
   }

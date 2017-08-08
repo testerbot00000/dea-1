@@ -5,8 +5,8 @@ const util = require('../../utility');
 class ResetUser extends patron.Command {
   constructor() {
     super({
-      name: 'resetuser',
-      group: 'owners',
+      names: ['resetuser'],
+      groupName: 'owners',
       description: 'Reset any member\'s data.',
       args: [
         new patron.Argument({

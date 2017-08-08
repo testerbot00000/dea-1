@@ -5,9 +5,8 @@ const util = require('../../utility');
 class ModifyCash extends patron.Command {
   constructor() {
     super({
-      name: 'modifycash',
-      aliases: ['give'],
-      group: 'botowners',
+      names: ['modifycash'],
+      groupName: 'botowners',
       description: 'Allows you to modify the cash of any member.',
       args: [
         new patron.Argument({

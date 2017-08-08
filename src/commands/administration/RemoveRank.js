@@ -5,8 +5,8 @@ const util = require('../../utility');
 class RemoveRank extends patron.Command {
   constructor() {
     super({
-      name: 'removerank',
-      group: 'administration',
+      names: ['removerank'],
+      groupName: 'administration',
       description: 'Remove a rank role.',
       args: [
         new patron.Argument({

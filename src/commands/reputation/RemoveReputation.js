@@ -8,9 +8,8 @@ const Reputation = require('../../preconditions/Reputation.js');
 class RemoveReputation extends patron.Command {
   constructor() {
     super({
-      name: 'unrep',
-      aliases: ['removereputation', 'removerep'],
-      group: 'reputation',
+      names: ['unrep', 'removereputation', 'removerep'],
+      groupName: 'reputation',
       description: 'Remove reputation from any member.',
       cooldown: 21600000,
       preconditions: [new Reputation(config.minRepForRemove)],

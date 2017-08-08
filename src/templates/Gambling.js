@@ -6,10 +6,10 @@ const Cash = require('../preconditions/Cash.js');
 const MinimumCash = require('../preconditions/MinimumCash.js');
 
 class Gambling extends patron.Command {
-  constructor(name, description, odds, payoutMultiplier) {
+  constructor(names, description, odds, payoutMultiplier) {
     super({
-      name: name,
-      group: 'gambling',
+      names: names,
+      groupName: 'gambling',
       description: description,
       args: [
         new patron.Argument({

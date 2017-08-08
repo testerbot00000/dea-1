@@ -6,8 +6,8 @@ const utility = require('util');
 class Eval extends patron.Command {
   constructor() {
     super({
-      name: 'eval',
-      group: 'botowners',
+      names: ['eval'],
+      groupName: 'botowners',
       description: 'Allows you to modify the cash of any member.',
       args: [
         new patron.Argument({

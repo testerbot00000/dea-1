@@ -7,8 +7,8 @@ const NoModerator = require('../../preconditions/NoModerator.js');
 class Warn extends patron.Command {
   constructor() {
     super({
-      name: 'warn',
-      group: 'moderation',
+      names: ['warn'],
+      groupName: 'moderation',
       description: 'Warn any member.',
       args: [
         new patron.Argument({
@@ -33,7 +33,7 @@ class Warn extends patron.Command {
   async run(msg, args) {
     await util.Messenger.reply(msg.channel, msg.author, 'You have successfully warned ' + args.member.user.tag + '.');
     await ModerationService.tryInformUser(msg.guild, msg.author, 'warned', args.member.user, args.reason);
-    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Warn', config.warnColor, args.reason, msg.author, args.member.user);
+    return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Warn', config.warnColor, args.reason, msg.author, args.member.user);
   }
 }
 

@@ -19,10 +19,6 @@ class StringUtil {
     });
   }
 
-  static alphabeticallySort(a, b) {
-    return a.name.localeCompare(b.name);
-  }
-
   static formatUsers(users) {
     let formattedMembers = '';
 

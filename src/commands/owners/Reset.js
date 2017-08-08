@@ -5,8 +5,8 @@ const util = require('../../utility');
 class Reset extends patron.Command {
   constructor() {
     super({
-      name: 'reset',
-      group: 'owners',
+      names: ['reset'],
+      groupName: 'owners',
       description: 'Resets all user data in your server.'
     });
   }

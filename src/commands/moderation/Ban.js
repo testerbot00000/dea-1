@@ -6,8 +6,8 @@ const ModerationService = require('../../services/ModerationService.js');
 class Ban extends patron.Command {
   constructor() {
     super({
-      name: 'ban',
-      group: 'moderation',
+      names: ['ban', 'hammer'],
+      groupName: 'moderation',
       description: 'Swing the ban hammer on any member.',
       botPermissions: ['BAN_MEMBERS'],
       args: [
@@ -33,7 +33,7 @@ class Ban extends patron.Command {
     await msg.guild.ban(args.user);
     await util.Messenger.reply(msg.channel, msg.author, 'You have successfully banned ' + args.user.tag + '.');
     await ModerationService.tryInformUser(msg.guild, msg.author, 'banned', args.user, args.reason);
-    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Ban', config.banColor, args.reason, msg.author, args.user);
+    return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Ban', config.banColor, args.reason, msg.author, args.user);
   }
 }
 

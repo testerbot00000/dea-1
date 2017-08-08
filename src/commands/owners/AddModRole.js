@@ -5,9 +5,8 @@ const util = require('../../utility');
 class AddModRole extends patron.Command {
   constructor() {
     super({
-      name: 'addmodrole',
-      aliases: ['addmod', 'setmod'],
-      group: 'owners',
+      names: ['addmodrole', 'addmod', 'setmod'],
+      groupName: 'owners',
       description: 'Add a mod role.',
       args: [
         new patron.Argument({
@@ -17,10 +16,11 @@ class AddModRole extends patron.Command {
           example: 'Moderator'
         }),
         new patron.Argument({
-          name: 'permissonLevel',
+          name: 'permissionLevel',
           key: 'permissionLevel',
           type: 'float',
-          example: '2'
+          example: '2',
+          default: 1
         })
       ]
     });

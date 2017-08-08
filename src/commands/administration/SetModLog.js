@@ -5,13 +5,12 @@ const util = require('../../utility');
 class SetModLog extends patron.Command {
   constructor() {
     super({
-      name: 'setmodlogchannel',
-      aliases: ['modlog', 'logs', 'setmodlog', 'setmodlogs', 'setlog', 'setlogs'],
-      group: 'administration',
+      names: ['setmodlog', 'modlog', 'logs', 'setmodlog', 'setmodlogs', 'setlog', 'setlogs'],
+      groupName: 'administration',
       description: 'Sets the mod log channel.',
       args: [
         new patron.Argument({
-          name: 'mod log channel',
+          name: 'channel',
           key: 'channel',
           type: 'textchannel',
           example: 'Mod Log',

@@ -7,8 +7,8 @@ const NoModerator = require('../../preconditions/NoModerator.js');
 class Kick extends patron.Command {
   constructor() {
     super({
-      name: 'kick',
-      group: 'moderation',
+      names: ['kick', 'boot'],
+      groupName: 'moderation',
       description: 'Kick any member.',
       botPermissions: ['KICK_MEMBERS'],
       args: [
@@ -35,7 +35,7 @@ class Kick extends patron.Command {
     await args.member.kick(args.reason);
     await util.Messenger.reply(msg.channel, msg.author, 'You have successfully kicked ' + args.member.user.tag + '.');
     await ModerationService.tryInformUser(msg.guild, msg.author, 'kicked', args.member.user, args.reason);
-    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Kick', config.kickColor, args.reason, msg.author, args.member.user);
+    return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Kick', config.kickColor, args.reason, msg.author, args.member.user);
   }
 }
 

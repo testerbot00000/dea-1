@@ -4,8 +4,8 @@ const util = require('../../utility');
 class ModRoles extends patron.Command {
   constructor() {
     super({
-      name: 'modroles',
-      group: 'general',
+      names: ['modroles', 'modrole'],
+      groupName: 'general',
       description: 'View all mod roles in this guild.'
     });
   }

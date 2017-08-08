@@ -5,9 +5,8 @@ const util = require('../../utility');
 class DisableWelcome extends patron.Command {
   constructor() {
     super({
-      name: 'disablewelcome',
-      aliases: ['disablewelcomemessage'],
-      group: 'administration',
+      names: ['disablewelcome', 'disablewelcomemessage'],
+      groupName: 'administration',
       description: 'Disables the welcome message.'
     });
   }

@@ -5,9 +5,8 @@ const util = require('../../utility');
 class AddRank extends patron.Command {
   constructor() {
     super({
-      name: 'addrank',
-      aliases: ['setrank'],
-      group: 'administration',
+      names: ['addrank', 'setrank'],
+      groupName: 'administration',
       description: 'Add a rank.',
       args: [
         new patron.Argument({

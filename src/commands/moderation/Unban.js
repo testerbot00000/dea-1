@@ -6,8 +6,8 @@ const ModerationService = require('../../services/ModerationService.js');
 class Unban extends patron.Command {
   constructor() {
     super({
-      name: 'unban',
-      group: 'moderation',
+      names: ['unban'],
+      groupName: 'moderation',
       description: 'Lift the ban hammer on any member.',
       botPermissions: ['BAN_MEMBERS'],
       args: [
@@ -32,7 +32,7 @@ class Unban extends patron.Command {
   async run(msg, args) {
     const fetchedBans = await msg.guild.fetchBans();
     const lowerInput = args.username.toLowerCase();
-    const matches = fetchedBans.filterArray(x => (x.username + '#' + x.discriminator).toLowerCase().includes(lowerInput));
+    const matches = fetchedBans.filterValues((v) => (v.username + '#' + v.discriminator).toLowerCase().includes(lowerInput));
 
     if (matches.length === 1) {
       const user = matches[0];

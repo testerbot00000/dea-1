@@ -90,6 +90,7 @@
     "key-spacing": "error",
     "switch-colon-spacing": "error",
     "eol-last": "error",
-    "no-console": "off"
+    "no-console": "off",
+	"guard-for-in": "error"
   }
 }

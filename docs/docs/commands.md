@@ -23,11 +23,12 @@ These commands may only be used by a user with the set mod role with a permissio
 Command | Description | Usage
 ---------------- | --------------| -------
 Addrank|Add a rank.|`$addrank <@role> <cashRequired>`
-Changefinesettings|Toggles the fine settings.|`$changefinesettings`
+Disablefines|Disable fines.|`$disablefines`
 Disablewelcome|Disables the welcome message.|`$disablewelcome`
+Enablefines|Enable fines.|`$enablefines`
 Removerank|Remove a rank role.|`$removerank <@role>`
-Setmodlogchannel|Sets the mod log channel.|`$setmodlogchannel <#mod log channel>`
-Setmutedrole|Sets the muted role.|`$setmutedrole <@Muted Role>`
+Setmodlog|Sets the mod log channel.|`$setmodlog <#channel>`
+Setmutedrole|Sets the muted role.|`$setmutedrole <@role>`
 Setwelcome|Sets the welcome message.|`$setwelcome <message>`
 
 ### Botowners
@@ -50,7 +51,7 @@ Command | Description | Usage
 ### General
 Command | Description | Usage
 ---------------- | --------------| -------
-Bal|View the wealth of anyone.|`$bal [@member]`
+Cash|View the wealth of anyone.|`$cash [@member]`
 Leaderboards|View the richest Drug Traffickers.|`$leaderboards`
 Modroles|View all mod roles in this guild.|`$modroles`
 Rank|View the rank of anyone.|`$rank [@member]`
@@ -64,9 +65,9 @@ These commands may only be used by a user with the set mod role with a permissio
 Command | Description | Usage
 ---------------- | --------------| -------
 Ban|Swing the ban hammer on any member.|`$ban <@user> [reason]`
-Clear|Prune an amount of messages in a text channel.|`$clear <messages to clear> [reason]`
+Clear|Clear up to 1000 messages in any text channel.|`$clear <quantity> [reason]`
 Kick|Kick any member.|`$kick <@member> [reason]`
-Mute|Mute any member.|`$mute <@member> [number of hours] [reason]`
+Mute|Mute any member.|`$mute <@member> [quantity of hours] [reason]`
 Unban|Lift the ban hammer on any member.|`$unban <username> [reason]`
 Unmute|Unmute any member.|`$unmute <@member> [reason]`
 Warn|Warn any member.|`$warn <@member> [reason]`
@@ -77,7 +78,7 @@ These commands may only be used by a user with the set mod role with a permissio
 
 Command | Description | Usage
 ---------------- | --------------| -------
-Addmodrole|Add a mod role.|`$addmodrole <@role> <permissonLevel>`
+Addmodrole|Add a mod role.|`$addmodrole <@role> <permissionLevel>`
 Removemodrole|Remove a mod role.|`$removemodrole <@role>`
 Reset|Resets all user data in your server.|`$reset`
 Resetuser|Reset any member's data.|`$resetuser [@member]`
@@ -88,9 +89,9 @@ The repuration group has been added in order to show you have gained a certain s
 
 Command | Description | Usage
 ---------------- | --------------| -------
-Lowreps|View the users with the lowest reputation.|`$lowreps`
+Lowrepleaderboards|View the users with the lowest reputation.|`$lowrepleaderboards`
 Rep|Give reputation to any member.|`$rep <@member>`
-Reps|View the users with the highest reputation.|`$reps`
+Repleaderboards|View the users with the highest reputation.|`$repleaderboards`
 Unrep|Remove reputation from any member.|`$unrep <@member>`
 
 ### System

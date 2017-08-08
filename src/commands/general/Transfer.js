@@ -9,9 +9,8 @@ const MinimumCash = require('../../preconditions/MinimumCash.js');
 class Transfer extends patron.Command {
   constructor() {
     super({
-      name: 'transfer',
-      aliases: ['sauce', 'donate'],
-      group: 'general',
+      names: ['transfer', 'sauce', 'donate'],
+      groupName: 'general',
       description: 'Transfer money to any member.',
       args: [
         new patron.Argument({

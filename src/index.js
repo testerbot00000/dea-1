@@ -8,9 +8,7 @@ const CommandService = require('./services/CommandService.js');
 const Documentation = require('./services/Documentation.js');
 const config = require('./config.json');
 const credentials = require('./credentials.json');
-
 const client = new Client({ fetchAllMembers: true, messageCacheMaxSize: 5, messageCacheLifetime: 30, messageSweepInterval: 1800, disabledEvents: config.disabledEvents, restTimeOffset: 100 });
-
 const registry = new Registry();
 
 registry.registerDefaultTypeReaders();
@@ -28,6 +26,7 @@ initiate();
 
 async function initiate() {
   await db.connect(credentials.mongodbConnectionURL);
+  db.userRepo.updateMany({}, { $unset: { bounty: '', health: '', inventory: '', slaveOwnerId: '' } }).catch(() => null);
   await client.login(credentials.token);
   await Documentation.createAndSave(registry);
 }

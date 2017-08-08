@@ -5,9 +5,8 @@ const util = require('../../utility');
 class SetWelcome extends patron.Command {
   constructor() {
     super({
-      name: 'setwelcome',
-      aliases: ['setwelcomemessage', 'welcome', 'addwelcome'],
-      group: 'administration',
+      names: ['setwelcome', 'setwelcomemessage', 'welcome', 'addwelcome'],
+      groupName: 'administration',
       description: 'Sets the welcome message.',
       args: [
         new patron.Argument({

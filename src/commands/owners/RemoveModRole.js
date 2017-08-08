@@ -5,9 +5,8 @@ const util = require('../../utility');
 class RemoveModRole extends patron.Command {
   constructor() {
     super({
-      name: 'removemodrole',
-      aliases: ['removemod'],
-      group: 'owners',
+      names: ['removemodrole', 'removemod'],
+      groupName: 'owners',
       description: 'Remove a mod role.',
       args: [
         new patron.Argument({

@@ -5,9 +5,8 @@ const config = require('../../config.json');
 class Invite extends patron.Command {
   constructor() {
     super({
-      name: 'invite',
-      aliases: ['join', 'add'],
-      group: 'system',
+      names: ['invite', 'join', 'add'],
+      groupName: 'system',
       description: 'Add DEA to your server.',
       guildOnly: false
     });

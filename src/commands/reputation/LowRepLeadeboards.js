@@ -6,9 +6,8 @@ const util = require('../../utility');
 class LowRepLeaderboards extends patron.Command {
   constructor() {
     super({
-      name: 'lowreps',
-      aliases: ['lowrepleaderboards', 'lowredlb', 'lowreps', 'lowrep'],
-      group: 'reputation',
+      names: ['lowrepleaderboards', 'lowredlb', 'lowreps', 'lowrep'],
+      groupName: 'reputation',
       description: 'View the users with the lowest reputation.'
     });
   }
