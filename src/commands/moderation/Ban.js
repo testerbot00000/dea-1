@@ -30,9 +30,12 @@ class Ban extends patron.Command {
   }
 
   async run(msg, args) {
+    if (msg.guild.members.has(args.user.id)) {
+      await ModerationService.tryInformUser(msg.guild, msg.author, 'banned', args.user, args.reason);
+    }
+    
     await msg.guild.ban(args.user);
     await util.Messenger.reply(msg.channel, msg.author, 'You have successfully banned ' + args.user.tag + '.');
-    await ModerationService.tryInformUser(msg.guild, msg.author, 'banned', args.user, args.reason);
     return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Ban', config.banColor, args.reason, msg.author, args.user);
   }
 }
