@@ -1,7 +1,7 @@
 const db = require('../database');
 const patron = require('patron.js');
 const Constants = require('../utility/Constants.js');
-const util = require('../utility');
+const NumberUtil = require('../utility/NumberUtil.js');
 const ChatService = require('./ChatService.js');
 
 class CommandService {
@@ -32,8 +32,9 @@ class CommandService {
           case patron.CommandError.CommandNotFound:
             return;
           case patron.CommandError.Cooldown: {
-            const cooldown = util.NumberUtil.msToTime(result.remaining);
-            return util.Messenger.trySendError(msg.channel, 'Hours: ' + cooldown.hours + '\nMinutes: ' + cooldown.minutes + '\nSeconds: ' + cooldown.seconds, util.StringUtil.upperFirstChar(result.command.names[0]) + ' Cooldown');
+            const cooldown = NumberUtil.msToTime(result.remaining);
+
+            return msg.channel.tryCreateErrorMessage('Hours: ' + cooldown.hours + '\nMinutes: ' + cooldown.minutes + '\nSeconds: ' + cooldown.seconds, { title: result.command.names[0].upperFirstChar() + ' Cooldown' });
           }
           case patron.CommandError.Exception:
             if (result.error.code !== undefined) { // TODO: Check if instance of DiscordApiError when 12.0 is stable.
@@ -61,7 +62,7 @@ class CommandService {
             break;
         }
 
-        return util.Messenger.tryReplyError(msg.channel, msg.author, message);
+        return msg.tryCreateErrorReply(message);
       }
     });
   }

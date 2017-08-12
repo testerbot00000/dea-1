@@ -87,13 +87,12 @@
       "never"
     ],
     "dot-location": [
-      "error", 
+      "error",
       "property"
     ],
     "array-bracket-spacing": "error",
     "no-var": "error",
     "no-else-return": "error",
-    "no-extend-native": "error",
     "no-empty-function": "error",
     "no-implicit-coercion": "error",
     "no-new-func": "error",
@@ -147,6 +146,7 @@
     "no-loop-func": "error",
     "no-label-var": "error",
     "dot-notation": "error",
+    "no-extra-label": "error",
     "prefer-promise-reject-errors": "error"
   }
 }

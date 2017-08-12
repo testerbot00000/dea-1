@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const util = require('../../utility');
 
 class ModRoles extends patron.Command {
   constructor() {
@@ -14,7 +13,7 @@ class ModRoles extends patron.Command {
     const modRoleList = msg.dbGuild.roles.mod.sort((a, b) => a.permissionLevel - b.permissionLevel);
 
     if (msg.dbGuild.roles.mod.length === 0) {
-      return util.Messenger.replyError(msg.channel, msg.author, 'There are no mod roles yet!');
+      return msg.createErrorReply('There are no mod roles yet!');
     }
 
     let description = '';
@@ -24,7 +23,7 @@ class ModRoles extends patron.Command {
       description += rank + ': ' + (modRoleList[i].permissionLevel) + '\n';
     }
 
-    return util.Messenger.send(msg.channel, description + '\n**Permission Levels:**\n1: Moderator\n2: Administrator\n3: Owner', 'Mod Roles');
+    return msg.channel.createMessage(description + '\n**Permission Levels:**\n1: Moderator\n2: Administrator\n3: Owner', { title: 'Mod Roles' });
   }
 }
 

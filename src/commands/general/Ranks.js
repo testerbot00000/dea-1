@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const util = require('../../utility');
 
 class Ranks extends patron.Command {
   constructor() {
@@ -12,7 +11,7 @@ class Ranks extends patron.Command {
 
   async run(msg, args) {
     if (msg.dbGuild.roles.rank.length === 0) {
-      return util.Messenger.replyError(msg.channel, msg.author, 'There are no rank roles yet!');
+      return msg.createErrorReply('There are no rank roles yet!');
     }
 
     const sortedRanks = msg.dbGuild.roles.rank.sort((a, b) => a.cashRequired - b.cashRequired);
@@ -21,10 +20,10 @@ class Ranks extends patron.Command {
     for (let i = 0; i < sortedRanks.length; i++) {
       const rank = msg.guild.roles.find((x) => x.id === sortedRanks[i].id);
 
-      description+= rank + ': ' + util.NumberUtil.USD(sortedRanks[i].cashRequired) + '\n';
+      description+= rank + ': ' + sortedRanks[i].cashRequired.USD() + '\n';
     }
 
-    return util.Messenger.send(msg.channel, description, 'Ranks');
+    return msg.channel.createMessage(description, { title: 'Ranks' });
   }
 }
 

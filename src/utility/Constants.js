@@ -52,8 +52,6 @@ class Constants {
 
       misc: {
         disabledEvents: [
-          'CHANNEL_DELETE',
-          'CHANNEL_UPDATE',
           'CHANNEL_PINS_UPDATE',
           'MESSAGE_UPDATE',
           'MESSAGE_REACTION_ADD',

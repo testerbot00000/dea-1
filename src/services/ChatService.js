@@ -1,6 +1,6 @@
 const db = require('../database');
 const Constants = require('../utility/Constants.js');
-const util = require('../utility');
+const Random = require('../utility/Random.js');
 
 class ChatService {
   constructor() {
@@ -15,10 +15,10 @@ class ChatService {
     if (isMessageCooldownOver && isLongEnough) {
       this.messages.set(msg.author.id, Date.now());
 
-      if (Constants.config.lottery.odds >= util.Random.roll()) {
-        const winnings = util.Random.nextFloat(Constants.config.lottery.min, Constants.config.lottery.max);
+      if (Constants.config.lottery.odds >= Random.roll()) {
+        const winnings = Random.nextFloat(Constants.config.lottery.min, Constants.config.lottery.max);
         await db.userRepo.modifyCash(msg.dbGuild, msg.member, winnings);
-        return util.Messenger.tryReply(msg.channel, msg.author, util.StringUtil.format(util.Random.arrayElement(Constants.data.messages.lottery), util.NumberUtil.USD(winnings)));
+        return msg.tryCreateReply(Random.arrayElement(Constants.data.messages.lottery).format(winnings.USD()));
       }
 
       return db.userRepo.modifyCash(msg.dbGuild, msg.member, Constants.config.misc.cashPerMessage);

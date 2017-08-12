@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const util = require('../../utility');
 const db = require('../../database');
 const utility = require('util');
 
@@ -8,7 +7,7 @@ class Eval extends patron.Command {
     super({
       names: ['eval'],
       groupName: 'botowners',
-      description: 'Allows you to modify the cash of any member.',
+      description: 'Evalute JavaScript code.',
       args: [
         new patron.Argument({
           name: 'code',
@@ -44,9 +43,9 @@ class Eval extends patron.Command {
 
       result = result.replace(msg.client.token, ' ').replace(/\[Object\]/g, 'Object').replace(/\[Array\]/g, 'Array');
 
-      return util.Messenger.sendFields(msg.channel, ['Eval', '```js\n' + args.code + '```', 'Returns', '```js\n' + result + '```'], false);
+      return msg.channel.createFieldsMessage(['Eval', '```js\n' + args.code + '```', 'Returns', '```js\n' + result + '```'], false);
     } catch (err) {
-      return util.Messenger.sendError(msg.channel, '```js\n' + err + '```', 'Error');
+      return msg.channel.createErrorMessage('```js\n' + err + '```', 'Error');
     }
   }
 }

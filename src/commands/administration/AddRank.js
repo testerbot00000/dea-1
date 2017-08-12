@@ -1,6 +1,5 @@
 const db = require('../../database');
 const patron = require('patron.js');
-const util = require('../../utility');
 
 class AddRank extends patron.Command {
   constructor() {
@@ -26,15 +25,15 @@ class AddRank extends patron.Command {
   }
 
   async run(msg, args) {
-    if (args.role.comparePositionTo(msg.guild.me.highestRole) > 0) {
-      return util.Messenger.replyError(msg.channel, msg.author, 'DEA must be higher in hierarchy than ' + args.role + '.');
+    if (args.role.position >= msg.guild.me.highestRole) {
+      return msg.createErrorReply('DEA must be higher in hierarchy than ' + args.role + '.');
     } else if (msg.dbGuild.roles.rank.some((role) => role.id === args.role.id) === true) {
-      return util.Messenger.replyError(msg.channel, msg.author, 'This rank role has already been set.');
+      return msg.createErrorReply('This rank role has already been set.');
     }
 
     await db.guildRepo.upsertGuild(msg.guild.id, new db.updates.Push('roles.rank', { id: args.role.id, cashRequired: Math.round(args.cashRequired) }));
 
-    return util.Messenger.reply(msg.channel, msg.author, 'You have successfully added the rank role ' + args.role + ' with a cash required amount of ' + util.NumberUtil.USD(args.cashRequired) + '.');
+    return msg.createReply('You have successfully added the rank role ' + args.role + ' with a cash required amount of ' + args.cashRequired.USD() + '.');
   }
 }
 

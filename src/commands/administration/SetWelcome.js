@@ -1,6 +1,5 @@
 const patron = require('patron.js');
 const db = require('../../database');
-const util = require('../../utility');
 
 class SetWelcome extends patron.Command {
   constructor() {
@@ -23,7 +22,7 @@ class SetWelcome extends patron.Command {
   async run(msg, args) {
     await db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'settings.welcomeMessage': args.message } });
 
-    return util.Messenger.reply(msg.channel, msg.author, 'You have successfully set the welcome message to "' + args.message + '".');
+    return msg.createReply('You have successfully set the welcome message to "' + args.message + '".');
   }
 }
 

@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const util = require('../../utility');
 const Constants = require('../../utility/Constants.js');
 const ModerationService = require('../../services/ModerationService.js');
 const Minimum = require('../../preconditions/Minimum.js');
@@ -38,7 +37,7 @@ class Clear extends patron.Command {
 
     await msg.channel.bulkDelete(messages);
 
-    const reply = await util.Messenger.reply(msg.channel, msg.author, 'You have successfully deleted ' + args.quantity + ' messages.');
+    const reply = await msg.createReply('You have successfully deleted ' + args.quantity + ' messages.');
 
     ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Clear', Constants.data.colors.clear, args.reason, msg.author, null, 'Quantity', args.quantity);
 

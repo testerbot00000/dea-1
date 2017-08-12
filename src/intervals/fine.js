@@ -1,5 +1,6 @@
 const db = require('../database');
-const util = require('../utility');
+const Random = require('../utility/Random.js');
+const NumberUtil = require('../utility/NumberUtil.js');
 const Constants = require('../utility/Constants.js');
 
 module.exports = async (client) => {
@@ -15,7 +16,7 @@ module.exports = async (client) => {
 
       const additionalOdds = dbUser.cash * Constants.config.fine.additionalOdds;
 
-      if (Constants.config.fine.odds + additionalOdds >= util.Random.roll()) {
+      if (Constants.config.fine.odds + additionalOdds >= Random.roll()) {
         const user = client.users.get(dbUser.userId);
 
         const guild = client.guilds.get(dbUser.guildId);
@@ -30,11 +31,11 @@ module.exports = async (client) => {
           continue;
         }
 
-        const fine = util.NumberUtil.realValue(dbUser.cash) * Constants.config.fine.cut;
+        const fine = NumberUtil.realValue(dbUser.cash) * Constants.config.fine.cut;
 
         await db.userRepo.modifyCash(dbGuild, member, -fine);
 
-        await util.Messenger.tryDM(user, util.StringUtil.format(util.Random.arrayElement(Constants.data.messages.fines), util.NumberUtil.USD(fine)), guild);
+        await user.tryDM(Random.arrayElement(Constants.data.messages.fines).fomart(NumberUtil.USD(fine)), guild);
       }
     }
   }, Constants.config.intervals.fine);

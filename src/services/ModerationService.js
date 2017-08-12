@@ -1,5 +1,3 @@
-const discord = require('discord.js');
-const util = require('../utility');
 const Constants = require('../utility/Constants.js');
 const db = require('../database');
 
@@ -21,7 +19,7 @@ class ModerationService {
   }
 
   tryInformUser(guild, moderator, action, user, reason = '') {
-    return util.Messenger.tryDM(user, util.StringUtil.boldify(moderator.tag) + ' has ' + action + ' you' + (util.StringUtil.isNullOrWhiteSpace(reason) ? '.' : ' for the following reason: ' + reason + '.'), guild);
+    return user.tryDM(moderator.tag.boldify() + ' has ' + action + ' you' + (String.isNullOrWhiteSpace(reason) ? '.' : ' for the following reason: ' + reason + '.'), { guild: guild });
   }
 
   async tryModLog(dbGuild, guild, action, color, reason = '', moderator = null, user = null, extraInfoType = '', extraInfo = '') {
@@ -35,18 +33,26 @@ class ModerationService {
       return false;
     }
 
-    const embed = new discord.RichEmbed()
-      .setColor(color)
-      .setFooter('Case #' + dbGuild.misc.caseNumber, 'http://i.imgur.com/BQZJAqT.png')
-      .setTimestamp();
+    const options = {
+      color: color,
+      footer: {
+        text: 'Case #' + dbGuild.misc.caseNumber,
+        icon: 'http://i.imgur.com/BQZJAqT.png'
+      },
+      timestamp: true
+    };
 
     if (moderator !== null) {
-      embed.setAuthor(moderator.tag, moderator.avatarURL, Constants.data.links.botInvite);
+      options.author = {
+        name: moderator.tag,
+        icon: moderator.avatarURL,
+        URL: Constants.data.links.botInvite
+      };
     }
 
     let description = '**Action:** ' + action + '\n';
 
-    if (!util.StringUtil.isNullOrWhiteSpace(extraInfoType)) {
+    if (String.isNullOrWhiteSpace(extraInfoType) === false) {
       description += '**'+ extraInfoType + ':** ' + extraInfo + '\n';
     }
 
@@ -54,14 +60,12 @@ class ModerationService {
       description += '**User:** ' + user.tag + ' (' + user.id + ')\n';
     }
 
-    if (!util.StringUtil.isNullOrWhiteSpace(reason)) {
+    if (String.isNullOrWhiteSpace(reason) === false) {
       description += '**Reason:** ' + reason + '\n';
     }
 
-    embed.setDescription(description);
-
     await db.guildRepo.upsertGuild(dbGuild.guildId, { $inc: { 'misc.caseNumber': 1 } });
-    return util.Messenger.trySendEmbed(channel, embed);
+    return channel.tryCreateMessage(description, options);
   }
 }
 

@@ -36,7 +36,7 @@ These commands may only be used by the owners of DEA.
 
 Command | Description | Usage
 ---------------- | --------------| -------
-Eval|Allows you to modify the cash of any member.|`$eval <code>`
+Eval|Evalute JavaScript code.|`$eval <code>`
 Modifycash|Allows you to modify the cash of any member.|`$modifycash <amount> [@member]`
 
 ### Gambling

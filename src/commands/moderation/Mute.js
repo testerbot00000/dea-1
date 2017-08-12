@@ -1,6 +1,6 @@
 const patron = require('patron.js');
 const db = require('../../database');
-const util = require('../../utility');
+const NumberUtil = require('../../utility/NumberUtil.js');
 const Constants = require('../../utility/Constants.js');
 const ModerationService = require('../../services/ModerationService.js');
 const NoModerator = require('../../preconditions/NoModerator.js');
@@ -41,22 +41,22 @@ class Mute extends patron.Command {
 
   async run(msg, args) {
     if (msg.dbGuild.roles.muted === null) {
-      return util.Messenger.replyError(msg.channel, msg.author, 'You must set a muted role with the `' + Constants.data.misc.prefix + 'setmute @Role` command before you can mute users.');
+      return msg.createErrorReply('You must set a muted role with the `' + Constants.data.misc.prefix + 'setmute @Role` command before you can mute users.');
     } else if (args.member.roles.has(msg.dbGuild.roles.muted)) {
-      return util.Messenger.replyError(msg.channel, msg.author, 'This user is already muted.');
+      return msg.createErrorReply('This user is already muted.');
     }
 
     const role = msg.guild.roles.get(msg.dbGuild.roles.muted);
 
     if (role === undefined) {
-      return util.Messenger.replyError(msg.channel, msg.author, 'The set muted role has been deleted. Please set a new one with the `' + Constants.data.misc.prefix + 'setmute Role` command.');
+      return msg.createErrorReply('The set muted role has been deleted. Please set a new one with the `' + Constants.data.misc.prefix + 'setmute Role` command.');
     }
 
     const formattedHours = args.hours + ' hour' + (args.hours === 1 ? '' : 's');
 
     await args.member.addRole(role);
-    await util.Messenger.reply(msg.channel, msg.author, 'You have successfully muted ' + args.member.user.tag + ' for ' + formattedHours + '.');
-    await db.muteRepo.insertMute(args.member.id, msg.guild.id, util.NumberUtil.hoursToMs(args.hours));
+    await msg.createReply('You have successfully muted ' + args.member.user.tag + ' for ' + formattedHours + '.');
+    await db.muteRepo.insertMute(args.member.id, msg.guild.id, NumberUtil.hoursToMs(args.hours));
     await ModerationService.tryInformUser(msg.guild, msg.author, 'muted', args.member.user, args.reason);
     return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Mute', Constants.data.colors.mute, args.reason, msg.author, args.member.user, 'Length', formattedHours);
   }

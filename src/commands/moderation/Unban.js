@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const util = require('../../utility');
 const Constants = require('../../utility/Constants.js');
 const ModerationService = require('../../services/ModerationService.js');
 
@@ -31,7 +30,7 @@ class Unban extends patron.Command {
 
   async run(msg, args) {
     await msg.guild.unban(args.user);
-    await util.Messenger.reply(msg.channel, msg.author, 'You have successfully unbanned ' + args.user.tag + '.');
+    await msg.createReply('You have successfully unbanned ' + args.user.tag + '.');
     await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Unban', Constants.data.colors.unban, args.reason, msg.author, args.user);
     return ModerationService.tryInformUser(msg.guild, msg.author, 'unbanned', args.user, args.reason);
   }

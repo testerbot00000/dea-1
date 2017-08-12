@@ -1,6 +1,5 @@
 const db = require('../../database');
 const patron = require('patron.js');
-const util = require('../../utility');
 
 class EnableFines extends patron.Command {
   constructor() {
@@ -13,12 +12,12 @@ class EnableFines extends patron.Command {
 
   async run(msg) {
     if (msg.dbGuild.settings.fines === true) {
-      return util.Messenger.replyError(msg.channel, msg.author, 'Fines are already enabled.');
+      return msg.createErrorReply('Fines are already enabled.');
     }
 
     await db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'settings.fines': true } });
 
-    return util.Messenger.reply(msg.channel, msg.author, 'You have successfully enabled fines.');
+    return msg.createReply('You have successfully enabled fines.');
   }
 }
 

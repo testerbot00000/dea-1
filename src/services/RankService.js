@@ -1,4 +1,4 @@
-const util = require('../utility');
+const NumberUtil = require('../utility/NumberUtil.js');
 
 class RankService {
   handle(dbUser, dbGuild, member) {
@@ -11,7 +11,7 @@ class RankService {
     const highsetRolePosition = member.guild.me.highestRole.position;
     const rolesToAdd = [];
     const rolesToRemove = [];
-    const cash = util.NumberUtil.realValue(dbUser.cash);
+    const cash = NumberUtil.realValue(dbUser.cash);
 
     for (const rank of dbGuild.roles.rank) {
       const role = member.guild.roles.get(rank.id);
@@ -36,7 +36,7 @@ class RankService {
 
   getRank(dbUser, dbGuild, guild) {
     let role;
-    const cash = util.NumberUtil.realValue(dbUser.cash);
+    const cash = NumberUtil.realValue(dbUser.cash);
 
     for (const rank of dbGuild.roles.rank.sort((a, b) => a.cashRequired - b.cashRequired)) {
       if (cash >= rank.cashRequired) {

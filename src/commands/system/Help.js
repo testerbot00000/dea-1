@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const util = require('../../utility');
 const Constants = require('../../utility/Constants.js');
 
 class Help extends patron.Command {
@@ -22,12 +21,12 @@ class Help extends patron.Command {
   }
 
   async run(msg, args) {
-    if (util.StringUtil.isNullOrWhiteSpace(args.command)) {
-      await util.Messenger.DM(msg.author,
+    if (String.isNullOrWhiteSpace(args.command)) {
+      await msg.author.DM(
         'DEA is **THE** cleanest bot around, and you can have it in **YOUR** server simply by clicking here: ' + Constants.data.links.botInvite + '.\n\nFor all information about command usage and setup on your Discord Sever, view the official documentation: ' + Constants.data.links.documentation + '.\n\nThe `' + Constants.data.misc.prefix + 'help <command>` command may be used for view the usage and an example of any command.\n\nIf you have **ANY** questions, you may join the **Official DEA Discord Server:** ' + Constants.data.links.serverInvite + ' for instant support along with a great community.');
 
       if (msg.channel.type !== 'dm') {
-        return util.Messenger.reply(msg.channel, msg.author, 'You have been DMed with all the command information!');
+        return msg.createReply('You have been DMed with all the command information!');
       }
     } else {
       args.command = args.command.startsWith(Constants.data.misc.prefix) ? args.command.slice(Constants.data.misc.prefix.length) : args.command;
@@ -37,10 +36,10 @@ class Help extends patron.Command {
       const command = msg.client.registry.commands.find((x) => x.names.some((y) => y === lowerInput));
 
       if (command === undefined) {
-        return util.Messenger.replyError(msg.channel, msg.author, 'This command does not exist.');
+        return msg.createErrorReply('This command does not exist.');
       }
 
-      return util.Messenger.send(msg.channel, '**Description:** ' + command.description + '\n**Usage:** `' + Constants.data.misc.prefix + command.getUsage() + '`\n**Example:** `' + Constants.data.misc.prefix + command.getExample() + '`', util.StringUtil.upperFirstChar(command.names[0]));
+      return msg.channel.createMessage('**Description:** ' + command.description + '\n**Usage:** `' + Constants.data.misc.prefix + command.getUsage() + '`\n**Example:** `' + Constants.data.misc.prefix + command.getExample() + '`', { title: command.names[0].upperFirstChar() });
     }
   }
 }

@@ -1,4 +1,3 @@
-const util = require('../utility');
 const db = require('../database');
 
 module.exports = (client) => {
@@ -6,7 +5,7 @@ module.exports = (client) => {
     const dbGuild = await db.guildRepo.getGuild(member.guild.id);
 
     if (dbGuild.settings.welcomeMessage !== null) {
-      await util.Messenger.tryDM(member, dbGuild.settings.welcomeMessage);
+      await member.tryDM(dbGuild.settings.welcomeMessage);
     }
 
     if (dbGuild.roles.muted !== null && await db.muteRepo.anyMute(member.id, member.guild.id)) {

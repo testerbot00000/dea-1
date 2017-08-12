@@ -1,6 +1,6 @@
 const patron = require('patron.js');
 const db = require('../../database');
-const util = require('../../utility');
+const NumberUtil = require('../../utility/NumberUtil.js');
 const Constants = require('../../utility/Constants.js');
 const NoSelf = require('../../preconditions/NoSelf.js');
 const Cash = require('../../preconditions/Cash.js');
@@ -37,7 +37,7 @@ class Transfer extends patron.Command {
     const newDbUser = await db.userRepo.modifyCash(msg.dbGuild, msg.member, -args.transfer);
     await db.userRepo.modifyCash(msg.dbGuild, args.member, received);
 
-    return util.Messenger.reply(msg.channel, msg.author, 'You have successfully transfered ' + util.NumberUtil.USD(received) + ' to '+ util.StringUtil.boldify(args.member.user.tag) + '. Transaction fee: ' + util.NumberUtil.USD(transactionFee) + '. Balance: ' + util.NumberUtil.format(newDbUser.cash) + '.');
+    return msg.createReply('You have successfully transfered ' + received.USD() + ' to '+ args.member.user.tag.boldify() + '. Transaction fee: ' + transactionFee.USD() + '. Balance: ' + NumberUtil.format(newDbUser.cash) + '.');
   }
 }
 

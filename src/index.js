@@ -1,3 +1,4 @@
+require('./extensions');
 global.Promise = require('bluebird');
 const path = require('path');
 const { Registry, Handler } = require('patron.js');
