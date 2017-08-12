@@ -11,7 +11,9 @@ String.prototype.upperFirstChar = function () {
 };
 
 String.prototype.format = function () {
-  return this.replace(/{(\d+)}/g, function (match, number) {
-    return typeof arguments[number] !== 'undefined' ? arguments[number] : match;
+  const args = arguments;
+
+  return this.replace(/{(\d+)}/g, (match, number) => {
+    return typeof args[number] !== 'undefined' ? args[number] : match;
   });
 };
