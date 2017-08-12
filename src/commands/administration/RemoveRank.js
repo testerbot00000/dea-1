@@ -5,7 +5,7 @@ const util = require('../../utility');
 class RemoveRank extends patron.Command {
   constructor() {
     super({
-      names: ['removerank'],
+      names: ['removerank', 'disablerank', 'deleterank'],
       groupName: 'administration',
       description: 'Remove a rank role.',
       args: [
@@ -21,7 +21,7 @@ class RemoveRank extends patron.Command {
   }
 
   async run(msg, args) {
-    if (!msg.dbGuild.roles.rank.some((role) =>  role.id === args.role.id)) {
+    if (msg.dbGuild.roles.rank.some((role) => role.id === args.role.id) === false) {
       return util.Messenger.replyError(msg.channel, msg.author, 'You may not remove a rank role that has no been set.');
     }
 

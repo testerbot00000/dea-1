@@ -3,7 +3,6 @@ class User {
     this.userId = userId;
     this.guildId = guildId;
     this.cash = 0;
-    this.reputation = 0;
   }
 }
 

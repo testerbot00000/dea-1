@@ -1,6 +1,6 @@
 const patron = require('patron.js');
 
-class System extends patron.Group {
+class SystemGroup extends patron.Group {
   constructor() {
     super({
       name: 'system'
@@ -8,4 +8,4 @@ class System extends patron.Group {
   }
 }
 
-module.exports = new System();
+module.exports = new SystemGroup();

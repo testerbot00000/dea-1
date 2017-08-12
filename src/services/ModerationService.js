@@ -1,6 +1,6 @@
 const discord = require('discord.js');
 const util = require('../utility');
-const config = require('../config.json');
+const Constants = require('../utility/Constants.js');
 const db = require('../database');
 
 class ModerationService {
@@ -41,7 +41,7 @@ class ModerationService {
       .setTimestamp();
 
     if (moderator !== null) {
-      embed.setAuthor(moderator.tag, moderator.avatarURL, config.inviteLink);
+      embed.setAuthor(moderator.tag, moderator.avatarURL, Constants.data.links.botInvite);
     }
 
     let description = '**Action:** ' + action + '\n';

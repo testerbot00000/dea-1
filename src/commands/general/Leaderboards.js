@@ -1,5 +1,5 @@
 const db = require('../../database');
-const config = require('../../config.json');
+const Constants = require('../../utility/Constants.js');
 const patron = require('patron.js');
 const util = require('../../utility');
 
@@ -18,10 +18,9 @@ class Leaderboards extends patron.Command {
     users.sort((a, b) => b.cash - a.cash);
 
     let message = '';
-    let position = 1;
 
     for (let i = 0; i < users.length; i++) {
-      if (position > config.leaderboardCap) {
+      if (i + 1 > Constants.config.misc.leaderboardCap) {
         break;
       }
 
@@ -31,10 +30,10 @@ class Leaderboards extends patron.Command {
         continue;
       }
 
-      message += position++ + '. ' + util.StringUtil.boldify(user.tag) + ': ' + util.NumberUtil.format(users[i].cash) + '\n';
+      message += (i + 1) + '. ' + util.StringUtil.boldify(user.tag) + ': ' + util.NumberUtil.format(users[i].cash) + '\n';
     }
 
-    if (util.StringUtil.isNullOrWhiteSpace(message)) {
+    if (util.StringUtil.isNullOrWhiteSpace(message) === true) {
       return util.Messenger.replyError(msg.channel, msg.author, 'There is nobody on the leaderboards.');
     }
 

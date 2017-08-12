@@ -5,7 +5,7 @@ const util = require('../../utility');
 class AddRank extends patron.Command {
   constructor() {
     super({
-      names: ['addrank', 'setrank'],
+      names: ['addrank', 'setrank', 'enablerank'],
       groupName: 'administration',
       description: 'Add a rank.',
       args: [
@@ -28,9 +28,7 @@ class AddRank extends patron.Command {
   async run(msg, args) {
     if (args.role.comparePositionTo(msg.guild.me.highestRole) > 0) {
       return util.Messenger.replyError(msg.channel, msg.author, 'DEA must be higher in hierarchy than ' + args.role + '.');
-    }
-
-    if (msg.dbGuild.roles.rank.some((role) => role.id === args.role.id)) {
+    } else if (msg.dbGuild.roles.rank.some((role) => role.id === args.role.id) === true) {
       return util.Messenger.replyError(msg.channel, msg.author, 'This rank role has already been set.');
     }
 

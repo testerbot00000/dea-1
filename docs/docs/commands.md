@@ -13,7 +13,6 @@ The syntax of the command usage is:
 - [General](#general)
 - [Moderation](#moderation)
 - [Owners](#owners)
-- [Reputation](#reputation)
 - [System](#system)
 
 ### Administration
@@ -65,7 +64,7 @@ These commands may only be used by a user with the set mod role with a permissio
 Command | Description | Usage
 ---------------- | --------------| -------
 Ban|Swing the ban hammer on any member.|`$ban <@user> [reason]`
-Clear|Clear up to 1000 messages in any text channel.|`$clear <quantity> [reason]`
+Clear|Clear up to 2 messages in any text channel.|`$clear <quantity> [reason]`
 Kick|Kick any member.|`$kick <@member> [reason]`
 Mute|Mute any member.|`$mute <@member> [quantity of hours] [reason]`
 Unban|Lift the ban hammer on any member.|`$unban <user> [reason]`
@@ -82,17 +81,6 @@ Addmodrole|Add a mod role.|`$addmodrole <@role> <permissionLevel>`
 Removemodrole|Remove a mod role.|`$removemodrole <@role>`
 Reset|Resets all user data in your server.|`$reset`
 Resetuser|Reset any member's data.|`$resetuser [@member]`
-
-### Reputation
-
-The repuration group has been added in order to show you have gained a certain status and respect in a server, which will allow you access to more commands and features with a higher reputation.
-
-Command | Description | Usage
----------------- | --------------| -------
-Lowrepleaderboards|View the users with the lowest reputation.|`$lowrepleaderboards`
-Rep|Give reputation to any member.|`$rep <@member>`
-Repleaderboards|View the users with the highest reputation.|`$repleaderboards`
-Unrep|Remove reputation from any member.|`$unrep <@member>`
 
 ### System
 Command | Description | Usage

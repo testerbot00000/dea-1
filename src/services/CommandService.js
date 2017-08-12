@@ -1,6 +1,6 @@
 const db = require('../database');
 const patron = require('patron.js');
-const config = require('../config.json');
+const Constants = require('../utility/Constants.js');
 const util = require('../utility');
 const ChatService = require('./ChatService.js');
 
@@ -17,14 +17,13 @@ class CommandService {
 
         msg.dbUser = dbUser !== null ? dbUser : await db.userRepo.insertOne(new db.models.User(msg.author.id, msg.guild.id));
         msg.dbGuild = dbGuild !== null ? dbGuild : await db.guildRepo.insertOne(new db.models.Guild(msg.guild.id));
-        msg.member = msg.guild.member(msg.author);
-
-        if (!msg.content.startsWith(config.prefix)) {
-          return ChatService.applyCash(msg);
-        }
       }
 
-      const result = await handler.run(msg, config.prefix);
+      if (Constants.data.regexes.prefix.test(msg.content) === false) {
+        return msg.guild !== null ? ChatService.applyCash(msg) : null;
+      }
+
+      const result = await handler.run(msg, Constants.data.misc.prefix);
 
       if (result.success === false) {
         let message;
@@ -55,7 +54,7 @@ class CommandService {
             }
             break;
           case patron.CommandError.InvalidArgCount:
-            message = 'You are incorrectly using this command.\n**Usage:** `' + config.prefix + result.command.getUsage() + '`\n**Example:** `' + config.prefix + result.command.getExample() + '`';
+            message = 'You are incorrectly using this command.\n**Usage:** `' + Constants.data.misc.prefix + result.command.getUsage() + '`\n**Example:** `' + Constants.data.misc.prefix + result.command.getExample() + '`';
             break;
           default:
             message = result.errorReason;

@@ -1,5 +1,5 @@
 const db = require('../database');
-const config = require('../config.json');
+const Constants = require('../utility/Constants.js');
 const util = require('../utility');
 
 class ChatService {
@@ -9,19 +9,19 @@ class ChatService {
 
   async applyCash(msg) {
     const lastMessage = this.messages.get(msg.author.id);
-    const isMessageCooldownOver = lastMessage === undefined || Date.now() - lastMessage > config.messageCooldown;
-    const isLongEnough = msg.content.length >= config.minCharLength;
+    const isMessageCooldownOver = lastMessage === undefined || Date.now() - lastMessage > Constants.config.misc.messageCooldown;
+    const isLongEnough = msg.content.length >= Constants.config.misc.minCharLength;
 
     if (isMessageCooldownOver && isLongEnough) {
       this.messages.set(msg.author.id, Date.now());
 
-      if (config.lotteryOdds >= util.Random.roll()) {
-        const winnings = util.Random.nextFloat(config.lotteryMin, config.lotteryMax);
+      if (Constants.config.lottery.odds >= util.Random.roll()) {
+        const winnings = util.Random.nextFloat(Constants.config.lottery.min, Constants.config.lottery.max);
         await db.userRepo.modifyCash(msg.dbGuild, msg.member, winnings);
-        return util.Messenger.tryReply(msg.channel, msg.author, util.StringUtil.format(util.Random.arrayElement(config.lotteryMessages), util.NumberUtil.USD(winnings)));
+        return util.Messenger.tryReply(msg.channel, msg.author, util.StringUtil.format(util.Random.arrayElement(Constants.data.messages.lottery), util.NumberUtil.USD(winnings)));
       }
 
-      return db.userRepo.modifyCash(msg.dbGuild, msg.member, config.cashPerMessage);
+      return db.userRepo.modifyCash(msg.dbGuild, msg.member, Constants.config.misc.cashPerMessage);
     }
   }
 }

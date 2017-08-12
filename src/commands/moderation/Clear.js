@@ -1,6 +1,6 @@
 const patron = require('patron.js');
 const util = require('../../utility');
-const config = require('../../config.json');
+const Constants = require('../../utility/Constants.js');
 const ModerationService = require('../../services/ModerationService.js');
 const Minimum = require('../../preconditions/Minimum.js');
 const Maximum = require('../../preconditions/Maximum.js');
@@ -10,7 +10,7 @@ class Clear extends patron.Command {
     super({
       names: ['clear', 'prune'],
       groupName: 'moderation',
-      description: 'Clear up to ' + config.maxClear + ' messages in any text channel.',
+      description: 'Clear up to ' + Constants.config.clear.max + ' messages in any text channel.',
       cooldown: 1000,
       botPermissions: ['MANAGE_MESSAGES'],
       args: [
@@ -19,7 +19,7 @@ class Clear extends patron.Command {
           key: 'quantity',
           type: 'float',
           example: '5',
-          preconditions: [new Minimum(config.minClear), new Maximum(config.maxClear)]
+          preconditions: [new Minimum(Constants.config.clear.min), new Maximum(Constants.config.clear.max)]
         }),
         new patron.Argument({
           name: 'reason',
@@ -40,7 +40,7 @@ class Clear extends patron.Command {
 
     const reply = await util.Messenger.reply(msg.channel, msg.author, 'You have successfully deleted ' + args.quantity + ' messages.');
 
-    ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Clear', config.clearColor, args.reason, msg.author, null, 'Quantity', args.quantity);
+    ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Clear', Constants.data.colors.clear, args.reason, msg.author, null, 'Quantity', args.quantity);
 
     return reply.delete(3000);
   }

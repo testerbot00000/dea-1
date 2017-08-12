@@ -12,13 +12,11 @@ class Guild {
       welcome: null
     };
     this.settings = {
-      globalChattingMultiplier: 1,
       fines: false,
       welcomeMessage: null
     };
     this.misc = {
-      caseNumber: 1,
-      trivia: []
+      caseNumber: 1
     };
   }
 }

@@ -1,7 +1,7 @@
 const patron = require('patron.js');
 const db = require('../../database');
 const util = require('../../utility');
-const config = require('../../config.json');
+const Constants = require('../../utility/Constants.js');
 const NoSelf = require('../../preconditions/NoSelf.js');
 const Cash = require('../../preconditions/Cash.js');
 const MinimumCash = require('../../preconditions/MinimumCash.js');
@@ -25,14 +25,14 @@ class Transfer extends patron.Command {
           key: 'transfer',
           type: 'currency',
           example: '500',
-          preconditions: [Cash, new MinimumCash(config.minTransfer)]
+          preconditions: [Cash, new MinimumCash(Constants.config.transfer.min)]
         })
       ]
     });
   }
 
   async run(msg, args) {
-    const transactionFee = args.transfer * config.transactionCut;
+    const transactionFee = args.transfer * Constants.config.transfer.cut;
     const received = args.transfer - transactionFee;
     const newDbUser = await db.userRepo.modifyCash(msg.dbGuild, msg.member, -args.transfer);
     await db.userRepo.modifyCash(msg.dbGuild, args.member, received);

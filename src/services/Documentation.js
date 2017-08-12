@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
-const config = require('../config.json');
+const Constants = require('../utility/Constants.js');
 const util = require('../utility');
 
 class Documentation {
@@ -29,7 +29,7 @@ class Documentation {
       const commands = groups[i].commands.sort((a, b) => a.names[0].localeCompare(b.names[0]));
 
       for (let j = 0; j < commands.length; j++) {
-        commandInfo += util.StringUtil.upperFirstChar(commands[j].names[0]) + '|' + commands[j].description + '|`' + config.prefix + commands[j].getUsage() + '`\n';
+        commandInfo += util.StringUtil.upperFirstChar(commands[j].names[0]) + '|' + commands[j].description + '|`' + Constants.data.misc.prefix + commands[j].getUsage() + '`\n';
       }
     }
 

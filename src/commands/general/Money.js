@@ -24,7 +24,7 @@ class Money extends patron.Command {
   async run(msg, args) {
     const dbUser = msg.author.id === args.member.id ? msg.dbUser : await db.userRepo.getUser(args.member.id, msg.guild.id);
 
-    return util.Messenger.send(msg.channel, util.StringUtil.boldify(args.member.user.tag) + '\'s balance: ' + util.NumberUtil.format(dbUser.cash));
+    return util.Messenger.send(msg.channel, util.StringUtil.boldify(args.member.user.tag) + '\'s balance: ' + util.NumberUtil.format(dbUser.cash) + '.');
   }
 }
 

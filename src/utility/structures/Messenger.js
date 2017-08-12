@@ -1,4 +1,4 @@
-const config = require('../../config.json');
+const Constants = require('../../utility/Constants.js');
 const discord = require('discord.js');
 const Random = require('./Random.js');
 const StringUtil = require('./StringUtil.js');
@@ -16,7 +16,7 @@ class Messenger {
 
   static send(channel, description, title = '', color = null) {
     const embed = new discord.RichEmbed()
-      .setColor(color || Random.arrayElement(config.embedColors))
+      .setColor(color || Random.arrayElement(Constants.data.colors.defaults))
       .setDescription(description);
 
     if (!StringUtil.isNullOrWhiteSpace(title)) {
@@ -45,7 +45,7 @@ class Messenger {
 
   static sendFields(channel, fieldsAndValues, inline = true, color = null) {
     const embed = new discord.RichEmbed()
-      .setColor(color || Random.arrayElement(config.embedColors));
+      .setColor(color || Random.arrayElement(Constants.data.colors.defaults));
 
     if (!NumberUtil.isEven(fieldsAndValues.length)) {
       throw new TypeError('The fieldsAndValues length must be even.');
@@ -65,24 +65,24 @@ class Messenger {
   }
 
   static sendError(channel, description, title = '') {
-    return this.send(channel, description, title, config.errorColor);
+    return this.send(channel, description, title, Constants.data.colors.error);
   }
 
   static trySendError(channel, description, title = '') {
-    return this.trySend(channel, description, title, config.errorColor);
+    return this.trySend(channel, description, title, Constants.data.colors.error);
   }
 
   static replyError(channel, user, description, title = '') {
-    return this.reply(channel, user, description, title, config.errorColor);
+    return this.reply(channel, user, description, title, Constants.data.colors.error);
   }
 
   static tryReplyError(channel, user, description, title = '') {
-    return this.tryReply(channel, user, description, title, config.errorColor);
+    return this.tryReply(channel, user, description, title, Constants.data.colors.error);
   }
 
   static DM(user, description, guild = null, title = '', color = null) {
     const embed = new discord.RichEmbed()
-      .setColor(color || Random.arrayElement(config.embedColors))
+      .setColor(color || Random.arrayElement(Constants.data.colors.defaults))
       .setDescription(description);
 
     if (!StringUtil.isNullOrWhiteSpace(title)) {

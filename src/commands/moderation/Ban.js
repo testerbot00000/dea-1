@@ -1,6 +1,6 @@
 const patron = require('patron.js');
 const util = require('../../utility');
-const config = require('../../config.json');
+const Constants = require('../../utility/Constants.js');
 const ModerationService = require('../../services/ModerationService.js');
 
 class Ban extends patron.Command {
@@ -33,7 +33,7 @@ class Ban extends patron.Command {
     await msg.guild.ban(args.user);
     await util.Messenger.reply(msg.channel, msg.author, 'You have successfully banned ' + args.user.tag + '.');
     await ModerationService.tryInformUser(msg.guild, msg.author, 'banned', args.user, args.reason);
-    return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Ban', config.banColor, args.reason, msg.author, args.user);
+    return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Ban', Constants.data.colors.ban, args.reason, msg.author, args.user);
   }
 }
 

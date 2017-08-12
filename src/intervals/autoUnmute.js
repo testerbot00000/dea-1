@@ -1,5 +1,5 @@
 const db = require('../database');
-const config = require('../config.json');
+const Constants = require('../utility/Constants.js');
 const ModerationService = require('../services/ModerationService.js');
 
 module.exports = async (client) => {
@@ -37,8 +37,8 @@ module.exports = async (client) => {
       }
 
       await member.removeRole(role);
-      await ModerationService.tryModLog(dbGuild, guild, 'Automatic Unmute', config.unmuteColor, '', null, member.user);
+      await ModerationService.tryModLog(dbGuild, guild, 'Automatic Unmute', Constants.data.colors.unmute, '', null, member.user);
       await ModerationService.tryInformUser(guild, client.user, 'automatically unmuted', member.user);
     }
-  }, config.autoUnmuteInterval);
+  }, Constants.config.intervals.autoUnmute);
 };
