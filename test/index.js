@@ -1,14 +1,15 @@
+require('../src/extensions');
 const path = require('path');
-const patron = require('patron.js');
-const discord = require('discord.js');
+const { Registry } = require('patron.js');
+const { Client } = require('discord.js');
 const db = require('../src/database');
-const config = require('../src/config.json');
+const Constants = require('../src/utility/Constants.js');
 const credentials = require('../src/credentials.json');
 const Documentation = require('../src/services/Documentation.js');
 
 async function initiate() {
-  const client = new discord.Client({ fetchAllMembers: true, messageCacheMaxSize: 5, messageCacheLifetime: 30, messageSweepInterval: 1800, disabledEvents: config.disabledEvents, restTimeOffset: 150 });
-  const registry = new patron.Registry();
+  const client = new Client({ fetchAllMembers: true, messageCacheMaxSize: 5, messageCacheLifetime: 30, messageSweepInterval: 1800, disabledEvents: Constants.data.misc.disabledEvents, restTimeOffset: 100 });
+  const registry = new Registry();
 
   registry.registerDefaultTypeReaders();
   registry.registerGroupsIn(path.join(__dirname, '../src/groups'));

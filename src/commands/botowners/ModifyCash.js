@@ -1,5 +1,6 @@
 const db = require('../../database');
 const patron = require('patron.js');
+const NumberUtil = require('../../utility/NumberUtil.js');
 
 class ModifyCash extends patron.Command {
   constructor() {
@@ -29,7 +30,7 @@ class ModifyCash extends patron.Command {
   async run(msg, args) {
     const newDbUser = await db.userRepo.modifyCash(msg.dbGuild, args.member, args.amount);
 
-    return msg.createReply('You have successfully modifed ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag.boldify() + '\'s') + ' balance to ' + newDbUser.cash.USD() + '.');
+    return msg.createReply('You have successfully modifed ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag.boldify() + '\'s') + ' balance to ' + NumberUtil.format(newDbUser.cash) + '.');
   }
 }
 

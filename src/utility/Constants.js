@@ -74,13 +74,13 @@ class Constants {
 
     this.config = {
       chill: {
-        max: 5,
-        min: 3600
+        max: 3600,
+        min: 5
       },
 
       clear: {
-        max: 2,
-        min: 1000
+        max: 1000,
+        min: 2
       },
 
       gambling: {
