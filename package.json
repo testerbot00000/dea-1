@@ -1,6 +1,6 @@
 {
   "name": "dea",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "The cleanest Discord Bot around.",
   "main": "src/index.js",
   "scripts": {
