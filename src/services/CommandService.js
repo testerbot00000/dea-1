@@ -12,11 +12,8 @@ class CommandService {
       }
 
       if (msg.guild !== null) {
-        const dbUser = await db.userRepo.getUser(msg.author.id, msg.guild.id);
-        const dbGuild = await db.guildRepo.getGuild(msg.guild.id);
-
-        msg.dbUser = dbUser !== null ? dbUser : await db.userRepo.insertOne(new db.models.User(msg.author.id, msg.guild.id));
-        msg.dbGuild = dbGuild !== null ? dbGuild : await db.guildRepo.insertOne(new db.models.Guild(msg.guild.id));
+        msg.dbUser = await db.userRepo.getUser(msg.author.id, msg.guild.id);
+        msg.dbGuild = await db.guildRepo.getGuild(msg.guild.id);
       }
 
       if (Constants.data.regexes.prefix.test(msg.content) === false) {

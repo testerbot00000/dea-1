@@ -2,6 +2,8 @@ const db = require('../database');
 
 module.exports = (client) => {
   client.on('guildMemberAdd', async (member) => {
+    await db.userRepo.ensureExistance(member.id, member.guild.id);
+
     const dbGuild = await db.guildRepo.getGuild(member.guild.id);
 
     if (dbGuild.settings.welcomeMessage !== null) {

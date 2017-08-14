@@ -1,7 +1,10 @@
 const Constants = require('../utility/Constants.js');
+const db = require('../database');
 
 module.exports = (client) => {
   client.on('guildCreate', async (guild) => {
+    await db.guildRepo.ensureExistance(guild.id);
+
     const mainChannel = guild.mainChannel;
 
     if (mainChannel !== undefined) {
