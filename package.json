@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/RealBlazeIt/dea#readme",
   "dependencies": {
-    "bluebird": "^3.5.0",
     "discord.js": "^11.1.0",
     "mongodb": "^2.2.31",
     "patron.js": "^2.2.6"
