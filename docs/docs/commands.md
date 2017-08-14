@@ -64,7 +64,7 @@ These commands may only be used by a user with the set mod role with a permissio
 Command | Description | Usage
 ---------------- | --------------| -------
 Ban|Swing the ban hammer on any member.|`$ban <@user> [reason]`
-Clear|Clear up to 1000 messages in any text channel.|`$clear <quantity> [reason]`
+Clear|Clear up to 100 messages in any text channel.|`$clear <quantity> [reason]`
 Kick|Kick any member.|`$kick <@member> [reason]`
 Mute|Mute any member.|`$mute <@member> [quantity of hours] [reason]`
 Unban|Lift the ban hammer on any member.|`$unban <user> [reason]`

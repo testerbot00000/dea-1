@@ -131,3 +131,11 @@ discord.Message.prototype.createErrorReply = function (description, options = {}
 discord.Message.prototype.tryCreateErrorReply = function (description, options = {}) {
   return this.channel.tryCreateErrorMessage(this.author.tag.boldify() + ', ' + description, options);
 };
+
+Object.defineProperty(discord.Guild.prototype, 'mainChannel', {
+  get: function mainChannel() {
+    return this.channels.findValue((v) => {
+      return v.type === 'text' && (v.name === 'general' || v.name.includes('main'));
+    });
+  }
+});

@@ -79,7 +79,7 @@ class Constants {
       },
 
       clear: {
-        max: 1000,
+        max: 100,
         min: 2
       },
 

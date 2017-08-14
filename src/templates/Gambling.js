@@ -37,6 +37,7 @@ class Gambling extends patron.Command {
 
       return msg.createReply('You rolled: ' + roll.toFixed(2) + '. Congrats, you won ' + winnings.USD() + '. Balance: ' + NumberUtil.format(newDbUser.cash) + '.');
     }
+
     const newDbUser = await db.userRepo.modifyCash(msg.dbGuild, msg.member, -args.bet);
 
     return msg.createReply('You rolled: ' + roll.toFixed(2) + '. Unfortunately, you lost ' + args.bet.USD() + '. Balance: ' + NumberUtil.format(newDbUser.cash) + '.');
