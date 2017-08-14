@@ -43,8 +43,10 @@ class BaseRepository {
     return this.replaceOne(new IdQuery(id), document);
   }
 
-  findOneAndReplace(filter, document) {
-    return this.collection.findOneAndReplace(filter, document, { upsert: true, returnOriginal: false });
+  async findOneAndReplace(filter, document) {
+    const result = await this.collection.findOneAndReplace(filter, document, { upsert: true, returnOriginal: false });
+
+    return result.value;
   }
 
   findByIdAndReplace(document) {

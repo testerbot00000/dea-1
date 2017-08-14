@@ -3,9 +3,6 @@ const db = require('../database');
 class MemberService {
   async join(member) {
     const dbGuild = await db.guildRepo.getGuild(member.guild.id);
-    if (dbGuild.roles === undefined) {
-      console.log(dbGuild);
-    }
 
     if (dbGuild.settings.welcomeMessage !== null) {
       await member.tryDM(dbGuild.settings.welcomeMessage);

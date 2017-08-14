@@ -1,6 +1,7 @@
 const patron = require('patron.js');
 const db = require('../../database');
-const utility = require('util');
+const util = require('util');
+const Constants = require('../../utility/Constants.js');
 
 class Eval extends patron.Command {
   constructor() {
@@ -38,14 +39,14 @@ class Eval extends patron.Command {
       }
 
       if (typeof result !== 'string') {
-        result = utility.inspect(result, { depth: 0 });
+        result = util.inspect(result, { depth: 0 });
       }
 
       result = result.replace(msg.client.token, ' ').replace(/\[Object\]/g, 'Object').replace(/\[Array\]/g, 'Array');
 
       return msg.channel.createFieldsMessage(['Eval', '```js\n' + args.code + '```', 'Returns', '```js\n' + result + '```'], false);
     } catch (err) {
-      return msg.channel.createErrorMessage('```js\n' + err + '```', 'Error');
+      return msg.channel.createFieldsMessage(['Eval', '```js\n' + args.code + '```', 'Error', '```js\n' + err + '```'], false, Constants.data.colors.error);
     }
   }
 }
