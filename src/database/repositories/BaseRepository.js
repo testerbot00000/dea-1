@@ -35,6 +35,22 @@ class BaseRepository {
     return result.ops[0];
   }
 
+  replaceOne(filter, document) {
+    return this.collection.replaceOne(filter, document, { upsert: true });
+  }
+
+  replaceById(id, document) {
+    return this.replaceOne(new IdQuery(id), document);
+  }
+
+  findOneAndReplace(filter, document) {
+    return this.collection.findOneAndReplace(filter, document, { upsert: true, returnOriginal: false });
+  }
+
+  findByIdAndReplace(document) {
+    return this.findOneAndReplace(new IdQuery(document._id), document);
+  }
+
   updateMany(filter, update) {
     return this.collection.updateMany(filter, update);
   }

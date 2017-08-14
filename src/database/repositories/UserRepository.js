@@ -9,16 +9,11 @@ class UserRepository extends BaseRepository {
     return this.any(new UserQuery(userId, guildId));
   }
 
-  async ensureExistance(userId, guildId) {
-    if (await this.anyUser(userId, guildId) === false) {
-      return this.insertOne(new User(userId, guildId));
-    }
-  }
-
   async getUser(userId, guildId) {
-    const fetchedUser = await this.findOne(new UserQuery(userId, guildId));
+    const query = new UserQuery(userId, guildId);
+    const fetchedUser = await this.findOne(query, guildId);
 
-    return fetchedUser !== null ? fetchedUser : this.insertOne(new User(userId, guildId));
+    return fetchedUser !== null ? fetchedUser : this.findOneAndReplace(query, new User(userId, guildId));
   }
 
   updateUser(userId, guildId, update) {
