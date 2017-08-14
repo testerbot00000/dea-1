@@ -33,7 +33,7 @@ class Eval extends patron.Command {
 
       let result = eval(args.code);
 
-      if (result instanceof Promise) {
+      if (typeof result === 'object' && typeof result.then === 'function') {
         result = await result;
       }
 
