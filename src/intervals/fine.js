@@ -35,7 +35,7 @@ module.exports = async (client) => {
 
         await db.userRepo.modifyCash(dbGuild, member, -fine);
 
-        await user.tryDM(Random.arrayElement(Constants.data.messages.fines).fomart(NumberUtil.USD(fine)), guild);
+        await user.tryDM(Random.arrayElement(Constants.data.messages.fines).format(NumberUtil.USD(fine)), guild);
       }
     }
   }, Constants.config.intervals.fine);

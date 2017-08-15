@@ -9,6 +9,7 @@ The syntax of the command usage is:
 ##Table Of Contents
 - [Administration](#administration)
 - [Botowners](#botowners)
+- [Crime](#crime)
 - [Gambling](#gambling)
 - [General](#general)
 - [Moderation](#moderation)
@@ -39,10 +40,19 @@ Command | Description | Usage
 Eval|Evalute JavaScript code.|`$eval <code>`
 Modifycash|Allows you to modify the cash of any member.|`$modifycash <amount> [@member]`
 
+### Crime
+Command | Description | Usage
+---------------- | --------------| -------
+Bully|Bully any user by changing their nickname.|`$bully <@member> <nickname>`
+Jump|Jump some trash for cash on the street.|`$jump`
+Scam|Scam some noobs on the streets.|`$scam`
+Steal|Hop the big guns and lick a store.|`$steal`
+
 ### Gambling
 Command | Description | Usage
 ---------------- | --------------| -------
 25+|Roll 25.00 or higher on a 100.00 sided die to win 0.2X your bet.|`$25+ <bet>`
+50x2|Roll 50.0 or higher on a 100.00 sided die to win your bet.|`$50x2 <bet>`
 55x2|Roll 55.0 or higher on a 100.00 sided die to win your bet.|`$55x2 <bet>`
 75+|Roll 75.00 or higher on a 100.00 sided die to win 2.6X your bet.|`$75+ <bet>`
 99+|Roll 99.00 or higher on a 100.00 sided die to win 90X your bet.|`$99+ <bet>`
