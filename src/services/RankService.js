@@ -7,7 +7,7 @@ class RankService {
     }
 
     const sortedUsers = users.sort((a, b) => b.cash - a.cash);
-    const position = sortedUsers.findIndex((v) => v._id === dbUser._id) + 1;
+    const position = sortedUsers.findIndex((v) => v.userId === dbUser.userId) + 1;
     const highsetRolePosition = member.guild.me.highestRole.position;
     const rolesToAdd = [];
     const rolesToRemove = [];
