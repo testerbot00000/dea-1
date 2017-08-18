@@ -39,7 +39,7 @@ class Bully extends patron.Command {
         return msg.createErrorReply('You do not have ' + Constants.config.bully.cost.USD() + '. Balance: ' + NumberUtil.format(msg.dbUser.cash) + '.');
       }
 
-      await db.userRepo.modifyCash(msg.dbGuild, msg.member, -Constants.config.misc.bullyCost);
+      await db.userRepo.modifyCash(msg.dbGuild, msg.member, -Constants.config.bully.cost);
     }
 
     await args.member.setNickname(args.nickname);
