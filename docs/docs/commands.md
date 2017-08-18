@@ -99,7 +99,7 @@ Resetuser|Reset any member's data.|`$resetuser [@member]`
 ### Sponsor
 Command | Description | Usage
 ---------------- | --------------| -------
-Buysponsor|Gain access to all the sponsorship benfits.|`$buysponsor [number of weeks]`
+Buysponsor|Gain access to all the sponsorship benfits.|`$buysponsor [number of days]`
 Claim|Claim a reward for being referred.|`$claim <code>`
 Refer|View your referral code along with an invite link to this server.|`$refer`
 Sellreferralpoints|View your referral code along with an invite link to this server.|`$sellreferralpoints <number of points> <price> <@member>`
