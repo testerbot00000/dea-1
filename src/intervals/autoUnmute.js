@@ -4,22 +4,22 @@ const ModerationService = require('../services/ModerationService.js');
 
 module.exports = async (client) => {
   client.setInterval(async () => {
-    const mutes = await db.muteRepo.findMany({});
+    const mutes = await db.muteRepo.findMany();
 
-    for (const mute of mutes) {
-      if (mute.mutedAt + mute.muteLength > Date.now()) {
+    for (let i = 0; i < mutes.length; i++) {
+      if (mutes[i].mutedAt + mutes[i].muteLength > Date.now()) {
         continue;
       }
 
-      await db.muteRepo.deleteById(mute._id);
+      await db.muteRepo.deleteById(mutes[i]._id);
 
-      const guild = client.guilds.get(mute.guildId);
+      const guild = client.guilds.get(mutes[i].guildId);
 
       if (guild === undefined) {
         continue;
       }
 
-      const member = guild.member(mute.userId);
+      const member = guild.member(mutes[i].userId);
 
       if (member === null) {
         continue;
@@ -32,7 +32,7 @@ module.exports = async (client) => {
         continue;
       }
 
-      if (!guild.me.hasPermission('MANAGE_ROLES') && role.position >= guild.me.highestRole.position) {
+      if (guild.me.hasPermission('MANAGE_ROLES') === false || role.position >= guild.me.highestRole.position) {
         continue;
       }
 

@@ -1,13 +1,13 @@
 const NumberUtil = require('../utility/NumberUtil.js');
 
 class RankService {
-  handle(dbUser, dbGuild, member) {
-    if (dbGuild.roles.rank.length === 0) {
-      return;
-    } else if (!member.guild.me.hasPermission('MANAGE_ROLES')) {
+  async handle(dbUser, dbGuild, member, users) {
+    if (member.guild.me.hasPermission('MANAGE_ROLES') === false) {
       return;
     }
 
+    const sortedUsers = users.sort((a, b) => b.cash - a.cash);
+    const position = sortedUsers.findIndex((v) => v._id === dbUser._id) + 1;
     const highsetRolePosition = member.guild.me.highestRole.position;
     const rolesToAdd = [];
     const rolesToRemove = [];
@@ -17,15 +17,19 @@ class RankService {
       const role = member.guild.roles.get(rank.id);
 
       if (role !== undefined && role.position < highsetRolePosition) {
-        const hasRole = member.roles.get(role.id) !== undefined;
-
-        if (cash >= rank.cashRequired && !hasRole) {
-          rolesToAdd.push(role);
-        } else if (cash < rank.cashRequired && hasRole) {
+        if (member.roles.has(role.id) === false) {
+          if (cash >= rank.cashRequired) {
+            rolesToAdd.push(role);
+          }
+        } else if (cash < rank.cashRequired) {
           rolesToRemove.push(role);
         }
       }
     }
+
+    this.topHandle(position, 10, dbGuild, highsetRolePosition, member, rolesToAdd, rolesToRemove);
+    this.topHandle(position, 25, dbGuild, highsetRolePosition, member, rolesToAdd, rolesToRemove);
+    this.topHandle(position, 50, dbGuild, highsetRolePosition, member, rolesToAdd, rolesToRemove);
 
     if (rolesToAdd.length > 0) {
       return member.addRoles(rolesToAdd);
@@ -45,6 +49,20 @@ class RankService {
     }
 
     return role;
+  }
+
+  topHandle(position, numb, dbGuild, highsetRolePosition, member, rolesToAdd, rolesToRemove) {
+    const role = member.guild.roles.get(dbGuild.roles['top' + numb]);
+
+    if (role !== undefined && role.position < highsetRolePosition) {
+      if (member.roles.has(role.id) === false) {
+        if (position <= numb) {
+          rolesToAdd.push(role);
+        }
+      } else if (position > numb) {
+        rolesToRemove.push(role);
+      }
+    }
   }
 }
 

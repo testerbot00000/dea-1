@@ -1,5 +1,6 @@
 const db = require('../../database');
 const patron = require('patron.js');
+const Hierarchy = require('../../preconditions/Hierarchy.js');
 
 class AddRank extends patron.Command {
   constructor() {
@@ -7,12 +8,14 @@ class AddRank extends patron.Command {
       names: ['addrank', 'setrank', 'enablerank'],
       groupName: 'administration',
       description: 'Add a rank.',
+      botPermissions: ['MANAGE_ROLES'],
       args: [
         new patron.Argument({
           name: 'role',
           key: 'role',
           type: 'role',
-          example: 'Sicario'
+          example: 'Sicario',
+          preconditions: [Hierarchy]
         }),
         new patron.Argument({
           name: 'cashRequired',
@@ -25,9 +28,7 @@ class AddRank extends patron.Command {
   }
 
   async run(msg, args) {
-    if (args.role.position >= msg.guild.me.highestRole) {
-      return msg.createErrorReply('DEA must be higher in hierarchy than ' + args.role + '.');
-    } else if (msg.dbGuild.roles.rank.some((role) => role.id === args.role.id) === true) {
+    if (msg.dbGuild.roles.rank.some((role) => role.id === args.role.id) === true) {
       return msg.createErrorReply('This rank role has already been set.');
     }
 

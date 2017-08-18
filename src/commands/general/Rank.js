@@ -6,10 +6,9 @@ const RankService = require('../../services/RankService.js');
 class Rank extends patron.Command {
   constructor() {
     super({
-      names: ['rank'],
+      names: ['rank', 'points', 'referralpoints', 'referpoints'],
       groupName: 'general',
       description: 'View the rank of anyone.',
-      cooldown: 50000,
       args: [
         new patron.Argument({
           name: 'member',
@@ -28,7 +27,7 @@ class Rank extends patron.Command {
     const sortedUsers = (await db.userRepo.findMany({ guildId: msg.guild.id })).sort((a, b) => b.cash - a.cash);
     const rank = RankService.getRank(dbUser, msg.dbGuild, msg.guild);
 
-    return msg.channel.createMessage('**Balance:** ' + NumberUtil.format(dbUser.cash) + '\n**Position:** #' + (sortedUsers.findIndex((v) => v.userId === dbUser.userId) + 1) + '\n' + (rank !== undefined ? '**Rank:** ' + rank + '\n' : ''), { title: args.member.user.tag + '\'s Rank' });
+    return msg.channel.createMessage('**Balance:** ' + NumberUtil.format(dbUser.cash) + '\n**Points: **' + dbUser.points + '\n**Position:** #' + (sortedUsers.findIndex((v) => v.userId === dbUser.userId) + 1) + '\n' + (rank !== undefined ? '**Rank:** ' + rank + '\n' : ''), { title: args.member.user.tag + '\'s Rank' });
   }
 }
 

@@ -1,5 +1,6 @@
 const patron = require('patron.js');
 const db = require('../../database');
+const Sponsor = require('../../preconditions/Sponsor.js');
 const Random = require('../../utility/Random.js');
 const Constants = require('../../utility/Constants.js');
 
@@ -9,7 +10,8 @@ class Scam extends patron.Command {
       names: ['scam', 'whore'],
       groupName: 'crime',
       description: 'Scam some noobs on the streets.',
-      cooldown: Constants.config.scam.cooldown
+      cooldown: Constants.config.scam.cooldown,
+      preconditions: [Sponsor]
     });
   }
 

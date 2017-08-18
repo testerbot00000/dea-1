@@ -5,11 +5,11 @@ class Cash extends patron.ArgumentPrecondition {
   async run(command, msg, argument, value) {
     const realValue = NumberUtil.realValue(msg.dbUser.cash);
 
-    if (value <= realValue) {
+    if (realValue >= value) {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'You do not have enough money. Balance: ' + realValue.USD() + '.');
+    return patron.PreconditionResult.fromError(command, 'You do not have ' + value.USD() +'. Balance: ' + realValue.USD() + '.');
   }
 }
 

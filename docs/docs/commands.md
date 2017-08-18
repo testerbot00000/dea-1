@@ -14,6 +14,7 @@ The syntax of the command usage is:
 - [General](#general)
 - [Moderation](#moderation)
 - [Owners](#owners)
+- [Sponsor](#sponsor)
 - [System](#system)
 
 ### Administration
@@ -23,12 +24,14 @@ These commands may only be used by a user with the set mod role with a permissio
 Command | Description | Usage
 ---------------- | --------------| -------
 Addrank|Add a rank.|`$addrank <@role> <cashRequired>`
-Disablefines|Disable fines.|`$disablefines`
 Disablewelcome|Disables the welcome message.|`$disablewelcome`
-Enablefines|Enable fines.|`$enablefines`
 Removerank|Remove a rank role.|`$removerank <@role>`
 Setmodlog|Sets the mod log channel.|`$setmodlog <#channel>`
 Setmutedrole|Sets the muted role.|`$setmutedrole <@role>`
+Setsponsorrole|Sets the sponspr role.|`$setsponsorrole <@role>`
+Settop10|Sets the Top 10 role.|`$settop10 <@role>`
+Settop25|Sets the Top 25 role.|`$settop25 <@role>`
+Settop50|Sets the Top 50 role.|`$settop50 <@role>`
 Setwelcome|Sets the welcome message.|`$setwelcome <message>`
 
 ### Botowners
@@ -45,6 +48,7 @@ Command | Description | Usage
 ---------------- | --------------| -------
 Bully|Bully any user by changing their nickname.|`$bully <@member> <nickname>`
 Jump|Jump some trash for cash on the street.|`$jump`
+Kill|Kill a nigga.|`$kill <@member>`
 Scam|Scam some noobs on the streets.|`$scam`
 Steal|Hop the big guns and lick a store.|`$steal`
 
@@ -91,6 +95,17 @@ Addmodrole|Add a mod role.|`$addmodrole <@role> <permissionLevel>`
 Removemodrole|Remove a mod role.|`$removemodrole <@role>`
 Reset|Resets all user data in your server.|`$reset`
 Resetuser|Reset any member's data.|`$resetuser [@member]`
+
+### Sponsor
+Command | Description | Usage
+---------------- | --------------| -------
+Buysponsor|Gain access to all the sponsorship benfits.|`$buysponsor [number of weeks]`
+Claim|Claim a reward for being referred.|`$claim <code>`
+Refer|View your referral code along with an invite link to this server.|`$refer`
+Sellreferralpoints|View your referral code along with an invite link to this server.|`$sellreferralpoints <number of points> <price> <@member>`
+Setreferralcode|Set your referral code.|`$setreferralcode <code>`
+Sponsor|View all the sponsorship benefits.|`$sponsor`
+Sponsorremaining|View the time remaining on your sponsorship.|`$sponsorremaining`
 
 ### System
 Command | Description | Usage

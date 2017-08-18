@@ -32,13 +32,11 @@ class Constants {
       },
 
       messages: {
-        fines: [
-          'So you think you can get away with laundering thousands of dollars in dirty drug money, and the fucking DEA wouldn\'t know about it? I will let you off with a {0} fine this time, but next time you are behind bars pal.',
-          'Listen buddy, I have been watching you for a while, and I finally got everything I need to prove you are a drug smuggler. Lucky you Judge Red Forman was a softie, you are walking away with only a {0} fine.',
-          '**FREEZE!** DON\'T MOVE ONE GODDAMN MUSCLE OR YOU KNOW WHATS GONNA HAPPEN!\n\n*Steve, we need back up, just caught this nobody dealing some drugs. Was talking with Judge Hard Richard earlier, and he said next dealer I catch gets a {0} fine.*',
-          'Thinking you can hide thousands in drug money from a DEA agent? ***THINK AGAIN BUDDY!*** Here is a goddamn {0} fine.',
-          'Well, I got you right where I want you. Enough proof to lock you away for 15 years. Don\'t you worry sonny, I like you. I talked to Judge Stiffwood and he said we can let you off with a {0} fine.',
-          'Here\'s what pal, I would lock you away for 15 years for smuggling all those drugs, but me and Judge Woody made a deal to split your {0} fine.'
+        jump: [
+          'You were walking down the street when some homeless guy walked up to you, and then as you were giving him 17 cents you see the cracker has {0} worth of extra large socks stacked up behind him, so you jacked them.',
+          'After a nice bust at the local strip club, you were walking home when you spotted Judge Woody, the cracker who busted you last week, sitting on a bench. You decided to jump his fatass, snipe {0} from his wallet, and walk away unharmed.',
+          'You jump some dick that got you in court last month, stole his pants and ran. Turns out those pants were worth {0}.',
+          'You decide to waltz over to Compton to show your strength. Fortunately, you found some wallet some guy dropped in a gang fight. The wallet didn\'t have jack inside of it, but the it turns out the leather it was made of was worth {0}.'
         ],
         lottery: [
           'CONGRATS MY MAN, you just won {0} in the goddamn lottery! Use `$info` for more information.',
@@ -48,24 +46,18 @@ class Constants {
           'Sweet Baby Jesus you just won {0} in the fucking lottery! Use `$info` for more information.',
           'Well I\'ll be damned, you just won {0} in the goddamn lottery! Use `$info` for more information.'
         ],
-        stores: [
-          '7-Eleven', 'Speedway', 'Couche-Tard', 'QuikTrip', 'Kroger', 'Circle K', 'Admiral Petroleum', 'Big Apple', 'Bucky\'s Express'
-        ],
         scam: [
           'You ripped some grass off the ground, went up to some gangster and sold it to him as weed. He gave you {0} for it, and you got out of there before he noticed anything.',
           'You knocked on your neighbor\'s door, asked for some flour to bake a cake, and you sold it to your other neighbor as cocaine. You managed to make {0}.',
           'You bought a Monopoly board game, took the fake cash, went to the bank and traded it for USD. You walked away with {0}, moved to Cuba, while the US government was chasing you down.',
           'You waited in line for some new Adidas Yeezys, bought 10 pairs and sold them to your idiot friends for {0}. Hopefully they won\'t notice your scam.'
         ],
-        jump: [
-          'You were walking down the street when some homeless guy walked up to you, and then as you were giving him 17 cents you see the cracker has {0} worth of extra large socks stacked up behind him, so you jacked them.',
-          'After a nice bust at the local strip club, you were walking home when you spotted Judge Woody, the cracker who fined you last week, sitting on a bench. You decided to jump his fatass, snipe {0} from his wallet, and walk away unharmed.',
-          'You jump some dick that got you in court last month, stole his pants and ran. Turns out those pants were worth {0}.',
-          'You decide to waltz over to Compton to show your strength. Fortunately, you found some wallet some guy dropped in a gang fight. The wallet didn\'t have jack inside of it, but the it turns out the leather it was made of was worth {0}.'
-        ],
         steal: [
           'You and a couple of buddies decide to go bust out the fake nerf guns, stroll over to your local {0}, and rob their asses. You got {1} for your share.',
           'While you were shopping at {0}, you thought it was a good idea to nut all over the counter. The owner decided to sauce you {1} because he assumed the cum was toxic.'
+        ],
+        stores: [
+          '7-Eleven', 'Speedway', 'Couche-Tard', 'QuikTrip', 'Kroger', 'Circle K', 'Admiral Petroleum', 'Big Apple', 'Bucky\'s Express'
         ]
       },
 
@@ -87,14 +79,25 @@ class Constants {
       },
 
       regexes: {
+        escape: /[-[\]{}()*+?.,\\/^$|#\s]/g,
         prefix: /^\$/
       }
     };
 
     this.config = {
+      bully: {
+        cost: 500,
+        maxLength: 32
+      },
+
       chill: {
         max: 3600,
         min: 5
+      },
+
+      claim: {
+        timespan: 172800000,
+        reward: 5000
       },
 
       clear: {
@@ -106,16 +109,20 @@ class Constants {
         minBet: 5
       },
 
-      fine: {
-        additionalOdds: 0.0000025,
-        cut: 0.25,
-        minRich: 25000,
-        odds: 0.35
-      },
-
       intervals: {
         autoUnmute: 60000,
-        fine: 450000
+        removeSponsor: 3600000
+      },
+
+      jump: {
+        cooldown: 14400000,
+        max: 5000,
+        min: 2500,
+        odds: 85
+      },
+
+      kill: {
+        cooldown: 86400000
       },
 
       lottery: {
@@ -128,43 +135,57 @@ class Constants {
         cashPerMessage: 50,
         leaderboardCap: 10,
         messageCooldown: 30000,
-        minCharLength: 7,
-        bullyCost: 500
+        minCharLength: 7
       },
 
       mute: {
         defaultLength: 24
       },
 
-      transfer: {
-        cut: 0.1,
-        min: 5
-      },
-
       scam: {
         cooldown: 7200000,
-        fine: 1000,
         max: 1000,
         min: 500,
         odds: 90
       },
 
-      jump: {
-        cooldown: 1.44e7,
-        fine: 2000,
-        max: 5000,
-        min: 2500,
-        odds: 85
+      setReferralCode: {
+        maxLength: 32
+      },
+
+      sponsorship: {
+        lotteryOddsMultiplier: 3,
+        messageMultiplier: 5,
+        pointsPerWeek: 15
       },
 
       steal: {
-        cooldown: 2.16e7,
-        fine: 5000,
+        cooldown: 21600000,
         max: 10000,
         min: 5000,
         odds: 80
-      }
+      },
 
+      top50: {
+        messageMultiplier: 1.5
+      },
+
+      transfer: {
+        cut: 0.1,
+        min: 5
+      }
+    };
+
+    this.conversions = {
+      secondInMs: 1000,
+      minuteInMs: 60000,
+      hourInMs: 3600000,
+      dayInMs: 86400000,
+      weekInMs: 604800000,
+      monthInMs: 2592000000,
+      yearInMs: 31536000000,
+      decadeInMs: 315360000000,
+      centuryInMs: 3153600000000
     };
   }
 }

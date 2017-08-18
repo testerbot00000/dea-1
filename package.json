@@ -28,7 +28,8 @@
   "dependencies": {
     "discord.js": "^11.1.0",
     "mongodb": "^2.2.31",
-    "patron.js": "^2.2.6"
+    "patron.js": "^2.2.8",
+    "require-all": "^2.2.0"
   },
   "optionalDependencies": {
     "bufferutil": "^3.0.2",

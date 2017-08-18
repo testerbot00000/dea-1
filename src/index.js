@@ -1,5 +1,4 @@
 require('./extensions');
-global.Promise = require('bluebird');
 const path = require('path');
 const { Registry, Handler } = require('patron.js');
 const { Client } = require('discord.js');
@@ -26,8 +25,9 @@ CommandService.run(client, new Handler(registry));
 
 async function initiate() {
   await db.connect(credentials.mongodbConnectionURL);
-  db.userRepo.updateMany({}, { $unset: { reputation: '' } }).catch(() => null);
-  db.guildRepo.updateMany({}, { $unset: { 'misc.trivia': '', 'settings.globalChattingMultiplier': '' } }).catch(() => null);
+  await db.userRepo.updateMany({}, { $set: { points: 0, referredBy: null, referralCode: null, sponsorExpiresAt: null } });
+  await db.guildRepo.updateMany({}, { $set: { 'roles.sponsor': null, 'roles.top10': null, 'roles.top25': null, 'roles.top50': null } });
+  db.guildRepo.updateMany({}, { $unset: { 'settings.fines': '' } }).catch(() => null);
   await client.login(credentials.token);
   await Documentation.createAndSave(registry);
 }

@@ -15,7 +15,7 @@ class ModerationService {
       }
     }
 
-    return member.hasPermission('ADMINISTRATOR') && permLevel < 2 ? 2 : permLevel;
+    return member.hasPermission('ADMINISTRATOR') === true && permLevel < 2 ? 2 : permLevel;
   }
 
   tryInformUser(guild, moderator, action, user, reason = '') {

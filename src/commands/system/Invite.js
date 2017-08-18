@@ -11,7 +11,7 @@ class Invite extends patron.Command {
     });
   }
 
-  async run(msg) {
+  run(msg) {
     return msg.createReply('You may add cleanest bot around by clicking here: ' + Constants.data.links.botInvite + '.\n\nIf you have any questions or concerns, you may always join the **Official DEA Support Server:** ' + Constants.data.links.serverInvite);
   }
 }

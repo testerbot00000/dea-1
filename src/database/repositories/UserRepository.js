@@ -43,7 +43,7 @@ class UserRepository extends BaseRepository {
   async modifyCash(dbGuild, member, change) {
     const newDbUser = await this.findUserAndUpsert(member.id, dbGuild.guildId, new IncMoneyUpdate('cash', change));
 
-    RankService.handle(newDbUser, dbGuild, member);
+    RankService.handle(newDbUser, dbGuild, member, await this.findMany({ guildId: dbGuild.guildId }));
 
     return newDbUser;
   }

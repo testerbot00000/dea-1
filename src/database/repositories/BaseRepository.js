@@ -11,7 +11,7 @@ class BaseRepository {
     return result !== 0;
   }
 
-  findMany(filter) {
+  findMany(filter = {}) {
     return this.collection.find(filter).toArray();
   }
 

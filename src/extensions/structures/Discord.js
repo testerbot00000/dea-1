@@ -107,6 +107,11 @@ function applyUserExtensions(structure) {
   structure.prototype.DMFields = function (fieldsAndValues, inline = true, color = null) {
     return createFieldsMessage(this, fieldsAndValues, inline, color);
   };
+
+  structure.prototype.DMError = function (description, options = {}) {
+    options.color = Constants.data.colors.error;
+    return this.DM(description, options);
+  };
 }
 
 applyChannelExtensions(discord.TextChannel);
@@ -133,9 +138,37 @@ discord.Message.prototype.tryCreateErrorReply = function (description, options =
 };
 
 Object.defineProperty(discord.Guild.prototype, 'mainChannel', {
-  get: function mainChannel() {
+  get: function () {
     return this.channels.findValue((v) => {
       return v.type === 'text' && (v.name === 'general' || v.name.includes('main'));
     });
   }
 });
+
+discord.Guild.prototype.getDefaultInvite = async function () {
+  const invites = await this.fetchInvites();
+
+  const invite = invites.findValue((v) => v.maxAge === 0 && v.maxUses === 0 && v.temporary === false);
+
+  if (invite !== undefined) {
+    return invite;
+  }
+
+  const mainChannel = this.mainChannel;
+
+  if (mainChannel !== undefined) {
+    return mainChannel.createInvite({ maxAge: 0 });
+  }
+
+  return null;
+};
+
+discord.Client.prototype.tryDM = async function (id, description, options) {
+  try {
+    const user = await this.fetchUser(id);
+
+    return user.tryDM(description, options);
+  } catch (err) {
+    return false;
+  }
+};

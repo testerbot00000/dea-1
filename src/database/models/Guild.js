@@ -4,7 +4,11 @@ class Guild {
     this.roles = {
       mod: [],
       rank: [],
-      muted: null
+      muted: null,
+      sponsor: null,
+      top10: null,
+      top25: null,
+      top50: null
     };
     this.channels = {
       gambling: null,
@@ -12,7 +16,6 @@ class Guild {
       welcome: null
     };
     this.settings = {
-      fines: false,
       welcomeMessage: null
     };
     this.misc = {
