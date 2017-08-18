@@ -25,9 +25,6 @@ CommandService.run(client, new Handler(registry));
 
 async function initiate() {
   await db.connect(credentials.mongodbConnectionURL);
-  await db.userRepo.updateMany({}, { $set: { points: 0, referredBy: null, referralCode: null, sponsorExpiresAt: null } });
-  await db.guildRepo.updateMany({}, { $set: { 'roles.sponsor': null, 'roles.top10': null, 'roles.top25': null, 'roles.top50': null } });
-  db.guildRepo.updateMany({}, { $unset: { 'settings.fines': '' } }).catch(() => null);
   await client.login(credentials.token);
   await Documentation.createAndSave(registry);
 }
