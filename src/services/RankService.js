@@ -2,6 +2,8 @@ const NumberUtil = require('../utility/NumberUtil.js');
 
 class RankService {
   async handle(dbUser, dbGuild, member, users) {
+    await member.guild.fetchMember(member.client.user);
+
     if (member.guild.me.hasPermission('MANAGE_ROLES') === false) {
       return;
     }

@@ -156,7 +156,7 @@ class Constants {
       sponsorship: {
         lotteryOddsMultiplier: 3,
         messageMultiplier: 5,
-        pointsPerDay: 2
+        pointsPerDay: 3
       },
 
       steal: {

@@ -6,9 +6,13 @@ class BaseRepository {
   }
 
   async any(filter) {
-    const result = await this.collection.count(filter);
+    const result = await this.count(filter);
 
     return result !== 0;
+  }
+
+  count(filter) {
+    return this.collection.count(filter);
   }
 
   findMany(filter = {}) {

@@ -101,6 +101,8 @@ Command | Description | Usage
 ---------------- | --------------| -------
 Buysponsor|Gain access to all the sponsorship benfits.|`$buysponsor [number of days]`
 Claim|Claim a reward for being referred.|`$claim <code>`
+Codeinfo|View the information of any referral code.|`$codeinfo <code>`
+Pointsleaderboards|View the best referrers.|`$pointsleaderboards`
 Refer|View your referral code along with an invite link to this server.|`$refer`
 Sellreferralpoints|View your referral code along with an invite link to this server.|`$sellreferralpoints <number of points> <price> <@member>`
 Setreferralcode|Set your referral code.|`$setreferralcode <code>`

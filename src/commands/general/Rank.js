@@ -6,7 +6,7 @@ const RankService = require('../../services/RankService.js');
 class Rank extends patron.Command {
   constructor() {
     super({
-      names: ['rank', 'points', 'referralpoints', 'referpoints'],
+      names: ['rank', 'points', 'point', 'referralpoints', 'referpoints'],
       groupName: 'general',
       description: 'View the rank of anyone.',
       args: [
