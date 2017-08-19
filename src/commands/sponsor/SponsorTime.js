@@ -1,6 +1,6 @@
 const patron = require('patron.js');
+const db = require('../../database');
 const NumberUtil = require('../../utility/NumberUtil.js');
-const Sponsor = require('../../preconditions/Sponsor.js');
 
 class SponsorTime extends patron.Command {
   constructor() {
@@ -8,13 +8,24 @@ class SponsorTime extends patron.Command {
       names: ['sponsortime', 'sponsorremaining', 'sponsorleft', 'sponsortimeleft'],
       groupName: 'sponsor',
       description: 'View the time remaining on your sponsorship.',
-      preconditions: [Sponsor]
+      args: [
+        new patron.Argument({
+          key: 'member',
+          name: 'member',
+          type: 'member',
+          example: 'Willy Wonka#9123',
+          defaultValue: patron.ArgumentDefault.Member,
+          remainder: true
+        })
+      ]
     });
   }
 
-  run(msg) {
-    if (msg.dbUser.sponsorExpiresAt === null) {
-      return msg.createErrorReply('You shouldn\'t even be a sponsor.');
+  async run(msg, args) {
+    const dbUser = msg.author.id === args.member.id ? msg.dbUser : await db.userRepo.getUser(args.member.id, msg.guild.id);
+
+    if (dbUser.sponsorExpiresAt === null) {
+      return msg.channel.createErrorMessage(args.member.user.tag.boldify() + ' isn\'t a sponsor.');
     }
 
     const remainingInMs = msg.dbUser.sponsorExpiresAt - Date.now();
@@ -25,7 +36,7 @@ class SponsorTime extends patron.Command {
 
     const remaining = NumberUtil.msToTime(remainingInMs);
 
-    return msg.channel.createMessage('Days: ' + remaining.days + '\nHours: ' + remaining.hours + '\nMinutes: ' + remaining.minutes + '\nSeconds: ' + remaining.seconds, { title: 'Sponsorship Time' });
+    return msg.channel.createMessage('Days: ' + remaining.days + '\nHours: ' + remaining.hours + '\nMinutes: ' + remaining.minutes + '\nSeconds: ' + remaining.seconds, { title: args.member.user.tag + '\'s Sponsorship Time' });
   }
 }
 

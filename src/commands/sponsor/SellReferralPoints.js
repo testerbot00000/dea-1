@@ -7,7 +7,7 @@ const Minimum = require('../../preconditions/Minimum.js');
 class SellReferralPoints extends patron.Command {
   constructor() {
     super({
-      names: ['sellreferralpoints', 'sellpoints'],
+      names: ['sellpoints', 'sellreferralpoints', 'sellpoint'],
       groupName: 'sponsor',
       description: 'View your referral code along with an invite link to this server.',
       args: [

@@ -104,10 +104,10 @@ Claim|Claim a reward for being referred.|`$claim <code>`
 Codeinfo|View the information of any referral code.|`$codeinfo <code>`
 Pointsleaderboards|View the best referrers.|`$pointsleaderboards`
 Refer|View your referral code along with an invite link to this server.|`$refer`
-Sellreferralpoints|View your referral code along with an invite link to this server.|`$sellreferralpoints <number of points> <price> <@member>`
+Sellpoints|View your referral code along with an invite link to this server.|`$sellpoints <number of points> <price> <@member>`
 Setreferralcode|Set your referral code.|`$setreferralcode <code>`
 Sponsor|View all the sponsorship benefits.|`$sponsor`
-Sponsortime|View the time remaining on your sponsorship.|`$sponsortime`
+Sponsortime|View the time remaining on your sponsorship.|`$sponsortime [@member]`
 
 ### System
 Command | Description | Usage
