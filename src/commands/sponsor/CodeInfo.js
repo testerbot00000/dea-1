@@ -30,7 +30,7 @@ class CodeInfo extends patron.Command {
       return msg.createErrorReply('This referral code does not exist.');
     }
 
-    const uses = await db.userRepo.count({ guildId: msg.guild.id, referredBy: codeOwner.referralCode });
+    const uses = await db.userRepo.count({ guildId: msg.guild.id, referredBy: user.id });
 
     return msg.channel.createMessage('**Uses:** ' + uses + '\n**Owner:** ' + user.tag, { title: 'Code Information: ' + codeOwner.referralCode });
   }
