@@ -107,7 +107,7 @@ Refer|View your referral code along with an invite link to this server.|`$refer`
 Sellreferralpoints|View your referral code along with an invite link to this server.|`$sellreferralpoints <number of points> <price> <@member>`
 Setreferralcode|Set your referral code.|`$setreferralcode <code>`
 Sponsor|View all the sponsorship benefits.|`$sponsor`
-Sponsorremaining|View the time remaining on your sponsorship.|`$sponsorremaining`
+Sponsortime|View the time remaining on your sponsorship.|`$sponsortime`
 
 ### System
 Command | Description | Usage

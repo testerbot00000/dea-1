@@ -24,15 +24,15 @@ class CodeInfo extends patron.Command {
     const codeRegex = new RegExp(args.code.replace(Constants.data.regexes.escape, '\\$&'), 'i');
 
     const codeOwner = await db.userRepo.findOne({ guildId: msg.guild.id, referralCode: { $regex: codeRegex } });
-    const user = msg.client.users.get(codeOwner.userId);
 
-    if (codeOwner === null || user === undefined) {
+    if (codeOwner === null) {
       return msg.createErrorReply('This referral code does not exist.');
     }
 
-    const uses = await db.userRepo.count({ guildId: msg.guild.id, referredBy: user.id });
+    const user = msg.client.users.get(codeOwner.userId);
+    const uses = await db.userRepo.count({ guildId: msg.guild.id, referredBy: codeOwner.userId });
 
-    return msg.channel.createMessage('**Uses:** ' + uses + '\n**Owner:** ' + user.tag, { title: 'Code Information: ' + codeOwner.referralCode });
+    return msg.channel.createMessage('**Uses:** ' + uses + '\n**Owner:** ' + (user !== undefined ? user.tag : 'Unknown'), { title: 'Code Information: ' + codeOwner.referralCode });
   }
 }
 
