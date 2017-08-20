@@ -50,7 +50,7 @@ class Claim extends patron.Command {
     await msg.client.tryDM(referredBy.userId, msg.author.tag.boldify() + ' has used your referral code, granting you one point.', { guild: msg.guild });
 
     msg.client.setTimeout(() => {
-      db.userRepo.updateUser(msg.author.id, msg.guild.id, { $unset: { probation: '' } });
+      db.userRepo.updateUser(msg.author.id, msg.guild.id, { $unset: { probation: '' } }).catch(() => null);
     }, Constants.config.claim.probationTimeout);
   }
 }

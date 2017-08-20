@@ -6,6 +6,7 @@ module.exports = (client) => {
 
     if (dbUser.probation === true) {
       await db.userRepo.updateUser(dbUser.referredBy, member.guild.id, { $inc: { points: -1 } });
+      await db.userRepo.updateById(dbUser._id, { $unset: { probation: '' } });
       return client.tryDM(dbUser.referredBy, 'One point has been removed from your account as ' + member.user.tag.boldify() + ' has left shortly after using your referral code. If you refer users to join a server, at least get them to stay.', { guild: member.guild });
     }
   });
