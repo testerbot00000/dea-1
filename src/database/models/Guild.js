@@ -16,6 +16,7 @@ class Guild {
       welcome: null
     };
     this.settings = {
+      sponsorPointsRequired: 2,
       welcomeMessage: null
     };
     this.misc = {

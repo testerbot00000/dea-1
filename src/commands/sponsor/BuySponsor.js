@@ -26,7 +26,7 @@ class BuySponsor extends patron.Command {
   }
 
   async run(msg, args) {
-    const pointsRequired = args.days * Constants.config.sponsorship.pointsPerDay;
+    const pointsRequired = args.days * msg.dbGuild.settings.sponsorPointsRequired;
 
     if (msg.dbUser.points < pointsRequired) {
       return msg.createErrorReply('You do not have ' + pointsRequired + ' points. Points: ' + msg.dbUser.points + '.');

@@ -25,6 +25,7 @@ CommandService.run(client, new Handler(registry));
 
 async function initiate() {
   await db.connect(credentials.mongodbConnectionURL);
+  await db.guildRepo.updateMany({}, { $set: { 'settings.sponsorPointsRequired': 2 } });
   await client.login(credentials.token);
   await Documentation.createAndSave(registry);
 }

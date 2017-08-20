@@ -43,11 +43,15 @@ class Claim extends patron.Command {
       return msg.createErrorReply('This referral code does not exist.');
     }
 
-    await db.userRepo.updateUser(msg.author.id, msg.guild.id, { $set: { referredBy: referredBy.userId } });
+    await db.userRepo.updateUser(msg.author.id, msg.guild.id, { $set: { referredBy: referredBy.userId, probation: true } });
     await db.userRepo.updateById(referredBy._id, { $inc: { points: 1 } });
     await db.userRepo.modifyCash(msg.dbGuild, msg.member, Constants.config.claim.reward);
     await msg.createReply('You have successfully claimed ' + Constants.config.claim.reward.USD() + ' using code ' + referredBy.referralCode + '.');
-    return msg.client.tryDM(referredBy.userId, msg.author.tag.boldify() + ' has used your referral code, granting you one point.', { guild: msg.guild });
+    await msg.client.tryDM(referredBy.userId, msg.author.tag.boldify() + ' has used your referral code, granting you one point.', { guild: msg.guild });
+
+    msg.client.setTimeout(() => {
+      db.userRepo.updateUser(msg.author.id, msg.guild.id, { $unset: { probation: '' } });
+    }, Constants.config.claim.probationTimeout);
   }
 }
 

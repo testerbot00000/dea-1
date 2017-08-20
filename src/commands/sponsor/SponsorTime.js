@@ -22,16 +22,18 @@ class SponsorTime extends patron.Command {
   }
 
   async run(msg, args) {
-    const dbUser = msg.author.id === args.member.id ? msg.dbUser : await db.userRepo.getUser(args.member.id, msg.guild.id);
+    const same = msg.author.id === args.member.id;
+    const dbUser = same === true ? msg.dbUser : await db.userRepo.getUser(args.member.id, msg.guild.id);
+    const boldMember = args.member.user.tag.boldify();
 
     if (dbUser.sponsorExpiresAt === null) {
-      return msg.channel.createErrorMessage(args.member.user.tag.boldify() + ' isn\'t a sponsor.');
+      return msg.channel.createErrorMessage((same === true ? 'You aren\'t' : boldMember + ' isn\'t') + ' a sponsor.');
     }
 
-    const remainingInMs = msg.dbUser.sponsorExpiresAt - Date.now();
+    const remainingInMs = dbUser.sponsorExpiresAt - Date.now();
 
     if (remainingInMs < 0) {
-      return msg.createReply('Your sponsorship will be ending very soon.');
+      return msg.createReply((same === true ? 'Your' : boldMember + '\'s') + ' sponsorship will be ending very soon.');
     }
 
     const remaining = NumberUtil.msToTime(remainingInMs);

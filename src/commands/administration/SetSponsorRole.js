@@ -7,7 +7,7 @@ class SetSponsorRole extends patron.Command {
     super({
       names: ['setsponsorrole', 'setsponsor'],
       groupName: 'administration',
-      description: 'Sets the sponspr role.',
+      description: 'Sets the sponsor role.',
       botPermissions: ['MANAGE_ROLES'],
       args: [
         new patron.Argument({

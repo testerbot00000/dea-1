@@ -86,6 +86,7 @@ class Constants {
 
     this.config = {
       bully: {
+        cooldown: 60000,
         cost: 500,
         maxLength: 32
       },
@@ -96,6 +97,7 @@ class Constants {
       },
 
       claim: {
+        probationTimeout: 86400000,
         timespan: 172800000,
         reward: 5000
       },
@@ -155,8 +157,7 @@ class Constants {
 
       sponsorship: {
         lotteryOddsMultiplier: 3,
-        messageMultiplier: 5,
-        pointsPerDay: 3
+        messageMultiplier: 5
       },
 
       steal: {

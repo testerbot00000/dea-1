@@ -28,7 +28,8 @@ Disablewelcome|Disables the welcome message.|`$disablewelcome`
 Removerank|Remove a rank role.|`$removerank <@role>`
 Setmodlog|Sets the mod log channel.|`$setmodlog <#channel>`
 Setmutedrole|Sets the muted role.|`$setmutedrole <@role>`
-Setsponsorrole|Sets the sponspr role.|`$setsponsorrole <@role>`
+Setpointsrequired|Sets the amount of points required per day of sponsorship.|`$setpointsrequired <daily points required>`
+Setsponsorrole|Sets the sponsor role.|`$setsponsorrole <@role>`
 Settop10|Sets the Top 10 role.|`$settop10 <@role>`
 Settop25|Sets the Top 25 role.|`$settop25 <@role>`
 Settop50|Sets the Top 50 role.|`$settop50 <@role>`

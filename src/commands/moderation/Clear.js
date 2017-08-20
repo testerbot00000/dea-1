@@ -7,7 +7,7 @@ const Maximum = require('../../preconditions/Maximum.js');
 class Clear extends patron.Command {
   constructor() {
     super({
-      names: ['clear', 'prune'],
+      names: ['clear', 'prune', 'purge'],
       groupName: 'moderation',
       description: 'Clear up to ' + Constants.config.clear.max + ' messages in any text channel.',
       cooldown: 1000,
