@@ -21,7 +21,7 @@ class CodeInfo extends patron.Command {
   }
 
   async run(msg, args) {
-    const codeRegex = new RegExp(args.code.replace(Constants.data.regexes.escape, '\\$&'), 'i');
+    const codeRegex = new RegExp('^' + args.code.replace(Constants.data.regexes.escape, '\\$&') + '$', 'i');
 
     const codeOwner = await db.userRepo.findOne({ guildId: msg.guild.id, referralCode: { $regex: codeRegex } });
 
