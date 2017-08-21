@@ -78,6 +78,17 @@ class Constants {
         prefix: '$'
       },
 
+      purchasableCommands: [
+        {
+          names: ['bully'],
+          price: 5
+        },
+        {
+          names: ['pinmessage', 'pin'],
+          price: 10
+        }
+      ],
+
       regexes: {
         escape: /[-[\]{}()*+?.,\\/^$|#\s]/g,
         prefix: /^\$/
@@ -142,6 +153,10 @@ class Constants {
 
       mute: {
         defaultLength: 24
+      },
+
+      pinMessage: {
+        cooldown: 86400000
       },
 
       scam: {

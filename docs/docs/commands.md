@@ -65,9 +65,11 @@ Command | Description | Usage
 ### General
 Command | Description | Usage
 ---------------- | --------------| -------
+Buycommand|Buy a command.|`$buycommand <command>`
 Cash|View the wealth of anyone.|`$cash [@member]`
 Leaderboards|View the richest Drug Traffickers.|`$leaderboards`
 Modroles|View all mod roles in this guild.|`$modroles`
+Pinmessage|Pin the last message sent by any member in the this channel.|`$pinmessage <@member>`
 Rank|View the rank of anyone.|`$rank [@member]`
 Ranks|View all ranks in this guild.|`$ranks`
 Transfer|Transfer money to any member.|`$transfer <@member> <transfer>`
