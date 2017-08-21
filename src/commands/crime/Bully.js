@@ -6,6 +6,7 @@ const NoSelf = require('../../preconditions/NoSelf.js');
 const NoSponsor = require('../../preconditions/NoSponsor.js');
 const MaximumLength = require('../../preconditions/MaximumLength.js');
 const NoModerator = require('../../preconditions/NoModerator.js');
+const Purcahsed = require('../../preconditions/Purchased.js');
 
 class Bully extends patron.Command {
   constructor() {
@@ -14,6 +15,7 @@ class Bully extends patron.Command {
       groupName: 'crime',
       description: 'Bully any user by changing their nickname.',
       coooldown: Constants.config.bully.cooldown,
+      preconditions: [Purcahsed],
       args: [
         new patron.Argument({
           name: 'member',
