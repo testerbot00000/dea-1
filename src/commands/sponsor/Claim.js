@@ -31,7 +31,7 @@ class Claim extends patron.Command {
       return msg.createErrorReply('You have already been referred in this server.');
     }
 
-    const codeRegex = new RegExp(args.code.replace(Constants.data.regexes.escape, '\\$&'), 'i');
+    const codeRegex = new RegExp('^' + args.code.replace(Constants.data.regexes.escape, '\\$&') + '$', 'i');
 
     if (codeRegex.test(msg.dbUser.referralCode) === true) {
       return msg.createErrorReply('You may not claim a referral reward using your own code.');

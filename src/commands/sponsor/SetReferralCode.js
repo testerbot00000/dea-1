@@ -23,7 +23,7 @@ class SetReferralCode extends patron.Command {
   }
 
   async run(msg, args) {
-    const codeRegex = new RegExp(args.code.replace(Constants.data.regexes.escape, '\\$&'), 'i');
+    const codeRegex = new RegExp('^' + args.code.replace(Constants.data.regexes.escape, '\\$&') + '$', 'i');
 
     if (codeRegex.test(msg.dbUser.referralCode) === true) {
       return msg.createErrorReply('This is already your referral code.');
