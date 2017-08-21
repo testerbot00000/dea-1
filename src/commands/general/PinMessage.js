@@ -7,7 +7,7 @@ class PinMessage extends patron.Command {
     super({
       names: ['pinmessage', 'pin'],
       groupName: 'general',
-      description: 'Pin the last message sent by any member in the this channel.',
+      description: 'Pin the last message sent by any member in this channel.',
       botPermissions: ['MANAGE_MESSAGES'],
       preconditions: [Purcahsed],
       coooldown: Constants.config.pinMessage.cooldown,
@@ -17,6 +17,7 @@ class PinMessage extends patron.Command {
           key: 'member',
           type: 'member',
           example: 'Long Shlong#0293',
+          defaultValue: patron.ArgumentDefault.Member,
           remainder: true
         })
       ]
