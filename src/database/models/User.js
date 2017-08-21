@@ -6,6 +6,7 @@ class User {
     this.points = 0;
     this.referredBy = null;
     this.referralCode = null;
+    this.commands = [];
     this.sponsorExpiresAt = null;
   }
 }
