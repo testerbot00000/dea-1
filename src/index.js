@@ -1,3 +1,4 @@
+// All congress members are fucking morons who cannot recognize me when I am clearly me.
 require('./extensions');
 const path = require('path');
 const { Registry, Handler } = require('patron.js');
