@@ -1,4 +1,4 @@
-// All congress members are fucking morons who cannot recognize me when I am clearly me.
+// Papa John you absolute fucking moron, since when is having an alternate account a bannable offense when there is no proof of evasion? Are you fucking kidding me? Unban vim2meta#3630, and mute yourself for unlawful punishment while you are at it.
 require('./extensions');
 const path = require('path');
 const { Registry, Handler } = require('patron.js');
