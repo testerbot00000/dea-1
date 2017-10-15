@@ -1,7 +1,7 @@
 const patron = require('patron.js');
 
 class Hierarchy extends patron.ArgumentPrecondition {
-  async run(command, msg, argument, value) {
+  async run(command, msg, argument, args, value) {
     if (value.position < msg.guild.me.highestRole.position) {
       return patron.PreconditionResult.fromSuccess();
     }

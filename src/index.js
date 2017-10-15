@@ -1,4 +1,3 @@
-// Papa John you absolute fucking moron, since when is having an alternate account a bannable offense when there is no proof of evasion? Are you fucking kidding me? Unban vim2meta#3630, and mute yourself for unlawful punishment while you are at it.
 require('./extensions');
 const path = require('path');
 const { Registry, Handler } = require('patron.js');
@@ -26,7 +25,6 @@ CommandService.run(client, new Handler(registry));
 
 async function initiate() {
   await db.connect(credentials.mongodbConnectionURL);
-  await db.userRepo.updateMany({}, { $set: { commands: [] } });
   await client.login(credentials.token);
   await Documentation.createAndSave(registry);
 }

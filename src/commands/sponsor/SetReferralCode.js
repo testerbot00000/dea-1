@@ -1,7 +1,6 @@
 const patron = require('patron.js');
 const db = require('../../database');
 const Constants = require('../../utility/Constants.js');
-const MaximumLength = require('../../preconditions/MaximumLength.js');
 
 class SetReferralCode extends patron.Command {
   constructor() {
@@ -15,7 +14,7 @@ class SetReferralCode extends patron.Command {
           key: 'code',
           type: 'string',
           example: 'KEEM',
-          preconditions: [new MaximumLength(Constants.config.setReferralCode.maxLength)],
+          preconditions: [new patron.preconditions.CharacterLimit(Constants.config.setReferralCode.maxLength)],
           remainder: true
         })
       ]

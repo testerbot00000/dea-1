@@ -6,7 +6,7 @@ class MinimumCash extends patron.ArgumentPrecondition {
     this.minimum = minimum;
   }
 
-  async run(command, msg, argument, value) {
+  async run(command, msg, argument, args, value) {
     if (value >= this.minimum) {
       return patron.PreconditionResult.fromSuccess();
     }

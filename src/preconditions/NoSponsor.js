@@ -1,7 +1,7 @@
 const patron = require('patron.js');
 
 class NoSponsor extends patron.ArgumentPrecondition {
-  async run(command, msg, argument, value) {
+  async run(command, msg, argument, args, value) {
     if (value.roles.has(msg.dbGuild.roles.sponsor) === false) {
       return patron.PreconditionResult.fromSuccess();
     }

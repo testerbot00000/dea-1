@@ -1,7 +1,7 @@
 const patron = require('patron.js');
 
 class NoSelf extends patron.ArgumentPrecondition {
-  async run(command, msg, argument, value) {
+  async run(command, msg, argument, args, value) {
     if (value.id !== msg.author.id) {
       return patron.PreconditionResult.fromSuccess();
     }

@@ -42,7 +42,6 @@ These commands may only be used by the owners of DEA.
 Command | Description | Usage
 ---------------- | --------------| -------
 Eval|Evalute JavaScript code.|`$eval <code>`
-Modifycash|Allows you to modify the cash of any member.|`$modifycash <amount> [@member]`
 
 ### Crime
 Command | Description | Usage
@@ -69,7 +68,7 @@ Buycommand|Buy a command.|`$buycommand <command>`
 Cash|View the wealth of anyone.|`$cash [@member]`
 Leaderboards|View the richest Drug Traffickers.|`$leaderboards`
 Modroles|View all mod roles in this guild.|`$modroles`
-Pinmessage|Pin the last message sent by any member in the this channel.|`$pinmessage <@member>`
+Pinmessage|Pin the last message sent by any member in this channel.|`$pinmessage [@member]`
 Rank|View the rank of anyone.|`$rank [@member]`
 Ranks|View all ranks in this guild.|`$ranks`
 Transfer|Transfer money to any member.|`$transfer <@member> <transfer>`
@@ -95,6 +94,7 @@ These commands may only be used by a user with the set mod role with a permissio
 Command | Description | Usage
 ---------------- | --------------| -------
 Addmodrole|Add a mod role.|`$addmodrole <@role> <permissionLevel>`
+Modifycash|Allows you to modify the cash of any member.|`$modifycash <amount> [@member]`
 Removemodrole|Remove a mod role.|`$removemodrole <@role>`
 Reset|Resets all user data in your server.|`$reset`
 Resetuser|Reset any member's data.|`$resetuser [@member]`

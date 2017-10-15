@@ -42,7 +42,7 @@ class Eval extends patron.Command {
         result = util.inspect(result, { depth: 0 });
       }
 
-      result = result.replace(msg.client.token, ' ').replace(/\[Object\]/g, 'Object').replace(/\[Array\]/g, 'Array');
+      result = result.replace(client.token, ' ').replace(/\[Object\]/g, 'Object').replace(/\[Array\]/g, 'Array');
 
       return msg.channel.createFieldsMessage(['Eval', '```js\n' + args.code + '```', 'Returns', '```js\n' + result + '```'], false);
     } catch (err) {

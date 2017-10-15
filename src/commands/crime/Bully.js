@@ -4,7 +4,6 @@ const NumberUtil = require('../../utility/NumberUtil.js');
 const Constants = require('../../utility/Constants.js');
 const NoSelf = require('../../preconditions/NoSelf.js');
 const NoSponsor = require('../../preconditions/NoSponsor.js');
-const MaximumLength = require('../../preconditions/MaximumLength.js');
 const NoModerator = require('../../preconditions/NoModerator.js');
 const Purcahsed = require('../../preconditions/Purchased.js');
 
@@ -29,7 +28,7 @@ class Bully extends patron.Command {
           key: 'nickname',
           type: 'string',
           example: 'ass hat',
-          preconditions: [new MaximumLength(Constants.config.bully.maxLength)],
+          preconditions: [new patron.preconditions.CharacterLimit(Constants.config.bully.maxLength)],
           remainder: true
         })
       ]

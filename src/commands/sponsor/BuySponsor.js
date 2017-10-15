@@ -1,6 +1,5 @@
 const patron = require('patron.js');
 const db = require('../../database');
-const Minimum = require('../../preconditions/Minimum.js');
 const Constants = require('../../utility/Constants.js');
 const SponsorRole = require('../../preconditions/SponsorRole.js');
 
@@ -18,7 +17,7 @@ class BuySponsor extends patron.Command {
           key: 'days',
           type: 'int',
           example: '5',
-          preconditions: [new Minimum(1)],
+          preconditions: [new patron.preconditions.Minimum(1)],
           defaultValue: 1
         })
       ]

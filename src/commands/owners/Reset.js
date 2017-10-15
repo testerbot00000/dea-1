@@ -13,7 +13,7 @@ class Reset extends patron.Command {
   async run(msg, args) {
     await msg.createReply('Are you sure you wish to reset all DEA related data within your server? Reply with "yes" to continue.');
 
-    const filter = x => x.content.toLowerCase() === 'yes' && x.author.id === msg.author.id;
+    const filter = (x) => x.content.toLowerCase() === 'yes' && x.author.id === msg.author.id;
     const result = await msg.channel.awaitMessages(filter, { max: 1, time: 30000 });
 
     if (result.size === 1) {

@@ -4,31 +4,30 @@
   "description": "The cleanest Discord Bot around.",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
     "test": "node test/index.js",
-    "lint": "eslint --fix src/**"
+    "lint": "eslint --fix src/**",
+    "docs": "mkdir backup && mv docs/mkdocs.yml docs/docs backup/ && cd backup && mkdocs build && cd .. && rm -R docs/* && mv backup/docs backup/mkdocs.yml backup/site/* docs/ && rm -R backup"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RealBlazeIt/dea-util.git"
   },
   "keywords": [
-    "dea",
     "discord",
     "bot",
     "nodejs",
     "discord.js"
   ],
-  "author": "John#0969",
-  "license": "AGPL-3.0",
+  "author": "vim2meta#3630",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/RealBlazeIt/dea/issues"
   },
   "homepage": "https://github.com/RealBlazeIt/dea#readme",
   "dependencies": {
-    "discord.js": "^11.1.0",
-    "mongodb": "^2.2.31",
-    "patron.js": "^2.2.8",
+    "discord.js": "^11.2.1",
+    "mongodb": "^2.2.33",
+    "patron.js": "^2.4.0",
     "require-all": "^2.2.0"
   },
   "optionalDependencies": {
@@ -37,7 +36,7 @@
     "uws": "^0.14.5"
   },
   "devDependencies": {
-    "eslint": "^4.4.1"
+    "eslint": "^4.9.0"
   },
   "eslintIgnore": [
     "**/*.json"

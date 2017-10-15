@@ -1,8 +1,6 @@
 const patron = require('patron.js');
 const Constants = require('../../utility/Constants.js');
 const ModerationService = require('../../services/ModerationService.js');
-const Minimum = require('../../preconditions/Minimum.js');
-const Maximum = require('../../preconditions/Maximum.js');
 
 class Clear extends patron.Command {
   constructor() {
@@ -18,7 +16,7 @@ class Clear extends patron.Command {
           key: 'quantity',
           type: 'float',
           example: '5',
-          preconditions: [new Minimum(Constants.config.clear.min), new Maximum(Constants.config.clear.max)]
+          preconditions: [new patron.preconditions.Between(Constants.config.clear.min, Constants.config.clear.max)]
         }),
         new patron.Argument({
           name: 'reason',

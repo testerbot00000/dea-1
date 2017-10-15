@@ -2,7 +2,7 @@ const patron = require('patron.js');
 const NumberUtil = require('../utility/NumberUtil.js');
 
 class Cash extends patron.ArgumentPrecondition {
-  async run(command, msg, argument, value) {
+  async run(command, msg, argument, args, value) {
     const realValue = NumberUtil.realValue(msg.dbUser.cash);
 
     if (realValue >= value) {

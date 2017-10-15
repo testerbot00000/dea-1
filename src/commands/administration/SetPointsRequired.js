@@ -1,7 +1,5 @@
 const patron = require('patron.js');
 const db = require('../../database');
-const Minimum = require('../../preconditions/Minimum.js');
-const Maximum = require('../../preconditions/Maximum.js');
 
 class SetPointsRequired extends patron.Command {
   constructor() {
@@ -15,7 +13,7 @@ class SetPointsRequired extends patron.Command {
           key: 'points',
           type: 'int',
           example: '3',
-          preconditions: [new Minimum(1), new Maximum(10)]
+          preconditions: [new patron.preconditions.Between(1, 10)]
         })
       ]
     });

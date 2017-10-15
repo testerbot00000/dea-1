@@ -2,7 +2,6 @@ const patron = require('patron.js');
 const db = require('../../database');
 const Random = require('../../utility/Random.js');
 const NumberUtil = require('../../utility/NumberUtil.js');
-const Minimum = require('../../preconditions/Minimum.js');
 
 class SellReferralPoints extends patron.Command {
   constructor() {
@@ -16,14 +15,14 @@ class SellReferralPoints extends patron.Command {
           key: 'points',
           type: 'int',
           example: '5',
-          preconditions: [new Minimum(1)]
+          preconditions: [new patron.preconditions.Minimum(1)]
         }),
         new patron.Argument({
           name: 'price',
           key: 'price',
           type: 'currency',
           example: '10000',
-          preconditions: [new Minimum(0)]
+          preconditions: [new patron.preconditions.Minimum(0)]
         }),
         new patron.Argument({
           name: 'member',
