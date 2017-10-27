@@ -1,7 +1,6 @@
 const Logger = require('../utility/Logger.js');
+const client = require('../structures/client.js');
 
-module.exports = (client) => {
-  client.on('reconnect', () => {
-    Logger.log('DEA has disconnected.');
-  });
-};
+client.on('reconnect', () => {
+  return Logger.log('DEA has disconnected.', 'INFO');
+});

@@ -1,6 +1,6 @@
 const discord = require('discord.js');
-const Random = require('../../utility/Random.js');
-const Constants = require('../../utility/Constants.js');
+const Random = require('../utility/Random.js');
+const Constants = require('../utility/Constants.js');
 
 function createMessage(channel, description, options = {}) {
   const embed = new discord.RichEmbed()

@@ -6,3 +6,4 @@ credentials.json
 
 # Miscellaneous
 .vscode/
+logs/

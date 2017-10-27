@@ -108,7 +108,6 @@
     "no-new-require": "error",
     "no-new-wrappers": "error",
     "no-floating-decimal": "error",
-    "no-sync": "error",
     "no-with": "error",
     "no-multi-spaces": "error",
     "block-spacing": "error",

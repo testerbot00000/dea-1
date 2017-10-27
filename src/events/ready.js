@@ -1,9 +1,11 @@
 const Constants = require('../utility/Constants.js');
 const Logger = require('../utility/Logger.js');
+const client = require('../structures/client.js');
 
-module.exports = (client) => {
-  client.on('ready', async () => {
-    Logger.log('DEA has successfully connected.');
-    await client.user.setPresence({ game: { name: Constants.data.misc.game, type: 0 } });
-  });
-};
+client.on('ready', async () => {
+  (async function () {
+    await Logger.log('DEA has successfully connected.', 'INFO');
+    await client.user.setGame(Constants.data.misc.game);
+  })()
+    .catch((err) => Logger.handleError(err));
+});

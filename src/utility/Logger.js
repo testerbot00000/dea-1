@@ -1,10 +1,26 @@
-const NumberUtil = require('./NumberUtil.js');
+const DateUtil = require('./DateUtil.js');
+const fs = require('fs');
+const util = require('util');
+const appendFile = util.promisify(fs.appendFile);
 
 class Logger {
-  static log(message) {
+  constructor() {
+    if (fs.existsSync('logs/') === false) {
+      fs.mkdirSync('logs');
+    }
+  }
+
+  log(message, level) {
     const date = new Date();
-    console.log(NumberUtil.pad(date.getHours(), 2) + ':' + NumberUtil.pad(date.getMinutes(), 2) + ':' + NumberUtil.pad(date.getSeconds(), 2) + ' ' + message);
+    const formattedMessage = DateUtil.UTCTime(date) + ' [' + level + '] ' + message;
+
+    console.log(formattedMessage);
+    return appendFile('logs/' + DateUtil.UTCDate(date) + '.txt', formattedMessage + '\n');
+  }
+
+  handleError(err) {
+    return this.log(err.stack, 'ERROR');
   }
 }
 
-module.exports = Logger;
+module.exports = new Logger();

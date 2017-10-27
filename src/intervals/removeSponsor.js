@@ -1,8 +1,12 @@
 const db = require('../database');
 const Constants = require('../utility/Constants.js');
+const client = require('../structures/client.js');
+const Logger = require('../utility/Logger.js');
 
-module.exports = async (client) => {
-  client.setInterval(async () => {
+client.setInterval(() => {
+  (async function () {
+    await Logger.log('Interval: Remove Sponsor', 'DEBUG');
+
     const users = await db.userRepo.findMany();
 
     for (let i = 0; i < users.length; i++) {
@@ -41,5 +45,6 @@ module.exports = async (client) => {
         await member.removeRole(role);
       }
     }
-  }, Constants.config.intervals.removeSponsor);
-};
+  })()
+    .catch((err) => Logger.handleError(err));
+}, Constants.config.intervals.removeSponsor);

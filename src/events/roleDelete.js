@@ -1,7 +1,9 @@
 const db = require('../database');
+const client = require('../structures/client.js');
+const Logger = require('../utility/Logger.js');
 
-module.exports = (client) => {
-  client.on('roleDelete', async (role) => {
+client.on('roleDelete', async (role) => {
+  (async function () {
     const dbGuild = await db.guildRepo.getGuild(role.guild.id);
 
     if (dbGuild.roles.rank.some((v) => v.id === role.id)) {
@@ -11,5 +13,6 @@ module.exports = (client) => {
     if (dbGuild.roles.mod.some((v) => v.id === role.id)) {
       return db.guildRepo.upsertGuild(role.guild.id, new db.updates.Pull('roles.mod', { id: role.id }));
     }
-  });
-};
+  })()
+    .catch((err) => Logger.handleError(err));
+});

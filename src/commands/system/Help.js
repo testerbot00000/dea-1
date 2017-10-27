@@ -1,4 +1,5 @@
 const patron = require('patron.js');
+const registry = require('../../structures/registry.js');
 const Constants = require('../../utility/Constants.js');
 
 class Help extends patron.Command {
@@ -33,7 +34,7 @@ class Help extends patron.Command {
 
       const lowerInput = args.command.toLowerCase();
 
-      const command = msg.client.registry.commands.find((x) => x.names.some((y) => y === lowerInput));
+      const command = registry.commands.find((x) => x.names.some((y) => y === lowerInput));
 
       if (command === undefined) {
         return msg.createErrorReply('This command does not exist.');
