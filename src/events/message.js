@@ -41,7 +41,7 @@ client.on('message', (msg) => {
           return msg.channel.tryCreateErrorMessage('Hours: ' + cooldown.hours + '\nMinutes: ' + cooldown.minutes + '\nSeconds: ' + cooldown.seconds, { title: result.command.names[0].upperFirstChar() + ' Cooldown' });
         }
         case patron.CommandError.Exception:
-          if (result.error.code instanceof discord.DiscordAPIError) {
+          if (result.error instanceof discord.DiscordAPIError) {
             if (result.error.code === 400) {
               message = 'There seems to have been a bad request. Please report this issue with context to John#0969.';
             } else if (result.error.code === 0 || result.error.code === 404 || result.error.code === 50013) {
