@@ -13,7 +13,7 @@ class Sponsor extends patron.Command {
   run(msg) {
     const p = Constants.data.misc.prefix;
 
-    return msg.channel.createMessage('- ' + Constants.config.sponsorship.messageMultiplier + 'X more cash per message.\n- ' + Constants.config.sponsorship.lotteryOddsMultiplier + 'X more likely to win the lottery.\n- Free `' + p + 'bully` usage.\n- Unique role.\n- Ability to use `' + p + 'scam`, `' + p + 'jump`, `' + p + 'steal` and `' + p + '50x2`.\n- Immunity to `' + p + 'bully` and `' + p + 'kill`.', { title: 'Sponsor Benefits' });
+    return msg.channel.createMessage('- ' + Constants.config.sponsorship.messageMultiplier + 'X more cash per message.\n- ' + Constants.config.sponsorship.lotteryOddsMultiplier + 'X more likely to win the lottery.\n- Unique role.\n- Ability to use `' + p + 'scam`, `' + p + 'jump`, `' + p + 'steal` and `' + p + '50x2`.\n- Immunity to `' + p + 'bully` and `' + p + 'kill`.', { title: 'Sponsor Benefits' });
   }
 }
 
