@@ -1,5 +1,5 @@
 class PromiseUtil {
-  static delay(ms) {
+  delay(ms) {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve();
@@ -7,4 +7,4 @@ class PromiseUtil {
     });
   }
 }
-module.exports = PromiseUtil;
+module.exports = new PromiseUtil();

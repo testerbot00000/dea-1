@@ -1,12 +1,14 @@
 const DateUtil = require('./DateUtil.js');
 const fs = require('fs');
 const util = require('util');
+const path = require('path');
 const appendFile = util.promisify(fs.appendFile);
+const logsPath = path.join(__dirname, '../../logs');
 
 class Logger {
   constructor() {
-    if (fs.existsSync('logs/') === false) {
-      fs.mkdirSync('logs');
+    if (fs.existsSync(logsPath) === false) {
+      fs.mkdirSync(logsPath);
     }
   }
 
@@ -15,7 +17,7 @@ class Logger {
     const formattedMessage = DateUtil.UTCTime(date) + ' [' + level + '] ' + message;
 
     console.log(formattedMessage);
-    return appendFile('logs/' + DateUtil.UTCDate(date) + '.txt', formattedMessage + '\n');
+    return appendFile(logsPath + DateUtil.UTCDate(date) + '.txt', formattedMessage + '\n');
   }
 
   handleError(err) {
