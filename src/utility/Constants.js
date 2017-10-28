@@ -27,7 +27,7 @@ class Constants {
 
       links: {
         botInvite: 'https://discordapp.com/oauth2/authorize?client_id=290823959669374987&scope=bot&permissions=8',
-        documentation: 'https://realblazeit.github.io/dea/commands/',
+        documentation: 'https://vim2meta.github.io/dea/commands/',
         serverInvite: 'https://discord.gg/gvyma7H'
       },
 

@@ -6,7 +6,7 @@
 # DEA
 DEA is a multi-purpose Discord Bot mainly known for it's infamous Cash System with multiple subtleties referencing to the show Narcos, which inspired the creation of this masterpiece. You can get all the information related to commands by viewing the links below.
 
-[Full documentation](https://realblazeit.github.io/dea/)
+[Full documentation](https://vim2meta.github.io/dea/)
 
 [Add DEA to your Server](https://discordapp.com/oauth2/authorize?client_id=290823959669374987&scope=bot&permissions=8)
 
