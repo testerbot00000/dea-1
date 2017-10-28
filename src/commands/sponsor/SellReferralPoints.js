@@ -8,7 +8,7 @@ class SellReferralPoints extends patron.Command {
     super({
       names: ['sellpoints', 'sellreferralpoints', 'sellpoint'],
       groupName: 'sponsor',
-      description: 'View your referral code along with an invite link to this server.',
+      description: 'Sell referral points to your buddies.',
       args: [
         new patron.Argument({
           name: 'number of points',

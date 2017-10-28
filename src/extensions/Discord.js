@@ -145,6 +145,16 @@ Object.defineProperty(discord.Guild.prototype, 'mainChannel', {
   }
 });
 
+Object.defineProperty(discord.Guild.prototype, 'announcementsChannel', {
+  get: function () {
+    const announcementsChannel = this.channels.findValue((v) => {
+      return v.type === 'text' && v.name === 'announcements';
+    });
+
+    return announcementsChannel !== undefined ? announcementsChannel : this.mainChannel;
+  }
+});
+
 discord.Guild.prototype.getDefaultInvite = async function () {
   const invites = await this.fetchInvites();
 

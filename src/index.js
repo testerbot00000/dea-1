@@ -12,12 +12,12 @@ registry.registerCommandsIn(path.join(__dirname, 'commands'));
 
 requireAll(path.join(__dirname, 'extensions'));
 requireAll(path.join(__dirname, 'events'));
-requireAll(path.join(__dirname, 'intervals'));
 
 async function initiate() {
   await db.connect(credentials.mongodbConnectionURL);
   await client.login(credentials.token);
   await Documentation.createAndSave(registry);
+  requireAll(path.join(__dirname, 'intervals'));
 }
 
 initiate();

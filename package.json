@@ -27,7 +27,7 @@
   "dependencies": {
     "discord.js": "^11.2.1",
     "mongodb": "^2.2.33",
-    "patron.js": "^2.5.5",
+    "patron.js": "github:vim2meta/patron.js",
     "require-all": "^2.2.0"
   },
   "optionalDependencies": {

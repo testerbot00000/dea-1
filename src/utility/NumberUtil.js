@@ -1,21 +1,21 @@
 class NumberUtil {
-  static realValue(input) {
+  realValue(input) {
     return input / 100;
   }
 
-  static format(input) {
+  format(input) {
     return (input / 100).USD();
   }
 
-  static hoursToMs(input) {
+  hoursToMs(input) {
     return input * 3600000;
   }
 
-  static daysToMs(input) {
+  daysToMs(input) {
     return input * 86400000;
   }
 
-  static msToTime(input) {
+  msToTime(input) {
     return {
       milliseconds: parseInt((input % 1000) / 100),
       seconds: parseInt((input / 1000) % 60),
@@ -25,7 +25,7 @@ class NumberUtil {
     };
   }
 
-  static pad(num, size) {
+  pad(num, size) {
     let s = num.toString();
 
     while (s.length < size) {
@@ -36,4 +36,4 @@ class NumberUtil {
   }
 }
 
-module.exports = NumberUtil;
+module.exports = new NumberUtil();
