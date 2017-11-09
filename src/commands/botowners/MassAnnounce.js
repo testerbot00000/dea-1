@@ -21,12 +21,12 @@ class MassAnnounce extends patron.Command {
   }
 
   async run(msg, args) {
-    const sortedGuilds = msg.client.guilds.sort((a, b) => b.memberCount - a.memberCount);
+    const sortedGuilds = msg.client.guilds.sort((a, b) => b.memberCount - a.memberCount).values();
 
-    for (let i = 0; i < sortedGuilds.length; i++) {
+    for (const guild of sortedGuilds) {
       await PromiseUtil.delay(2500);
 
-      const announcementsChannel = sortedGuilds[i].announcementsChannel;
+      const announcementsChannel = guild.announcementsChannel;
 
       if (announcementsChannel !== undefined) {
         announcementsChannel.send(args.message)
