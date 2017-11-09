@@ -91,7 +91,6 @@
       "property"
     ],
     "array-bracket-spacing": "error",
-    "no-var": "error",
     "no-else-return": "error",
     "no-empty-function": "error",
     "no-implicit-coercion": "error",

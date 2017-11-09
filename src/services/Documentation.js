@@ -17,13 +17,13 @@ class Documentation {
 
       tableOfContents += '- [' + formattedGroupName + '](#' + groups[i].name.toLowerCase() + ')\n';
 
-      commandInfo += '\n### '+ formattedGroupName +'\n';
+      commandInfo += '\n### '+ formattedGroupName + '\n';
 
       if (String.isNullOrWhiteSpace(groups[i].description) === false) {
         commandInfo += '\n' + groups[i].description + '\n\n';
       }
 
-      commandInfo += 'Command | Description | Usage\n---------------- | --------------| -------\n';
+      commandInfo += 'Command | Description | Usage\n---------------- | -------------- | -------\n';
 
       const commands = groups[i].commands.sort((a, b) => a.names[0].localeCompare(b.names[0]));
 

@@ -3,8 +3,6 @@ const db = require('../database');
 const Random = require('../utility/Random.js');
 const NumberUtil = require('../utility/NumberUtil.js');
 const Constants = require('../utility/Constants.js');
-const Cash = require('../preconditions/Cash.js');
-const MinimumCash = require('../preconditions/MinimumCash.js');
 
 class Gambling extends patron.Command {
   constructor(names, description, odds, payoutMultiplier, preconditions = []) {
@@ -19,7 +17,7 @@ class Gambling extends patron.Command {
           key: 'bet',
           type: 'currency',
           example: '500',
-          preconditions: [Cash, new MinimumCash(Constants.config.gambling.minBet)]
+          preconditions: ['cash', { name: 'minimumcash', options: { minimum: Constants.config.gambling.minBet } }]
         })
       ]
     });

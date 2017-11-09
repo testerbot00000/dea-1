@@ -5,6 +5,7 @@ const discord = require('discord.js');
 const patron = require('patron.js');
 const Constants = require('../utility/Constants.js');
 const NumberUtil = require('../utility/NumberUtil.js');
+const RegistryUtil = require('../utility/RegistryUtil.js');
 const ChatService = require('../services/ChatService.js');
 const handler = require('../structures/handler.js');
 
@@ -22,7 +23,7 @@ client.on('message', (msg) => {
     }
 
     if (Constants.data.regexes.prefix.test(msg.content) === false) {
-      return inGuild ? ChatService.applyCash(msg) : null;
+      return inGuild === true ? ChatService.applyCash(msg) : null;
     }
 
     await Logger.log('Message Id: ' + msg.id + ' | User Id: ' + msg.author.id + (inGuild === true ? ' | Guild Id: ' + msg.guild.id : '') + ' | User: ' + msg.author.tag + (inGuild ? ' | Guild: ' + msg.guild.name : '') + ' | Content: ' + msg.content, 'DEBUG');
@@ -33,8 +34,11 @@ client.on('message', (msg) => {
       let message;
 
       switch (result.commandError) {
-        case patron.CommandError.CommandNotFound:
-          return;
+        case patron.CommandError.CommandNotFound: {
+          const similarCommand = RegistryUtil.similarCommand(result.commandName);
+
+          return similarCommand !== undefined ? msg.tryCreateReply('Did you mean `' + Constants.data.misc.prefix + similarCommand.upperFirstChar() + '`?') : null;
+        }
         case patron.CommandError.Cooldown: {
           const cooldown = NumberUtil.msToTime(result.remaining);
 

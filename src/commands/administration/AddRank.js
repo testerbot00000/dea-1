@@ -1,6 +1,5 @@
 const db = require('../../database');
 const patron = require('patron.js');
-const Hierarchy = require('../../preconditions/Hierarchy.js');
 
 class AddRank extends patron.Command {
   constructor() {
@@ -15,7 +14,7 @@ class AddRank extends patron.Command {
           key: 'role',
           type: 'role',
           example: 'Sicario',
-          preconditions: [Hierarchy]
+          preconditions: ['hierarchy']
         }),
         new patron.Argument({
           name: 'cashRequired',

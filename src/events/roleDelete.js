@@ -9,10 +9,6 @@ client.on('roleDelete', async (role) => {
     if (dbGuild.roles.rank.some((v) => v.id === role.id)) {
       return db.guildRepo.upsertGuild(role.guild.id, new db.updates.Pull('roles.rank', { id: role.id }));
     }
-
-    if (dbGuild.roles.mod.some((v) => v.id === role.id)) {
-      return db.guildRepo.upsertGuild(role.guild.id, new db.updates.Pull('roles.mod', { id: role.id }));
-    }
   })()
     .catch((err) => Logger.handleError(err));
 });

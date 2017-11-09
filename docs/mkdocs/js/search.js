@@ -1,13 +1,13 @@
 require([
-  base_url + '/mkdocs/js/mustache.min.js',
-  base_url + '/mkdocs/js/lunr.min.js',
-  'text!search-results-template.mustache',
-  'text!../search_index.json'
-], (Mustache, lunr, results_template, data) => {
+    base_url + '/mkdocs/js/mustache.min.js',
+    base_url + '/mkdocs/js/lunr.min.js',
+    'text!search-results-template.mustache',
+    'text!../search_index.json',
+], function (Mustache, lunr, results_template, data) {
    "use strict";
 
     function getSearchTerm()
-    { 
+    {
         var sPageURL = window.location.search.substring(1);
         var sURLVariables = sPageURL.split('&');
         for (var i = 0; i < sURLVariables.length; i++)

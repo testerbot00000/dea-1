@@ -1,23 +1,16 @@
-const client = require('./structures/client.js');
-const registry = require('./structures/registry.js');
+const patron = require('patron.js');
+const discord = require('discord.js');
 const path = require('path');
-const requireAll = require('require-all');
-const db = require('./database');
+const credentials = require('../credentials.json');
+const Logger = require('./utility/Logger.js');
+const registry = require('./structures/registry.js');
 const Documentation = require('./services/Documentation.js');
-const credentials = require('./credentials.json');
+const shardingManager = new discord.ShardingManager(path.join(__dirname, '../bot.js'), { token: credentials.token });
 
-registry.registerDefaultTypeReaders();
-registry.registerGroupsIn(path.join(__dirname, 'groups'));
-registry.registerCommandsIn(path.join(__dirname, 'commands'));
+patron.RequireAll(path.join(__dirname, 'extensions'));
 
-requireAll(path.join(__dirname, 'extensions'));
-requireAll(path.join(__dirname, 'events'));
-
-async function initiate() {
-  await db.connect(credentials.mongodbConnectionURL);
-  await client.login(credentials.token);
+(async function () {
   await Documentation.createAndSave(registry);
-  requireAll(path.join(__dirname, 'intervals'));
-}
-
-initiate();
+  return shardingManager.spawn(shardingManager.totalShards, 3000);
+})()
+  .catch((err) => Logger.handleError(err));

@@ -2,6 +2,8 @@ const Constants = require('../utility/Constants.js');
 const client = require('../structures/client.js');
 const Logger = require('../utility/Logger.js');
 
+// TODO: Update welcome message to something better.
+
 client.on('guildCreate', async (guild) => {
   (async function () {
     const mainChannel = guild.mainChannel;

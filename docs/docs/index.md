@@ -4,9 +4,7 @@
 
 [Official Support Server](https://discord.gg/gvyma7H)
 
-DEA is a multi-purpose Discord Bot mainly known for it's infamous Cash & Reputation System, allowing you to compete with your friends to become the richest in the server, or the most respected.
-
-This bot is also capable of being an excellent moderation bot for all needs. Multiple commands such as kick, ban, mute are available at your disposition. DEA automatically unmutes users after their mute is over, AND will prevent mute evasion (users leaving and rejoining to lose their Muted role).
+DEA is a multi-purpose Discord Bot mainly known for it's infamous Cash & Reputation System, allowing you to compete with your friends to become the richest in the server.
 
 For information on how to setup this bot in your server, click [here](https://realblazeit.github.io/dea/setup/).
 

@@ -76,12 +76,6 @@
         
             <li><a class="toctree-l3" href="#general">General</a></li>
         
-            <li><a class="toctree-l3" href="#moderation">Moderation</a></li>
-        
-            <li><a class="toctree-l3" href="#owners">Owners</a></li>
-        
-            <li><a class="toctree-l3" href="#sponsor">Sponsor</a></li>
-        
             <li><a class="toctree-l3" href="#system">System</a></li>
         
         </ul>
@@ -136,13 +130,9 @@
 <li><a href="#crime">Crime</a></li>
 <li><a href="#gambling">Gambling</a></li>
 <li><a href="#general">General</a></li>
-<li><a href="#moderation">Moderation</a></li>
-<li><a href="#owners">Owners</a></li>
-<li><a href="#sponsor">Sponsor</a></li>
 <li><a href="#system">System</a></li>
 </ul>
 <h3 id="administration">Administration</h3>
-<p>These commands may only be used by a user with the set mod role with a permission level of 2 or the Administrator permission.</p>
 <table>
 <thead>
 <tr>
@@ -158,9 +148,9 @@
 <td><code>$addrank &lt;@role&gt; &lt;cashRequired&gt;</code></td>
 </tr>
 <tr>
-<td>Disablewelcome</td>
-<td>Disables the welcome message.</td>
-<td><code>$disablewelcome</code></td>
+<td>Modifycash</td>
+<td>Allows you to modify the cash of any member.</td>
+<td><code>$modifycash &lt;amount&gt; [@member]</code></td>
 </tr>
 <tr>
 <td>Removerank</td>
@@ -168,44 +158,14 @@
 <td><code>$removerank &lt;@role&gt;</code></td>
 </tr>
 <tr>
-<td>Setmodlog</td>
-<td>Sets the mod log channel.</td>
-<td><code>$setmodlog &lt;#channel&gt;</code></td>
+<td>Reset</td>
+<td>Resets all user data in your server.</td>
+<td><code>$reset</code></td>
 </tr>
 <tr>
-<td>Setmutedrole</td>
-<td>Sets the muted role.</td>
-<td><code>$setmutedrole &lt;@role&gt;</code></td>
-</tr>
-<tr>
-<td>Setpointsrequired</td>
-<td>Sets the amount of points required per day of sponsorship.</td>
-<td><code>$setpointsrequired &lt;daily points required&gt;</code></td>
-</tr>
-<tr>
-<td>Setsponsorrole</td>
-<td>Sets the sponsor role.</td>
-<td><code>$setsponsorrole &lt;@role&gt;</code></td>
-</tr>
-<tr>
-<td>Settop10</td>
-<td>Sets the Top 10 role.</td>
-<td><code>$settop10 &lt;@role&gt;</code></td>
-</tr>
-<tr>
-<td>Settop25</td>
-<td>Sets the Top 25 role.</td>
-<td><code>$settop25 &lt;@role&gt;</code></td>
-</tr>
-<tr>
-<td>Settop50</td>
-<td>Sets the Top 50 role.</td>
-<td><code>$settop50 &lt;@role&gt;</code></td>
-</tr>
-<tr>
-<td>Setwelcome</td>
-<td>Sets the welcome message.</td>
-<td><code>$setwelcome &lt;message&gt;</code></td>
+<td>Resetuser</td>
+<td>Reset any member's data.</td>
+<td><code>$resetuser [@member]</code></td>
 </tr>
 </tbody>
 </table>
@@ -221,9 +181,29 @@
 </thead>
 <tbody>
 <tr>
+<td>Dm</td>
+<td>DM any user.</td>
+<td><code>$dm &lt;@user&gt; &lt;message&gt;</code></td>
+</tr>
+<tr>
 <td>Eval</td>
 <td>Evalute JavaScript code.</td>
 <td><code>$eval &lt;code&gt;</code></td>
+</tr>
+<tr>
+<td>Massannounce</td>
+<td>Mass announce a message accross all guilds.</td>
+<td><code>$massannounce &lt;message&gt;</code></td>
+</tr>
+<tr>
+<td>Send</td>
+<td>Send a message in any channel.</td>
+<td><code>$send &lt;channel&gt; &lt;message&gt;</code></td>
+</tr>
+<tr>
+<td>Updateuser</td>
+<td>Update any user in the DEA database.</td>
+<td><code>$updateuser &lt;@user&gt; &lt;guild&gt; &lt;update&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -242,26 +222,6 @@
 <td>Bully any user by changing their nickname.</td>
 <td><code>$bully &lt;@member&gt; &lt;nickname&gt;</code></td>
 </tr>
-<tr>
-<td>Jump</td>
-<td>Jump some trash for cash on the street.</td>
-<td><code>$jump</code></td>
-</tr>
-<tr>
-<td>Kill</td>
-<td>Kill a nigga.</td>
-<td><code>$kill &lt;@member&gt;</code></td>
-</tr>
-<tr>
-<td>Scam</td>
-<td>Scam some noobs on the streets.</td>
-<td><code>$scam</code></td>
-</tr>
-<tr>
-<td>Steal</td>
-<td>Hop the big guns and lick a store.</td>
-<td><code>$steal</code></td>
-</tr>
 </tbody>
 </table>
 <h3 id="gambling">Gambling</h3>
@@ -278,11 +238,6 @@
 <td>25+</td>
 <td>Roll 25.00 or higher on a 100.00 sided die to win 0.2X your bet.</td>
 <td><code>$25+ &lt;bet&gt;</code></td>
-</tr>
-<tr>
-<td>50x2</td>
-<td>Roll 50.0 or higher on a 100.00 sided die to win your bet.</td>
-<td><code>$50x2 &lt;bet&gt;</code></td>
 </tr>
 <tr>
 <td>55x2</td>
@@ -312,11 +267,6 @@
 </thead>
 <tbody>
 <tr>
-<td>Buycommand</td>
-<td>Buy a command.</td>
-<td><code>$buycommand &lt;command&gt;</code></td>
-</tr>
-<tr>
 <td>Cash</td>
 <td>View the wealth of anyone.</td>
 <td><code>$cash [@member]</code></td>
@@ -325,16 +275,6 @@
 <td>Leaderboards</td>
 <td>View the richest Drug Traffickers.</td>
 <td><code>$leaderboards</code></td>
-</tr>
-<tr>
-<td>Modroles</td>
-<td>View all mod roles in this guild.</td>
-<td><code>$modroles</code></td>
-</tr>
-<tr>
-<td>Pinmessage</td>
-<td>Pin the last message sent by any member in this channel.</td>
-<td><code>$pinmessage [@member]</code></td>
 </tr>
 <tr>
 <td>Rank</td>
@@ -350,149 +290,6 @@
 <td>Transfer</td>
 <td>Transfer money to any member.</td>
 <td><code>$transfer &lt;@member&gt; &lt;transfer&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="moderation">Moderation</h3>
-<p>These commands may only be used by a user with the set mod role with a permission level of 1 or the Administrator permission.</p>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Description</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ban</td>
-<td>Swing the ban hammer on any member.</td>
-<td><code>$ban &lt;@user&gt; [reason]</code></td>
-</tr>
-<tr>
-<td>Clear</td>
-<td>Clear up to 100 messages in any text channel.</td>
-<td><code>$clear &lt;quantity&gt; [reason]</code></td>
-</tr>
-<tr>
-<td>Kick</td>
-<td>Kick any member.</td>
-<td><code>$kick &lt;@member&gt; [reason]</code></td>
-</tr>
-<tr>
-<td>Mute</td>
-<td>Mute any member.</td>
-<td><code>$mute &lt;@member&gt; [quantity of hours] [reason]</code></td>
-</tr>
-<tr>
-<td>Unban</td>
-<td>Lift the ban hammer on any member.</td>
-<td><code>$unban &lt;user&gt; [reason]</code></td>
-</tr>
-<tr>
-<td>Unmute</td>
-<td>Unmute any member.</td>
-<td><code>$unmute &lt;@member&gt; [reason]</code></td>
-</tr>
-<tr>
-<td>Warn</td>
-<td>Warn any member.</td>
-<td><code>$warn &lt;@member&gt; [reason]</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="owners">Owners</h3>
-<p>These commands may only be used by a user with the set mod role with a permission level of 3 or the ownership of the server.</p>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Description</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Addmodrole</td>
-<td>Add a mod role.</td>
-<td><code>$addmodrole &lt;@role&gt; &lt;permissionLevel&gt;</code></td>
-</tr>
-<tr>
-<td>Modifycash</td>
-<td>Allows you to modify the cash of any member.</td>
-<td><code>$modifycash &lt;amount&gt; [@member]</code></td>
-</tr>
-<tr>
-<td>Removemodrole</td>
-<td>Remove a mod role.</td>
-<td><code>$removemodrole &lt;@role&gt;</code></td>
-</tr>
-<tr>
-<td>Reset</td>
-<td>Resets all user data in your server.</td>
-<td><code>$reset</code></td>
-</tr>
-<tr>
-<td>Resetuser</td>
-<td>Reset any member's data.</td>
-<td><code>$resetuser [@member]</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="sponsor">Sponsor</h3>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Description</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Buysponsor</td>
-<td>Gain access to all the sponsorship benfits.</td>
-<td><code>$buysponsor [number of days]</code></td>
-</tr>
-<tr>
-<td>Claim</td>
-<td>Claim a reward for being referred.</td>
-<td><code>$claim &lt;code&gt;</code></td>
-</tr>
-<tr>
-<td>Codeinfo</td>
-<td>View the information of any referral code.</td>
-<td><code>$codeinfo &lt;code&gt;</code></td>
-</tr>
-<tr>
-<td>Pointsleaderboards</td>
-<td>View the best referrers.</td>
-<td><code>$pointsleaderboards</code></td>
-</tr>
-<tr>
-<td>Refer</td>
-<td>View your referral code along with an invite link to this server.</td>
-<td><code>$refer</code></td>
-</tr>
-<tr>
-<td>Sellpoints</td>
-<td>View your referral code along with an invite link to this server.</td>
-<td><code>$sellpoints &lt;number of points&gt; &lt;price&gt; &lt;@member&gt;</code></td>
-</tr>
-<tr>
-<td>Setreferralcode</td>
-<td>Set your referral code.</td>
-<td><code>$setreferralcode &lt;code&gt;</code></td>
-</tr>
-<tr>
-<td>Sponsor</td>
-<td>View all the sponsorship benefits.</td>
-<td><code>$sponsor</code></td>
-</tr>
-<tr>
-<td>Sponsortime</td>
-<td>View the time remaining on your sponsorship.</td>
-<td><code>$sponsortime [@member]</code></td>
 </tr>
 </tbody>
 </table>

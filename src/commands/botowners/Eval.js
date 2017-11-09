@@ -32,7 +32,7 @@ class Eval extends patron.Command {
       const member = msg.member;
       const database = db;
 
-      let result = await eval('(async function () {' + args.code + '})()');
+      let result = await eval('(async function () { return ' + args.code + '})()');
 
       if (typeof result !== 'string') {
         result = util.inspect(result, { depth: 0 });

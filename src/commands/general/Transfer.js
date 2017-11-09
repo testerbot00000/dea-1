@@ -2,9 +2,6 @@ const patron = require('patron.js');
 const db = require('../../database');
 const NumberUtil = require('../../utility/NumberUtil.js');
 const Constants = require('../../utility/Constants.js');
-const NoSelf = require('../../preconditions/NoSelf.js');
-const Cash = require('../../preconditions/Cash.js');
-const MinimumCash = require('../../preconditions/MinimumCash.js');
 
 class Transfer extends patron.Command {
   constructor() {
@@ -18,14 +15,14 @@ class Transfer extends patron.Command {
           key: 'member',
           type: 'member',
           example: '"Supa Hot Fire#1337"',
-          preconditions: [NoSelf]
+          preconditions: ['noself']
         }),
         new patron.Argument({
           name: 'transfer',
           key: 'transfer',
           type: 'currency',
           example: '500',
-          preconditions: [Cash, new MinimumCash(Constants.config.transfer.min)]
+          preconditions: ['cash', { name: 'minimumcash', options: { minimum: Constants.config.transfer.min } }]
         })
       ]
     });
