@@ -5,7 +5,7 @@ const credentials = require('./credentials.json');
 const Logger = require('./utility/Logger.js');
 const registry = require('./structures/registry.js');
 const Documentation = require('./services/Documentation.js');
-const shardingManager = new discord.ShardingManager(path.join(__dirname, '../bot.js'), { token: credentials.token });
+const shardingManager = new discord.ShardingManager(path.join(__dirname, 'bot.js'), { token: credentials.token });
 
 patron.RequireAll(path.join(__dirname, 'extensions'));
 
