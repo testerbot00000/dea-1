@@ -18,6 +18,7 @@ client.on('message', (msg) => {
     const inGuild = msg.guild !== null;
 
     if (inGuild === true) {
+      msg.member = msg.member !== null ? msg.member : await msg.guild.fetchMember(msg.author);
       msg.dbUser = await db.userRepo.getUser(msg.author.id, msg.guild.id);
       msg.dbGuild = await db.guildRepo.getGuild(msg.guild.id);
     }
@@ -35,7 +36,7 @@ client.on('message', (msg) => {
 
       switch (result.commandError) {
         case patron.CommandError.CommandNotFound: {
-          const similarCommand = RegistryUtil.similarCommand(result.commandName);
+          const similarCommand = RegistryUtil.similarCommand(msg.client.registry, result.commandName);
 
           return similarCommand !== undefined ? msg.tryCreateReply('Did you mean `' + Constants.data.misc.prefix + similarCommand.upperFirstChar() + '`?') : null;
         }

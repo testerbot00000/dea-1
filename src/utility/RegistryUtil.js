@@ -1,8 +1,7 @@
 const leven = require('leven');
-const registry = require('../structures/registry.js');
 
 class RegistryUtil {
-  similarCommand(input) {
+  similarCommand(registry, input) {
     for (let i = 0; i < registry.commands.length; i++) {
       for (let j = 0; j < registry.commands[i].names.length; j++) {
         const distance = leven(input, registry.commands[i].names[j]);

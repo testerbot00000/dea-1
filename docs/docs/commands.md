@@ -61,6 +61,5 @@ Transfer|Transfer money to any member.|`$transfer <@member> <transfer>`
 Command | Description | Usage
 ---------------- | -------------- | -------
 Help|All command information.|`$help [command]`
-Info|All the information about the DEA cash system.|`$info`
 Invite|Add DEA to your server.|`$invite`
 Statistics|Statistics about DEA.|`$statistics`
