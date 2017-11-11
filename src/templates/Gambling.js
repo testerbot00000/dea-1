@@ -1,7 +1,7 @@
 const patron = require('patron.js');
 const db = require('../database');
 const Random = require('../utility/Random.js');
-const NumberUtil = require('../utility/NumberUtil.js');
+const USD = require('../utility/USD.js');
 const Constants = require('../utility/Constants.js');
 
 class Gambling extends patron.Command {
@@ -17,7 +17,7 @@ class Gambling extends patron.Command {
           key: 'bet',
           type: 'currency',
           example: '500',
-          preconditions: ['cash', { name: 'minimumcash', options: { minimum: Constants.config.gambling.minBet } }]
+          preconditions: ['cash', { name: 'minimumcash', options: { minimum: Constants.gambling.minBet } }]
         })
       ]
     });
@@ -26,7 +26,7 @@ class Gambling extends patron.Command {
     this.payoutMultiplier = payoutMultiplier;
   }
 
-  async run(msg, args) {
+  async run(msg, args, sender) {
     const roll = Random.roll();
 
     if (roll >= this.odds) {
@@ -34,12 +34,12 @@ class Gambling extends patron.Command {
 
       const newDbUser = await db.userRepo.modifyCash(msg.dbGuild, msg.member, winnings);
 
-      return msg.createReply('You rolled: ' + roll.toFixed(2) + '. Congrats, you won ' + winnings.USD() + '. Balance: ' + NumberUtil.format(newDbUser.cash) + '.');
+      return sender.reply('You rolled: ' + roll.toFixed(2) + '. Congrats, you won ' + USD(winnings) + '. Balance: ' + USD(newDbUser.cash) + '.');
     }
 
     const newDbUser = await db.userRepo.modifyCash(msg.dbGuild, msg.member, -args.bet);
 
-    return msg.createReply('You rolled: ' + roll.toFixed(2) + '. Unfortunately, you lost ' + args.bet.USD() + '. Balance: ' + NumberUtil.format(newDbUser.cash) + '.');
+    return sender.reply('You rolled: ' + roll.toFixed(2) + '. Unfortunately, you lost ' + USD(args.bet) + '. Balance: ' + USD(newDbUser.cash) + '.');
   }
 }
 

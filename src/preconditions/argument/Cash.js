@@ -1,5 +1,5 @@
 const patron = require('patron.js');
-const NumberUtil = require('../../utility/NumberUtil.js');
+const USD = require('../../utility/USD.js');
 
 class Cash extends patron.ArgumentPrecondition {
   constructor() {
@@ -9,13 +9,11 @@ class Cash extends patron.ArgumentPrecondition {
   }
 
   async run(command, msg, argument, args, value) {
-    const realValue = NumberUtil.realValue(msg.dbUser.cash);
-
-    if (realValue >= value) {
+    if (msg.dbUser.cash >= value) {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'You do not have ' + value.USD() +'. Balance: ' + realValue.USD() + '.');
+    return patron.PreconditionResult.fromError(command, 'You do not have ' + USD(value) +'. Balance: ' + USD(msg.dbUser.cash) + '.');
   }
 }
 

@@ -1,14 +1,13 @@
-const registry = require('./structures/registry.js');
 const path = require('path');
 const db = require('./database');
-const client = require('./structures/client.js');
+const client = require('./singletons/client.js');
 const RequireAll = require('patron.js').RequireAll;
 const Logger = require('./utility/Logger.js');
 const credentials = require('./credentials.json');
+const registry = require('./singletons/registry.js');
 
-client.registry = Object.freeze(registry);
+client.registry = registry;
 
-RequireAll(path.join(__dirname, 'extensions'));
 RequireAll(path.join(__dirname, 'events'));
 
 (async function () {

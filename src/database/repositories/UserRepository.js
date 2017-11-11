@@ -1,5 +1,4 @@
 const BaseRepository = require('./BaseRepository.js');
-const IncMoneyUpdate = require('../updates/IncMoneyUpdate.js');
 const UserQuery = require('../queries/UserQuery.js');
 const User = require('../models/User.js');
 const RankService = require ('../../services/RankService.js');
@@ -41,7 +40,7 @@ class UserRepository extends BaseRepository {
   }
 
   async modifyCash(dbGuild, member, change) {
-    const newDbUser = await this.findUserAndUpsert(member.id, dbGuild.guildId, new IncMoneyUpdate('cash', change));
+    const newDbUser = await this.findUserAndUpsert(member.id, dbGuild.guildId, { $inc: { cash: change } });
 
     RankService.handle(newDbUser, dbGuild, member, await this.findMany({ guildId: dbGuild.guildId }));
 

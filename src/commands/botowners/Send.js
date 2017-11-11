@@ -1,4 +1,5 @@
 const patron = require('patron.js');
+const Sender = require('../../utility/Sender.js');
 
 class Send extends patron.Command {
   constructor() {
@@ -24,9 +25,9 @@ class Send extends patron.Command {
     });
   }
 
-  async run(msg, args) {
-    await args.channel.createMessage(args.message);
-    return msg.createReply('You have successfully sent a message in ' + args.channel.id + '.');
+  async run(msg, args, sender) {
+    await Sender.send(args.channel, args.message);
+    return sender.reply('You have successfully sent a message in ' + args.channel.id + '.');
   }
 }
 

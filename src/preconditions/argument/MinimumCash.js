@@ -1,4 +1,5 @@
 const patron = require('patron.js');
+const USD = require('../../utility/USD.js');
 
 class MinimumCash extends patron.ArgumentPrecondition {
   constructor() {
@@ -12,7 +13,7 @@ class MinimumCash extends patron.ArgumentPrecondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'The minimum ' + argument.name + ' is ' + options.minimum.USD() + '.');
+    return patron.PreconditionResult.fromError(command, 'The minimum ' + argument.name + ' is ' + USD(options.minimum) + '.');
   }
 }
 

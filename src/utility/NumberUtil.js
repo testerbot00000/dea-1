@@ -1,18 +1,6 @@
 class NumberUtil {
-  realValue(input) {
-    return input / 100;
-  }
-
-  format(input) {
-    return (input / 100).USD();
-  }
-
-  hoursToMs(input) {
-    return input * 3600000;
-  }
-
-  daysToMs(input) {
-    return input * 86400000;
+  isEven(num) {
+    return num % 2 === 0;
   }
 
   msToTime(input) {

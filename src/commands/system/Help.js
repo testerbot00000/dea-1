@@ -1,4 +1,5 @@
 const patron = require('patron.js');
+const StringUtil = require('../../utility/StringUtil.js');
 const Constants = require('../../utility/Constants.js');
 
 class Help extends patron.Command {
@@ -20,26 +21,26 @@ class Help extends patron.Command {
     });
   }
 
-  async run(msg, args) {
-    if (String.isNullOrWhiteSpace(args.command)) {
-      await msg.author.DM(
-        'DEA is **THE** cleanest bot around, and you can have it in **YOUR** server simply by clicking here: ' + Constants.data.links.botInvite + '.\n\nFor all information about command usage and setup on your Discord Sever, view the official documentation: ' + Constants.data.links.documentation + '.\n\nThe `' + Constants.data.misc.prefix + 'help <command>` command may be used for view the usage and an example of any command.\n\nIf you have **ANY** questions, you may join the **Official DEA Discord Server:** ' + Constants.data.links.serverInvite + ' for instant support along with a great community.');
+  async run(msg, args, sender) {
+    if (StringUtil.isNullOrWhiteSpace(args.command) === true) {
+      await sender.dm(
+        'DEA is **THE** cleanest bot around, and you can have it in **YOUR** server simply by clicking here: ' + Constants.botInvite + '.\n\nFor all information about command usage and setup on your Discord Sever, view the official documentation: ' + Constants.documentation + '.\n\nThe `' + Constants.prefix + 'help <command>` command may be used for view the usage and an example of any command.\n\nIf you have **ANY** questions, you may join the **Official DEA Discord Server:** ' + Constants.serverInvite + ' for instant support along with a great community.');
 
       if (msg.channel.type !== 'dm') {
-        return msg.createReply('You have been DMed with all the command information!');
+        return sender.reply('You have been DMed with all the command information!');
       }
     } else {
-      args.command = args.command.startsWith(Constants.data.misc.prefix) ? args.command.slice(Constants.data.misc.prefix.length) : args.command;
+      args.command = args.command.startsWith(Constants.prefix) ? args.command.slice(Constants.prefix.length) : args.command;
 
       const lowerInput = args.command.toLowerCase();
 
       const command = msg.client.registry.commands.find((x) => x.names.some((y) => y === lowerInput));
 
       if (command === undefined) {
-        return msg.createErrorReply('This command does not exist.');
+        return sender.reply('This command does not exist.', { color: Constants.errorColor });
       }
 
-      return msg.channel.createMessage('**Description:** ' + command.description + '\n**Usage:** `' + Constants.data.misc.prefix + command.getUsage() + '`\n**Example:** `' + Constants.data.misc.prefix + command.getExample() + '`', { title: command.names[0].upperFirstChar() });
+      return sender.send('**Description:** ' + command.description + '\n**Usage:** `' + Constants.prefix + command.getUsage() + '`\n**Example:** `' + Constants.prefix + command.getExample() + '`', { title: StringUtil.upperFirstChar(command.names[0]) });
     }
   }
 }

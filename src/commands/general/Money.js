@@ -1,6 +1,7 @@
 const db = require('../../database');
 const patron = require('patron.js');
-const NumberUtil = require('../../utility/NumberUtil.js');
+const USD = require('../../utility/USD.js');
+const StringUtil = require('../../utility/StringUtil.js');
 
 class Money extends patron.Command {
   constructor() {
@@ -21,10 +22,10 @@ class Money extends patron.Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg, args, sender) {
     const dbUser = msg.author.id === args.member.id ? msg.dbUser : await db.userRepo.getUser(args.member.id, msg.guild.id);
 
-    return msg.channel.createMessage(args.member.user.tag.boldify() + '\'s balance: ' + NumberUtil.format(dbUser.cash) + '.');
+    return sender.send(StringUtil.boldify(args.member.user.tag) + '\'s balance: ' + USD(dbUser.cash) + '.');
   }
 }
 

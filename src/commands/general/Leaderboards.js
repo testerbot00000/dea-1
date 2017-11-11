@@ -1,7 +1,8 @@
 const db = require('../../database');
 const Constants = require('../../utility/Constants.js');
 const patron = require('patron.js');
-const NumberUtil = require('../../utility/NumberUtil.js');
+const StringUtil = require('../../utility/StringUtil.js');
+const USD = require('../../utility/USD.js');
 
 class Leaderboards extends patron.Command {
   constructor() {
@@ -12,15 +13,17 @@ class Leaderboards extends patron.Command {
     });
   }
 
-  async run(msg) {
+  async run(msg, args, sender) {
     const users = await db.userRepo.findMany({ guildId: msg.guild.id });
 
     users.sort((a, b) => b.cash - a.cash);
 
     let message = '';
 
+    let position = 1;
+
     for (let i = 0; i < users.length; i++) {
-      if (i + 1 > Constants.config.misc.leaderboardCap) {
+      if (position > Constants.leaderboardCap) {
         break;
       }
 
@@ -30,14 +33,14 @@ class Leaderboards extends patron.Command {
         continue;
       }
 
-      message += (i + 1) + '. ' + user.tag.boldify() + ': ' + NumberUtil.format(users[i].cash) + '\n';
+      message += (position++) + '. ' + StringUtil.boldify(user.tag) + ': ' + USD(users[i].cash) + '\n';
     }
 
-    if (String.isNullOrWhiteSpace(message) === true) {
-      return msg.createErrorReply('There is nobody on the leaderboards.');
+    if (StringUtil.isNullOrWhiteSpace(message) === true) {
+      return sender.reply('There is nobody on the leaderboards.', { color: Constants.errorColor });
     }
 
-    return msg.channel.createMessage(message, { title: 'The Richest Traffickers' });
+    return sender.send(message, { title: 'The Richest Criminals' });
   }
 }
 

@@ -1,5 +1,6 @@
 const patron = require('patron.js');
 const Constants = require('../../utility/Constants.js');
+const StringUtil = require('../../utility/StringUtil.js');
 
 class Bully extends patron.Command {
   constructor() {
@@ -7,7 +8,7 @@ class Bully extends patron.Command {
       names: ['bully'],
       groupName: 'crime',
       description: 'Bully any user by changing their nickname.',
-      coooldown: Constants.config.bully.cooldown,
+      cooldown: Constants.bully.cooldown,
       args: [
         new patron.Argument({
           name: 'member',
@@ -21,17 +22,17 @@ class Bully extends patron.Command {
           key: 'nickname',
           type: 'string',
           example: 'ass hat',
-          preconditions: [{ name: 'characterlimit', options: { limit: Constants.config.bully.maxLength } }],
+          preconditions: [{ name: 'characterlimit', options: { limit: Constants.bully.maxLength } }],
           remainder: true
         })
       ]
     });
   }
 
-  async run(msg, args) {
+  async run(msg, args, sender) {
     await args.member.setNickname(args.nickname);
 
-    return msg.createReply('You just __BULLIED__ ' + args.member.user.tag.boldify() + ' to ' + args.nickname.boldify() + '.');
+    return sender.reply('You just __BULLIED__ ' + StringUtil.boldify(args.member.user.tag) + ' to ' + StringUtil.boldify(args.nickname) + '.');
   }
 }
 

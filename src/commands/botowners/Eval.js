@@ -21,7 +21,7 @@ class Eval extends patron.Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg, args, sender) {
     try {
       /* eslint-disable no-unused-vars */
       const client = msg.client;
@@ -40,9 +40,9 @@ class Eval extends patron.Command {
 
       result = result.replace(client.token, ' ').replace(/\[Object\]/g, 'Object').replace(/\[Array\]/g, 'Array');
 
-      return msg.channel.createFieldsMessage(['Eval', '```js\n' + args.code + '```', 'Returns', '```js\n' + result + '```'], false);
+      return sender.sendFields(['Eval', '```js\n' + args.code + '```', 'Returns', '```js\n' + result + '```']);
     } catch (err) {
-      return msg.channel.createFieldsMessage(['Eval', '```js\n' + args.code + '```', 'Error', '```js\n' + err + '```'], false, Constants.data.colors.error);
+      return sender.sendFields(['Eval', '```js\n' + args.code + '```', 'Error', '```js\n' + err + '```'], { color: Constants.errorColor });
     }
   }
 }

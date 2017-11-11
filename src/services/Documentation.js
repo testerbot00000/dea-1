@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
+const StringUtil = require('../utility/StringUtil.js');
 const Constants = require('../utility/Constants.js');
 
 class Documentation {
@@ -13,13 +14,13 @@ class Documentation {
     const groups = registry.groups.sort((a, b) => a.name.localeCompare(b.name));
 
     for (let i = 0; i < groups.length; i++) {
-      const formattedGroupName = groups[i].name.upperFirstChar();
+      const formattedGroupName = StringUtil.upperFirstChar(groups[i].name);
 
       tableOfContents += '- [' + formattedGroupName + '](#' + groups[i].name.toLowerCase() + ')\n';
 
       commandInfo += '\n### '+ formattedGroupName + '\n';
 
-      if (String.isNullOrWhiteSpace(groups[i].description) === false) {
+      if (StringUtil.isNullOrWhiteSpace(groups[i].description) === false) {
         commandInfo += '\n' + groups[i].description + '\n\n';
       }
 
@@ -28,14 +29,14 @@ class Documentation {
       const commands = groups[i].commands.sort((a, b) => a.names[0].localeCompare(b.names[0]));
 
       for (let j = 0; j < commands.length; j++) {
-        commandInfo += commands[j].names[0].upperFirstChar() + '|' + commands[j].description + '|`' + Constants.data.misc.prefix + commands[j].getUsage() + '`\n';
+        commandInfo += StringUtil.upperFirstChar(commands[j].names[0]) + '|' + commands[j].description + '|`' + Constants.prefix + commands[j].getUsage() + '`\n';
       }
     }
 
     commandsDocumentation += tableOfContents + commandInfo;
 
     fs.writeFile(path.join(__dirname, '../../docs/docs/commands.md'), commandsDocumentation, (err) => {
-      assert.equal(err, null);
+      assert.ifError(err);
     });
   }
 }

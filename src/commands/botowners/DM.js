@@ -1,4 +1,6 @@
 const patron = require('patron.js');
+const Sender = require('../../utility/Sender.js');
+const StringUtil = require('../../utility/StringUtil.js');
 
 class DM extends patron.Command {
   constructor() {
@@ -24,9 +26,9 @@ class DM extends patron.Command {
     });
   }
 
-  async run(msg, args) {
-    await args.user.tryDM(args.message);
-    return msg.createReply('You have successfully DMed ' + args.user.tag.boldify() + '.');
+  async run(msg, args, sender) {
+    await Sender.send(args.user, args.message);
+    return sender.reply('You have successfully DMed ' + StringUtil.boldify(args.user.tag) + '.');
   }
 }
 

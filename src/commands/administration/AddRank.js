@@ -1,5 +1,7 @@
 const db = require('../../database');
 const patron = require('patron.js');
+const USD = require('../../utility/USD.js');
+const Constants = require('../../utility/Constants.js');
 
 class AddRank extends patron.Command {
   constructor() {
@@ -26,14 +28,14 @@ class AddRank extends patron.Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg, args, sender) {
     if (msg.dbGuild.roles.rank.some((role) => role.id === args.role.id) === true) {
-      return msg.createErrorReply('This rank role has already been set.');
+      return sender.reply('This rank role has already been set.', { color: Constants.errorColor });
     }
 
     await db.guildRepo.upsertGuild(msg.guild.id, new db.updates.Push('roles.rank', { id: args.role.id, cashRequired: Math.round(args.cashRequired) }));
 
-    return msg.createReply('You have successfully added the rank role ' + args.role + ' with a cash required amount of ' + args.cashRequired.USD() + '.');
+    return sender.reply('You have successfully added the rank role ' + args.role + ' with a cash required amount of ' + USD(args.cashRequired) + '.');
   }
 }
 

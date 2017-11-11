@@ -11,10 +11,10 @@ class Statistics extends patron.Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg, args, sender) {
     const uptime = NumberUtil.msToTime(msg.client.uptime);
 
-    await msg.author.DMFields(
+    await sender.dmFields(
       [
         'Author', 'vim2meta#3630',
         'Framework', 'patron.js',
@@ -22,10 +22,10 @@ class Statistics extends patron.Command {
         'Servers', (await msg.client.shard.fetchClientValues('guilds.size')).reduce((a, b) => a + b, 0),
         'Users', (await msg.client.shard.fetchClientValues('users.size')).reduce((a, b) => a + b, 0),
         'Uptime', 'Days: ' + uptime.days + '\nHours: '+ uptime.hours + '\nMinutes: ' + uptime.minutes
-      ]);
+      ], { inline: true });
 
     if (msg.channel.type !== 'dm') {
-      return msg.createReply('You have been DMed with all DEA Statistics!');
+      return sender.reply('You have been DMed with all DEA Statistics!');
     }
   }
 }

@@ -1,7 +1,8 @@
 const patron = require('patron.js');
 const db = require('../../database');
-const NumberUtil = require('../../utility/NumberUtil.js');
+const USD = require('../../utility/USD.js');
 const Constants = require('../../utility/Constants.js');
+const StringUtil = require('../../utility/StringUtil.js');
 
 class Transfer extends patron.Command {
   constructor() {
@@ -22,19 +23,19 @@ class Transfer extends patron.Command {
           key: 'transfer',
           type: 'currency',
           example: '500',
-          preconditions: ['cash', { name: 'minimumcash', options: { minimum: Constants.config.transfer.min } }]
+          preconditions: ['cash', { name: 'minimumcash', options: { minimum: Constants.transfer.min } }]
         })
       ]
     });
   }
 
-  async run(msg, args) {
-    const transactionFee = args.transfer * Constants.config.transfer.cut;
+  async run(msg, args, sender) {
+    const transactionFee = args.transfer * Constants.transfer.cut;
     const received = args.transfer - transactionFee;
     const newDbUser = await db.userRepo.modifyCash(msg.dbGuild, msg.member, -args.transfer);
-    await db.userRepo.modifyCash(msg.dbGuild, args.member, received);
 
-    return msg.createReply('You have successfully transfered ' + received.USD() + ' to '+ args.member.user.tag.boldify() + '. Transaction fee: ' + transactionFee.USD() + '. Balance: ' + NumberUtil.format(newDbUser.cash) + '.');
+    await db.userRepo.modifyCash(msg.dbGuild, args.member, received);
+    return sender.reply('You have successfully transfered ' + USD(received) + ' to '+ StringUtil.boldify(args.member.user.tag) + '. Transaction fee: ' + USD(transactionFee) + '. Balance: ' + USD(newDbUser.cash) + '.');
   }
 }
 

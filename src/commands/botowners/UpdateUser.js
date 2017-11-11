@@ -31,9 +31,9 @@ class UpdateUser extends patron.Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg, args, sender) {
     await db.userRepo.updateUser(args.user.id, args.guild.id, eval('(' + args.update + ')'));
-    return msg.createReply('You have updated the user ' + args.user.id + '.');
+    return sender.reply('You have updated the user ' + args.user.id + '.');
   }
 }
 

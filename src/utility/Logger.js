@@ -12,7 +12,8 @@ class Logger {
     }
 
     this.date = new Date();
-    this.stream = fs.createWriteStream(logsPath + '/' + DateUtil.UTCDate(this.date) + '.txt', { flags: 'a' });
+    this.UTCDate = DateUtil.UTCDate(this.date);
+    this.stream = fs.createWriteStream(logsPath + '/' + this.UTCDate + '.txt', { flags: 'a' });
   }
 
   async log(message, level) {
@@ -20,19 +21,20 @@ class Logger {
 
     if (newDate.getUTCDate() !== this.date.getUTCDate()) {
       this.date = newDate;
-      this.stream = fs.createWriteStream(logsPath + '/' + DateUtil.UTCDate(this.date) + '.txt', { flags: 'a' });
+      this.UTCDate = DateUtil.UTCDate(this.date);
+      this.stream = fs.createWriteStream(logsPath + '/' + this.UTCDate + '.txt', { flags: 'a' });
     }
 
     if (this.stream.writable === false) {
       await this.waitTillWritable();
     }
 
-    const formattedMessage = DateUtil.UTCTime(this.date) + ' [' + level + '] ' + message;
+    const formattedMessage = DateUtil.UTCTime(newDate) + ' [' + level + '] ' + message;
 
     console.log(formattedMessage);
 
     if (level === 'ERROR') {
-      return appendFile(logsPath + '/' + DateUtil.UTCDate(this.date) + ' Errors.txt', formattedMessage + '\n');
+      return appendFile(logsPath + '/' + this.UTCDate + ' Errors.txt', formattedMessage + '\n');
     }
 
     return new Promise((resolve, reject) => {
