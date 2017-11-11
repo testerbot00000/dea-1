@@ -13,7 +13,7 @@ const ChatService = require('../services/ChatService.js');
 const handler = new patron.Handler(client.registry);
 
 client.on('message', (msg) => {
-  (async function () {
+  (async () => {
     if (msg.author.bot === true) {
       return;
     }

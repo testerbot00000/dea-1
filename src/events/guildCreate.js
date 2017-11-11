@@ -7,7 +7,7 @@ const Try = require('../utility/Try.js');
 // TODO: Update welcome message to something better.
 
 client.on('guildCreate', async (guild) => {
-  (async function () {
+  (async () => {
     const mainChannel = guild.mainChannel;
 
     if (mainChannel !== undefined) {

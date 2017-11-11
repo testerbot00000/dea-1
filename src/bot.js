@@ -10,7 +10,7 @@ client.registry = registry;
 
 RequireAll(path.join(__dirname, 'events'));
 
-(async function () {
+(async () => {
   await db.connect(credentials.mongodbConnectionURL);
   return client.login(credentials.token);
 })()
