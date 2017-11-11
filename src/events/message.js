@@ -44,7 +44,9 @@ client.on('message', (msg) => {
           if (result.commandName !== undefined) {
             const similarCommand = Similarity.command(msg.client.registry, result.commandName);
 
-            await Try(sender.reply('Did you mean `' + Constants.prefix + StringUtil.upperFirstChar(similarCommand) + '`?'));
+            if (similarCommand !== undefined) {
+              await Try(sender.reply('Did you mean `' + Constants.prefix + StringUtil.upperFirstChar(similarCommand) + '`?'));
+            }
           }
 
           return;
