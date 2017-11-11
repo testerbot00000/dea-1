@@ -54,7 +54,7 @@ client.on('message', (msg) => {
         case patron.CommandError.Cooldown: {
           const cooldown = NumberUtil.msToTime(result.remaining);
 
-          return Try(sender.send('Hours: ' + cooldown.hours + '\nMinutes: ' + cooldown.minutes + '\nSeconds: ' + cooldown.seconds, { title: StringUtil.upperFirstChar(result.command.names[0]) + ' Cooldown' }));
+          return Try(sender.send('Hours: ' + cooldown.hours + '\nMinutes: ' + cooldown.minutes + '\nSeconds: ' + cooldown.seconds, { title: StringUtil.upperFirstChar(result.command.names[0]) + ' Cooldown', color: Constants.errorColor }));
         }
         case patron.CommandError.Exception:
           if (result.error instanceof discord.DiscordAPIError) {
@@ -82,7 +82,7 @@ client.on('message', (msg) => {
 
       await Logger.log('Unsuccessful command result: ' + msg.id + ' | Reason: ' + result.errorReason, 'DEBUG');
 
-      return Try(sender.reply(message));
+      return Try(sender.reply(message, { color: Constants.errorColor }));
     }
 
     return Logger.log('Successful command result: ' + msg.id, 'DEBUG');
