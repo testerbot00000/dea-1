@@ -22,12 +22,28 @@ class Database extends pg.Client {
     return result.rowCount === 0 ? (await this.query('INSERT INTO guilds("guildId") VALUES($1) RETURNING ' + columns + ';', [guildId])).rows[0] : result.rows[0];
   }
 
+  addRank(roleId, guildId, cashRequired) {
+    return this.query('INSERT INTO ranks("roleId", "guildId", "cashRequired") VALUES($1, $2, $3)', [roleId, guildId, cashRequired]);
+  }
+
+  removeRank(roleId, guildId) {
+    return this.query('DELETE FROM ranks WHERE "roleId" = $1;', [roleId]);
+  }
+
   modifyCash(userId, guildId, change) {
     return this.query('INSERT INTO users("userId", "guildId", cash) VALUES($1, $2, $3) ON CONFLICT ON CONSTRAINT "userPk" DO UPDATE SET cash = users.cash + $3;', [userId, guildId, change]);
   }
 
   async modifyCashR(userId, guildId, change) {
     return (await this.query('INSERT INTO users("userId", "guildId", cash) VALUES($1, $2, $3) ON CONFLICT ON CONSTRAINT "userPk" DO UPDATE SET cash = users.cash + $3 RETURNING cash;', [userId, guildId, change])).rows[0].cash;
+  }
+
+  deleteUser(userId, guildId) {
+    return this.query('DELETE FROM users WHERE("userId", "guildId") = ($1, $2);', [userId, guildId]);
+  }
+
+  deleteUsers(guildId) {
+    return this.query('DELETE FROM users WHERE "guildId" = $1;', [guildId]);
   }
 
   upsertUser(userId, guildId, column, value) {

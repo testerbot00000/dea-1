@@ -17,11 +17,6 @@ The syntax of the command usage is:
 ### Administration
 Command | Description | Usage
 ---------------- | -------------- | -------
-Addrank|Add a rank.|`$addrank <@role> <cashRequired>`
-Modifycash|Allows you to modify the cash of any member.|`$modifycash <amount> [@member]`
-Removerank|Remove a rank role.|`$removerank <@role>`
-Reset|Resets all user data in your server.|`$reset`
-Resetuser|Reset any member's data.|`$resetuser [@member]`
 
 ### Botowners
 
@@ -29,9 +24,14 @@ These commands may only be used by the owners of DEA.
 
 Command | Description | Usage
 ---------------- | -------------- | -------
+Addrank|Add a rank.|`$addrank <@role> <cashRequired>`
 Dm|DM any user.|`$dm <@user> <message>`
 Eval|Evalute JavaScript code.|`$eval <code>`
 Massannounce|Mass announce a message accross all guilds.|`$massannounce <message>`
+Modifycash|Allows you to modify the cash of any member.|`$modifycash <amount> [@member]`
+Removerank|Remove a rank role.|`$removerank <@role>`
+Reset|Resets all user data in your server.|`$reset`
+Resetuser|Reset any member's data.|`$resetuser [@member]`
 Send|Send a message in any channel.|`$send <channel> <message>`
 Updateuser|Update any user in the DEA database.|`$updateuser <@user> <guild> <update>`
 

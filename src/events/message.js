@@ -20,7 +20,7 @@ client.on('message', (msg) => {
     const inGuild = msg.guild !== null;
 
     if (Constants.regexes.prefix.test(msg.content) === false) {
-      // return inGuild === true ? ChatService.applyCash(msg) : null;
+      return inGuild === true ? ChatService.applyCash(msg) : null;
     }
 
     const sender = new Sender(msg);

@@ -7,7 +7,7 @@ class AddRank extends patron.Command {
   constructor() {
     super({
       names: ['addrank', 'setrank', 'enablerank'],
-      groupName: 'administration',
+      groupName: 'botowners',
       description: 'Add a rank.',
       botPermissions: ['MANAGE_ROLES'],
       args: [
@@ -29,11 +29,7 @@ class AddRank extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    if (await db.any('ranks', 'WHERE "roleId" = $1', args.role.id)) {
-      return sender.reply('This rank role has already been set.', { color: Constants.errorColor });
-    }
-
-    await db.insert('ranks', '"roleId", "guildId", "cashRequired"', args.role.id, msg.guild.id, args.cashRequired);
+    await db.addRank(args.role.id, msg.guild.id, args.cashRequired);
 
     return sender.reply('You have successfully added the rank role ' + args.role + ' with a cash required amount of ' + USD(args.cashRequired) + '.');
   }

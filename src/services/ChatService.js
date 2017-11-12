@@ -14,7 +14,7 @@ class ChatService {
     if (isMessageCooldownOver && isLongEnough) {
       this.messages.set(msg.author.id, Date.now());
 
-      return db.userRepo.modifyCash(msg.dbGuild, msg.member, Constants.cashPerMessage);
+      return db.modifyCash(msg.author.id, msg.guild.id, Constants.cashPerMessage);
     }
   }
 }

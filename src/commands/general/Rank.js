@@ -23,11 +23,11 @@ class Rank extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    const dbUser = msg.author.id === args.member.id ? msg.dbUser : await db.userRepo.getUser(args.member.id, msg.guild.id);
-    const sortedUsers = (await db.userRepo.findMany({ guildId: msg.guild.id })).sort((a, b) => b.cash - a.cash);
-    const rank = RankService.getRank(dbUser, msg.dbGuild, msg.guild);
+    const sortedUsers = (await db.query('SELECT "userId", cash FROM users ORDER BY cash DESC;')).rows;
+    const rank = RankService.getRank(args.member.id, msg.guild.id, msg.guild);
+    const dbUser = await db.getUser(args.member.id, msg.guild.id);
 
-    return sender.send('**Balance:** ' + USD(dbUser.cash) + '\n**Points: **' + dbUser.points + '\n**Position:** #' + (sortedUsers.findIndex((v) => v.userId === dbUser.userId) + 1) + '\n' + (rank !== undefined ? '**Rank:** ' + rank + '\n' : ''), { title: args.member.user.tag + '\'s Rank' });
+    return sender.send('**Balance:** ' + USD(dbUser.cash) + '\n**Health:** ' + dbUser.health + '\n**Position:** #' + (sortedUsers.findIndex((v) => v.userId === dbUser.userId) + 1) + '\n' + (rank !== undefined ? '**Rank:** ' + rank + '\n' : ''), { title: args.member.user.tag + '\'s Rank' });
   }
 }
 

@@ -5,7 +5,7 @@ class Reset extends patron.Command {
   constructor() {
     super({
       names: ['reset'],
-      groupName: 'administration',
+      groupName: 'botowners',
       description: 'Resets all user data in your server.'
     });
   }
@@ -17,7 +17,7 @@ class Reset extends patron.Command {
     const result = await msg.channel.awaitMessages(filter, { max: 1, time: 30000 });
 
     if (result.size === 1) {
-      await db.userRepo.deleteUsers(msg.guild.id);
+      await db.deleteUsers(msg.guild.id);
       return sender.reply('You have successfully reset all data in your server.');
     }
   }

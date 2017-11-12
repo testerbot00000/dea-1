@@ -7,7 +7,7 @@ class ModifyCash extends patron.Command {
   constructor() {
     super({
       names: ['modifycash'],
-      groupName: 'administration',
+      groupName: 'botowners',
       description: 'Allows you to modify the cash of any member.',
       args: [
         new patron.Argument({

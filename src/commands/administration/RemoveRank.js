@@ -6,7 +6,7 @@ class RemoveRank extends patron.Command {
   constructor() {
     super({
       names: ['removerank', 'disablerank', 'deleterank'],
-      groupName: 'administration',
+      groupName: 'botowners',
       description: 'Remove a rank role.',
       args: [
         new patron.Argument({
@@ -21,11 +21,7 @@ class RemoveRank extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    if (msg.dbGuild.roles.rank.some((role) => role.id === args.role.id) === false) {
-      return sender.reply('You may not remove a rank role that has no been set.', { color: Constants.errorColor });
-    }
-
-    await db.guildRepo.upsertGuild(msg.guild.id, new db.updates.Pull('roles.rank', { id: args.role.id }));
+    await db.removeRank(args.role.id, msg.guild.id);
 
     return sender.reply('You have successfully removed the rank role ' + args.role + '.');
   }
