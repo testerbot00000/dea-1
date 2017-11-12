@@ -10,7 +10,7 @@ class Cash extends patron.ArgumentPrecondition {
   }
 
   async run(command, msg, argument, args, value) {
-    const dbUser = await db.getUser(msg.author.id, msg.guild.id, 'cash');
+    const dbUser = await db.users.getUser(msg.author.id, msg.guild.id, 'cash');
 
     if (dbUser.cash >= value) {
       return patron.PreconditionResult.fromSuccess();

@@ -32,14 +32,14 @@ class Gambling extends patron.Command {
     if (roll >= this.odds) {
       const winnings = args.bet * this.payoutMultiplier;
 
-      const newDbUser = await db.modifyCashR(msg.author.id, msg.guild.id, winnings)
+      const newCash = await db.users.modifyCash(msg.member, winnings);
 
-      return sender.reply('You rolled: ' + roll.toFixed(2) + '. Congrats, you won ' + USD(winnings) + '. Balance: ' + USD(newDbUser) + '.');
+      return sender.reply('You rolled: ' + roll.toFixed(2) + '. Congrats, you won ' + USD(winnings) + '. Balance: ' + USD(newCash) + '.');
     }
 
-    const newDbUser = await db.modifyCash(msg.author.id, msg.guild.id, -args.bet);
+    const newCash = await db.users.modifyCash(msg.member, -args.bet);
 
-    return sender.reply('You rolled: ' + roll.toFixed(2) + '. Unfortunately, you lost ' + USD(args.bet) + '. Balance: ' + USD(newDbUser) + '.');
+    return sender.reply('You rolled: ' + roll.toFixed(2) + '. Unfortunately, you lost ' + USD(args.bet) + '. Balance: ' + USD(newCash) + '.');
   }
 }
 

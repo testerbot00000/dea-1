@@ -1,10 +1,5 @@
-const db = require('../database');
-
 class RankService {
-  async handle(memberId, guildId, member) {
-    await member.guild.fetchMember(member.client.user);
-    const ranks = (await db.query('SELECT "roleId" FROM ranks'));
-
+  async handle(member, cash, ranks) {
     if (member.guild.me.hasPermission('MANAGE_ROLES') === false) {
       return;
     }
@@ -13,15 +8,15 @@ class RankService {
     const rolesToAdd = [];
     const rolesToRemove = [];
 
-    for (const rank of ranks) {
-      const role = member.guild.roles.get(rank.roleId);
+    for (let i = 0; i < ranks.length; i++) {
+      const role = member.guild.roles.get(ranks[i].roleId);
 
       if (role !== undefined && role.position < highsetRolePosition) {
         if (member.roles.has(role.id) === false) {
-          if (dbUser.cash >= rank.cashRequired) {
+          if (cash.gte(ranks[i].cashRequired)) {
             rolesToAdd.push(role);
           }
-        } else if (dbUser.cash < rank.cashRequired) {
+        } else if (cash.lt(ranks[i].cashRequired)) {
           rolesToRemove.push(role);
         }
       }
@@ -34,17 +29,14 @@ class RankService {
     }
   }
 
-  async getRank(userId, guildId, guild) {
-    const sortedRanks = (await db.query('SELECT "roleId", "cashRequired" FROM ranks ORDER BY "cashRequired" ASC;')).rows;
-    const dbUser = await db.getUser(userId, guildId);
-
+  async getRank(member, cash, sortedRanks) {
     for (let i = 0; i < sortedRanks.length; i++) {
-      if (dbUser.cash >= sortedRanks[i].cashRequired) {
-        var role = await guild.roles.get(sortedRanks[i].roleId);
+      if (cash.gte(sortedRanks[i].cashRequired)) {
+        var rankId = sortedRanks[i].roleId;
       }
     }
 
-    return role;
+    return member.guild.roles.get(rankId);
   }
 }
 

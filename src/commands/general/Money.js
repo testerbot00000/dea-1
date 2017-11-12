@@ -23,7 +23,7 @@ class Money extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    const dbUser = await db.getUser(args.member.id, msg.guild.id);
+    const dbUser = await db.users.getUser(args.member.id, msg.guild.id, 'cash');
 
     return sender.send(StringUtil.boldify(args.member.user.tag) + '\'s balance: ' + USD(dbUser.cash) + '.');
   }

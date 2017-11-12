@@ -5,7 +5,7 @@ class ResetUser extends patron.Command {
   constructor() {
     super({
       names: ['resetuser'],
-      groupName: 'botowners',
+      groupName: 'administration',
       description: 'Reset any member\'s data.',
       args: [
         new patron.Argument({
@@ -21,7 +21,7 @@ class ResetUser extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    await db.deleteUser(args.member.id, msg.guild.id);
+    await db.delete('users', '("userId", "guildId") = ($1, $2)', args.member.id, msg.guild.id);
 
     return sender.reply('You have successfully reset all of ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag + '\'s') + ' data.');
   }

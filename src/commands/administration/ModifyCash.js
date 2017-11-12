@@ -7,7 +7,7 @@ class ModifyCash extends patron.Command {
   constructor() {
     super({
       names: ['modifycash'],
-      groupName: 'botowners',
+      groupName: 'administration',
       description: 'Allows you to modify the cash of any member.',
       args: [
         new patron.Argument({
@@ -29,7 +29,7 @@ class ModifyCash extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    const newCash = await db.modifyCashR(args.member.id, msg.guild.id, args.amount);
+    const newCash = await db.users.modifyCash(args.member, args.amount);
 
     return sender.reply('You have successfully modifed ' + (args.member.id === msg.author.id ? 'your' : StringUtil.boldify(args.member.user.tag) + '\'s') + ' balance to ' + USD(newCash) + '.');
   }

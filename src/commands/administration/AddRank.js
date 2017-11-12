@@ -1,13 +1,12 @@
 const db = require('../../database');
 const patron = require('patron.js');
 const USD = require('../../utility/USD.js');
-const Constants = require('../../utility/Constants.js');
 
 class AddRank extends patron.Command {
   constructor() {
     super({
-      names: ['addrank', 'setrank', 'enablerank'],
-      groupName: 'botowners',
+      names: ['addrank', 'setrank', 'enablerank', 'modifyrank', 'updaterank', 'changerank'],
+      groupName: 'administration',
       description: 'Add a rank.',
       botPermissions: ['MANAGE_ROLES'],
       args: [
@@ -29,7 +28,7 @@ class AddRank extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    await db.addRank(args.role.id, msg.guild.id, args.cashRequired);
+    await db.ranks.upsertRank(args.role.id, msg.guild.id, 'cashRequired', args.cashRequired);
 
     return sender.reply('You have successfully added the rank role ' + args.role + ' with a cash required amount of ' + USD(args.cashRequired) + '.');
   }

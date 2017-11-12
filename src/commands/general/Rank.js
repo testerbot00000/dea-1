@@ -23,9 +23,10 @@ class Rank extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    const sortedUsers = (await db.query('SELECT "userId", cash FROM users ORDER BY cash DESC;')).rows;
-    const rank = RankService.getRank(args.member.id, msg.guild.id, msg.guild);
-    const dbUser = await db.getUser(args.member.id, msg.guild.id);
+    const sortedRanks = (await db.query('SELECT "roleId", "cashRequired" FROM ranks WHERE "guildId" = $1 ORDER BY "cashRequired" ASC;', [msg.guild.id])).rows;
+    const sortedUsers = (await db.query('SELECT "userId" FROM users ORDER BY cash DESC;')).rows;
+    const dbUser = await db.users.getUser(args.member.id, msg.guild.id, 'cash, health');
+    const rank = await RankService.getRank(args.member, dbUser.cash, sortedRanks);
 
     return sender.send('**Balance:** ' + USD(dbUser.cash) + '\n**Health:** ' + dbUser.health + '\n**Position:** #' + (sortedUsers.findIndex((v) => v.userId === dbUser.userId) + 1) + '\n' + (rank !== undefined ? '**Rank:** ' + rank + '\n' : ''), { title: args.member.user.tag + '\'s Rank' });
   }

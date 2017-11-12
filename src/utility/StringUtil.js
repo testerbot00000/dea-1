@@ -12,6 +12,20 @@ class StringUtil {
   upperFirstChar(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  insertValues(array) {
+    let str = '';
+
+    for (let i = 0; i < array.length; i++) {
+      str += '$' + (i + 1);
+
+      if (i !== array.length - 1) {
+        str += ', ';
+      }
+    }
+
+    return str;
+  }
 }
 
 module.exports = new StringUtil();
