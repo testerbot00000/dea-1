@@ -29,11 +29,11 @@ class AddRank extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    if (msg.dbGuild.roles.rank.some((role) => role.id === args.role.id) === true) {
+    if (await db.any('ranks', 'WHERE "roleId" = $1', args.role.id)) {
       return sender.reply('This rank role has already been set.', { color: Constants.errorColor });
     }
 
-    await db.guildRepo.upsertGuild(msg.guild.id, new db.updates.Push('roles.rank', { id: args.role.id, cashRequired: Math.round(args.cashRequired) }));
+    await db.insert('ranks', '"roleId", "guildId", "cashRequired"', args.role.id, msg.guild.id, args.cashRequired);
 
     return sender.reply('You have successfully added the rank role ' + args.role + ' with a cash required amount of ' + USD(args.cashRequired) + '.');
   }

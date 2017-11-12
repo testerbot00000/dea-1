@@ -14,9 +14,7 @@ class Leaderboards extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    const users = await db.userRepo.findMany({ guildId: msg.guild.id });
-
-    users.sort((a, b) => b.cash - a.cash);
+    const users = (await db.query('SELECT "userId", cash FROM users ORDER BY cash DESC LIMIT 15;')).rows;
 
     let message = '';
 

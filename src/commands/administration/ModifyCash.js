@@ -29,9 +29,9 @@ class ModifyCash extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    const newDbUser = await db.userRepo.modifyCash(msg.dbGuild, args.member, args.amount);
+    const newCash = await db.modifyCashR(args.member.id, msg.guild.id, args.amount);
 
-    return sender.reply('You have successfully modifed ' + (args.member.id === msg.author.id ? 'your' : StringUtil.boldify(args.member.user.tag) + '\'s') + ' balance to ' + USD(newDbUser.cash) + '.');
+    return sender.reply('You have successfully modifed ' + (args.member.id === msg.author.id ? 'your' : StringUtil.boldify(args.member.user.tag) + '\'s') + ' balance to ' + USD(newCash) + '.');
   }
 }
 

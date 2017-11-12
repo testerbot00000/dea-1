@@ -32,10 +32,10 @@ class Transfer extends patron.Command {
   async run(msg, args, sender) {
     const transactionFee = args.transfer * Constants.transfer.cut;
     const received = args.transfer - transactionFee;
-    const newDbUser = await db.userRepo.modifyCash(msg.dbGuild, msg.member, -args.transfer);
+    const newCash = await db.modifyCashR(msg.author.id, msg.guild.id, -args.transfer);
 
-    await db.userRepo.modifyCash(msg.dbGuild, args.member, received);
-    return sender.reply('You have successfully transfered ' + USD(received) + ' to '+ StringUtil.boldify(args.member.user.tag) + '. Transaction fee: ' + USD(transactionFee) + '. Balance: ' + USD(newDbUser.cash) + '.');
+    await db.modifyCash(args.member.id, msg.guild.id, received);
+    return sender.reply('You have successfully transfered ' + USD(received) + ' to '+ StringUtil.boldify(args.member.user.tag) + '. Transaction fee: ' + USD(transactionFee) + '. Balance: ' + USD(newCash) + '.');
   }
 }
 

@@ -1,6 +1,5 @@
 const Logger = require('../utility/Logger.js');
 const client = require('../singletons/client.js');
-const db = require('../database');
 const discord = require('discord.js');
 const patron = require('patron.js');
 const Try = require('../utility/Try.js');
@@ -20,14 +19,8 @@ client.on('message', (msg) => {
 
     const inGuild = msg.guild !== null;
 
-    if (inGuild === true) {
-      msg.member = msg.member !== null ? msg.member : await msg.guild.fetchMember(msg.author);
-      msg.dbUser = await db.userRepo.getUser(msg.author.id, msg.guild.id);
-      msg.dbGuild = await db.guildRepo.getGuild(msg.guild.id);
-    }
-
     if (Constants.regexes.prefix.test(msg.content) === false) {
-      return inGuild === true ? ChatService.applyCash(msg) : null;
+      // return inGuild === true ? ChatService.applyCash(msg) : null;
     }
 
     const sender = new Sender(msg);

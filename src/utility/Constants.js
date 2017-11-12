@@ -41,6 +41,10 @@ class Constants {
       prefix: /^\$/
     };
 
+    this.intervals = {
+      restart: 86400000
+    };
+
     this.cashPerMessage = 50;
     this.leaderboardCap = 10;
     this.messageCooldown = 30000;
