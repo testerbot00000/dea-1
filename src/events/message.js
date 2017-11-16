@@ -62,7 +62,7 @@ client.on('message', (msg) => {
               message = result.errorReason;
             }
           } else if (result.error.code === '22P02' || result.error.code === '22003') {
-            message = 'An error has occurred due to the use of excessively large numbers. You may fix this by using `$reset` and taking a chill pill.';
+            message = 'An error has occurred due to the use of excessively large numbers. You may fix this by taking a chill pill.';
           } else {
             message = result.errorReason;
             await Logger.handleError(result.error);

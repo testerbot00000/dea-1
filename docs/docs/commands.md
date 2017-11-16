@@ -61,6 +61,7 @@ Command | Description | Usage
 Buy|Buy a crate!|`$buy [crate] [quantity]`
 Cash|View the wealth of anyone.|`$cash [@member]`
 Inventory|View the inventory of anyone.|`$inventory [@member]`
+Itemleaderboars|View the users with the highest quantity of items.|`$itemleaderboars`
 Leaderboards|View the richest Drug Traffickers.|`$leaderboards`
 Rank|View the rank of anyone.|`$rank [@member]`
 Ranks|View all ranks in this guild.|`$ranks`

@@ -29,7 +29,6 @@ class Transfer extends patron.Command {
     });
   }
 
-  // TODO: Single transaction for transfer.
   async run(msg, args, sender) {
     const transactionFee = args.transfer * Constants.transfer.cut;
     const received = args.transfer - transactionFee;

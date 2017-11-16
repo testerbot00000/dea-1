@@ -1,20 +1,19 @@
 const db = require('../../database');
-const Constants = require('../../utility/Constants.js');
 const patron = require('patron.js');
+const Constants = require('../../utility/Constants.js');
 const StringUtil = require('../../utility/StringUtil.js');
-const USD = require('../../utility/USD.js');
 
-class Leaderboards extends patron.Command {
+class ItemLeaderboards extends patron.Command {
   constructor() {
     super({
-      names: ['leaderboards', 'lb', 'highscores', 'highscore', 'leaderboard'],
+      names: ['itemleaderboars', 'itemlb', 'itemleaderboard', 'invlb'],
       groupName: 'general',
-      description: 'View the richest Drug Traffickers.'
+      description: 'View the users with the highest quantity of items.'
     });
   }
 
   async run(msg, args, sender) {
-    const result = await db.select('users', 'user_id, cash', 'guild_id = $1', [msg.guild.id], 'cash DESC', 15);
+    const result = await db.pool.query('SELECT user_id, SUM(quantity) AS total_quantity FROM items WHERE guild_id = $1 GROUP BY user_id ORDER BY total_quantity DESC LIMIT 15;', [msg.guild.id]);
     let message = '';
     let position = 1;
 
@@ -29,15 +28,15 @@ class Leaderboards extends patron.Command {
         continue;
       }
 
-      message += (position++) + '. ' + StringUtil.boldify(user.tag) + ': ' + USD(result.rows[i].cash) + '\n';
+      message += (position++) + '. ' + StringUtil.boldify(user.tag) + ': ' + result.rows[i].total_quantity + '\n';
     }
 
     if (StringUtil.isNullOrWhiteSpace(message) === true) {
       return sender.reply('There is nobody on the leaderboards.', { color: Constants.errorColor });
     }
 
-    return sender.send(message, { title: 'The Richest Criminals' });
+    return sender.send(message, { title: 'The Item Leaderboards' });
   }
 }
 
-module.exports = new Leaderboards();
+module.exports = new ItemLeaderboards();
