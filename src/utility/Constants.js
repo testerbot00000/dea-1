@@ -48,7 +48,7 @@ class Constants {
       restart: 86400000
     };
 
-    this.cashPerMessage = 50;
+    this.cashPerMessage = 100;
     this.leaderboardCap = 10;
     this.messageCooldown = 30000;
     this.minCharLength = 7;
