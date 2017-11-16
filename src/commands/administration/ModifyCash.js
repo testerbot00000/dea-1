@@ -6,7 +6,7 @@ const USD = require('../../utility/USD.js');
 class ModifyCash extends patron.Command {
   constructor() {
     super({
-      names: ['modifycash'],
+      names: ['modifycash', 'modcash'],
       groupName: 'administration',
       description: 'Allows you to modify the cash of any member.',
       args: [

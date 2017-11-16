@@ -21,7 +21,8 @@ class ResetUser extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    await db.delete('users', '("userId", "guildId") = ($1, $2)', args.member.id, msg.guild.id);
+    await db.delete('users', '(user_id, guild_id) = ($1, $2)', [args.member.id, msg.guild.id]);
+    await db.delete('items', '(user_id, guild_id) = ($1, $2)', [args.member.id, msg.guild.id]);
 
     return sender.reply('You have successfully reset all of ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag + '\'s') + ' data.');
   }

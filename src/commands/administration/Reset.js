@@ -16,7 +16,8 @@ class Reset extends patron.Command {
     const result = await msg.channel.awaitMessages((x) => x.content.toLowerCase() === 'yes' && x.author.id === msg.author.id, { max: 1, time: 30000 });
 
     if (result.size === 1) {
-      await db.delete('users', '"guildId" = $1', msg.guild.id);
+      await db.delete('users', 'guild_id = $1', [msg.guild.id]);
+      await db.delete('items', 'guild_id = $1', [msg.guild.id]);
       return sender.reply('You have successfully reset all data in your server.');
     }
   }

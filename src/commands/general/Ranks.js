@@ -13,22 +13,22 @@ class Ranks extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    const sortedRanks = (await db.query('SELECT "roleId", "cashRequired" FROM ranks WHERE "guildId" = $1 ORDER BY "cashRequired" DESC;', [msg.guild.id])).rows;
+    const result = await db.select('ranks', 'role_id, cash', 'guild_id = $1', [msg.guild.id], 'cash');
 
-    if (sortedRanks.length === 0) {
+    if (result.rows.length === 0) {
       return sender.reply('There are no rank roles yet!', { color: Constants.errorColor });
     }
 
     let description = '';
 
-    for (let i = 0; i < sortedRanks.length; i++) {
-      const rank = msg.guild.roles.get(sortedRanks[i].roleId);
+    for (let i = 0; i < result.rows.length; i++) {
+      const rank = msg.guild.roles.get(result.rows[i].role_id);
 
       if (rank === undefined) {
         continue;
       }
 
-      description += rank + ': ' + USD(sortedRanks[i].cashRequired) + '\n';
+      description += rank + ': ' + USD(result.rows[i].cash) + '\n';
     }
 
     return sender.send(description, { title: 'Ranks' });

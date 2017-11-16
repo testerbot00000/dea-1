@@ -28,7 +28,7 @@ class AddRank extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    await db.ranks.upsertRank(args.role.id, msg.guild.id, 'cashRequired', args.cashRequired);
+    await db.ranks.upsertRank(args.role.id, msg.guild.id, args.cashRequired);
 
     return sender.reply('You have successfully added the rank role ' + args.role + ' with a cash required amount of ' + USD(args.cashRequired) + '.');
   }

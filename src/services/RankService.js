@@ -1,5 +1,5 @@
 class RankService {
-  async handle(member, cash, ranks) {
+  handle(member, cash, ranks) {
     if (member.guild.me.hasPermission('MANAGE_ROLES') === false) {
       return;
     }
@@ -9,14 +9,14 @@ class RankService {
     const rolesToRemove = [];
 
     for (let i = 0; i < ranks.length; i++) {
-      const role = member.guild.roles.get(ranks[i].roleId);
+      const role = member.guild.roles.get(ranks[i].role_id);
 
       if (role !== undefined && role.position < highsetRolePosition) {
         if (member.roles.has(role.id) === false) {
-          if (cash.gte(ranks[i].cashRequired)) {
+          if (cash.gte(ranks[i].cash)) {
             rolesToAdd.push(role);
           }
-        } else if (cash.lt(ranks[i].cashRequired)) {
+        } else if (cash.lt(ranks[i].cash)) {
           rolesToRemove.push(role);
         }
       }
@@ -29,10 +29,10 @@ class RankService {
     }
   }
 
-  async getRank(member, cash, sortedRanks) {
+  getRank(member, cash, sortedRanks) {
     for (let i = 0; i < sortedRanks.length; i++) {
-      if (cash.gte(sortedRanks[i].cashRequired)) {
-        var rankId = sortedRanks[i].roleId;
+      if (cash.gte(sortedRanks[i].cash)) {
+        var rankId = sortedRanks[i].role_id;
       }
     }
 

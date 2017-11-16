@@ -14,24 +14,24 @@ class Leaderboards extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    const users = (await db.query('SELECT "userId", cash FROM users WHERE "guildId" = $1 ORDER BY cash DESC LIMIT 15;', [msg.guild.id])).rows;
+    const result = await db.select('users', 'user_id, cash', 'guild_id = $1', [msg.guild.id], 'cash DESC', 15);
 
     let message = '';
 
     let position = 1;
 
-    for (let i = 0; i < users.length; i++) {
+    for (let i = 0; i < result.rows.length; i++) {
       if (position > Constants.leaderboardCap) {
         break;
       }
 
-      const user = msg.client.users.get(users[i].userId);
+      const user = msg.client.users.get(result.rows[i].user_id);
 
       if (user === undefined) {
         continue;
       }
 
-      message += (position++) + '. ' + StringUtil.boldify(user.tag) + ': ' + USD(users[i].cash) + '\n';
+      message += (position++) + '. ' + StringUtil.boldify(user.tag) + ': ' + USD(result.rows[i].cash) + '\n';
     }
 
     if (StringUtil.isNullOrWhiteSpace(message) === true) {

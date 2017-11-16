@@ -1,6 +1,7 @@
 const Logger = require('../utility/Logger.js');
 const client = require('../singletons/client.js');
 const discord = require('discord.js');
+const pg = require('pg');
 const patron = require('patron.js');
 const Try = require('../utility/Try.js');
 const Sender = require('../utility/Sender.js');
@@ -60,6 +61,8 @@ client.on('message', (msg) => {
             } else {
               message = result.errorReason;
             }
+          } else if (result.error.willllyy !== undefined) {
+            // TODO postgresql stuff
           } else {
             message = result.errorReason;
             await Logger.handleError(result.error);

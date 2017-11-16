@@ -6,7 +6,7 @@ class StringUtil {
   }
 
   isNullOrWhiteSpace(input) {
-    return typeof input !== 'string' || input.replace(/\s+/g, '').length === 0;
+    return typeof input !== 'string' || input.trim().length === 0;
   }
 
   upperFirstChar(str) {
@@ -25,6 +25,10 @@ class StringUtil {
     }
 
     return str;
+  }
+
+  capitializeWords(str) {
+    return str.replace('_', ' ').replace(Constants.regexes.capitalize, (x) => x.charAt(0).toUpperCase() + x.substr(1));
   }
 }
 

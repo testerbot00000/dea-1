@@ -37,6 +37,9 @@ class Constants {
     this.prefix = '$';
 
     this.regexes = {
+      capital: /([A-Z])/g,
+      capitalize: /\w\S*/g,
+      first: /^./,
       markdown: /(\*|~|`|_)+/g,
       prefix: /^\$/
     };
@@ -59,6 +62,10 @@ class Constants {
 
     this.gambling = {
       minBet: 5
+    };
+
+    this.openCrate = {
+      max: 1000
     };
 
     this.transfer = {

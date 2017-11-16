@@ -4,6 +4,7 @@ const registry = new patron.Registry({ library: 'discord.js' });
 
 registry.registerGlobalTypeReaders();
 registry.registerLibraryTypeReaders();
+registry.registerTypeReaders(patron.RequireAll(path.join(__dirname, '../types')));
 registry.registerArgumentPreconditions(patron.RequireAll(path.join(__dirname, '../preconditions', 'argument')));
 registry.registerPreconditions(patron.RequireAll(path.join(__dirname, '../preconditions', 'command')));
 registry.registerGroups(patron.RequireAll(path.join(__dirname, '../groups')));

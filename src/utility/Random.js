@@ -1,19 +1,32 @@
 class Random {
-  static nextInt(min, max) {
+  nextInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-  static nextFloat(min, max) {
+  nextFloat(min, max) {
     return this.nextInt(min * 100, (max * 100) + 1) / 100;
   }
 
-  static roll() {
+  roll() {
     return this.nextFloat(0, 100);
   }
 
-  static arrayElement(array) {
+  arrayElement(array) {
     return array[this.nextInt(0, array.length)];
+  }
+
+  weighted(arr, prop, sum) {
+    const r = this.nextInt(0, sum + 1);
+    let cumulative = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+      cumulative += arr[i][prop];
+
+      if (r <= cumulative) {
+        return arr[i];
+      }
+    }
   }
 }
 
-module.exports = Random;
+module.exports = new Random();

@@ -11,7 +11,7 @@ client.registry = registry;
 RequireAll(path.join(__dirname, 'events'));
 
 (async () => {
-  await db.connect();
+  await db.pool.connect();
   return client.login(credentials.token);
 })()
   .catch((err) => Logger.handleError(err));
