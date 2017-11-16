@@ -6,7 +6,7 @@ const USD = require('../../utility/USD.js');
 class Ranks extends patron.Command {
   constructor() {
     super({
-      names: ['ranks'],
+      names: ['ranks', 'roles'],
       groupName: 'general',
       description: 'View all ranks in this guild.'
     });

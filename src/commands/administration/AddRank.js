@@ -5,7 +5,7 @@ const USD = require('../../utility/USD.js');
 class AddRank extends patron.Command {
   constructor() {
     super({
-      names: ['addrank', 'setrank', 'enablerank', 'modifyrank', 'updaterank', 'changerank'],
+      names: ['addrank', 'modifyrank', 'updaterank', 'changerank', 'addrole', 'modifyrole', 'changerole', 'updaterole'],
       groupName: 'administration',
       description: 'Add a rank.',
       botPermissions: ['MANAGE_ROLES'],
