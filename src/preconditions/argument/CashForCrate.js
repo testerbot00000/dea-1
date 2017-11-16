@@ -10,6 +10,10 @@ class CashForCrate extends patron.ArgumentPrecondition {
   }
 
   async run(command, msg, argument, args, value) {
+    if (args.crate === null) {
+      return patron.PreconditionResult.fromSuccess();
+    }
+
     const dbUser = await db.users.getUser(msg.author.id, msg.guild.id, 'cash');
     const required = args.crate.price * value;
 
