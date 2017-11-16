@@ -17,7 +17,7 @@ class OpenCrate extends patron.Command {
           name: 'crate',
           key: 'crate',
           type: 'crate',
-          example: 'silver crate'
+          example: 'silver'
         }),
         new patron.Argument({
           name: 'quantity',
