@@ -7,7 +7,7 @@ class ItemLeaderboards extends patron.Command {
   constructor() {
     super({
       names: ['itemleaderboards', 'itemlb', 'itemleaderboard', 'invlb'],
-      groupName: 'general',
+      groupName: 'items',
       description: 'View the users with the highest quantity of items.'
     });
   }

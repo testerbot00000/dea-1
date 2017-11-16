@@ -5,7 +5,7 @@ const StringUtil = require('../../utility/StringUtil.js');
 class Items extends patron.Command {
   constructor() {
     super({
-      names: ['items', 'allitems'],
+      names: ['items', 'allitems', 'itemlist'],
       groupName: 'items',
       description: 'View a list of all items.',
       guildOnly: false
