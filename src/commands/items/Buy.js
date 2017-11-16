@@ -20,7 +20,7 @@ class Buy extends patron.Command {
         new patron.Argument({
           name: 'quantity',
           key: 'quantity',
-          type: 'int',
+          type: 'quantity',
           example: '500',
           preconditions: ['cashforcrate'],
           defaultValue: 1

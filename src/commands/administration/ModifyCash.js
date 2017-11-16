@@ -13,7 +13,7 @@ class ModifyCash extends patron.Command {
         new patron.Argument({
           name: 'amount',
           key: 'amount',
-          type: 'currency',
+          type: 'quantity',
           example: '500'
         }),
         new patron.Argument({

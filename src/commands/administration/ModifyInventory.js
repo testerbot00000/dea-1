@@ -18,7 +18,7 @@ class ModifyInventory extends patron.Command {
         new patron.Argument({
           name: 'quantity',
           key: 'quantity',
-          type: 'int',
+          type: 'quantity',
           example: '54',
           defaultValue: 1
         }),

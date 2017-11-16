@@ -1,5 +1,5 @@
 const formatter = Intl.NumberFormat('en-US', {
-  style: 'currency',
+  style: 'quantity',
   currency: 'USD',
   minimumFractionDigits: 2
 });

@@ -23,7 +23,7 @@ class OpenCrate extends patron.Command {
         new patron.Argument({
           name: 'quantity',
           key: 'quantity',
-          type: 'int',
+          type: 'quantity',
           example: '500',
           defaultValue: 1,
           preconditions: ['ownquantity', { name: 'maximum', options: { maximum: Constants.openCrate.max } }]

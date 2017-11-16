@@ -20,7 +20,7 @@ class AddRank extends patron.Command {
         new patron.Argument({
           name: 'cashRequired',
           key: 'cashRequired',
-          type: 'currency',
+          type: 'quantity',
           example: '500'
         })
       ]
