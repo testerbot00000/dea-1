@@ -60,7 +60,6 @@ Command | Description | Usage
 ---------------- | -------------- | -------
 Buy|Buy a crate!|`$buy [crate] [quantity]`
 Cash|View the wealth of anyone.|`$cash [@member]`
-Inventory|View the inventory of anyone.|`$inventory [@member]`
 Leaderboards|View the richest Drug Traffickers.|`$leaderboards`
 Rank|View the rank of anyone.|`$rank [@member]`
 Ranks|View all ranks in this guild.|`$ranks`
@@ -70,6 +69,7 @@ Transfer|Transfer money to any member.|`$transfer <@member> <transfer>`
 Command | Description | Usage
 ---------------- | -------------- | -------
 Crate|View all information of a crate.|`$crate <crate>`
+Inventory|View the inventory of anyone.|`$inventory [@member]`
 Item|View all information of an item.|`$item <item>`
 Itemleaderboards|View the users with the highest quantity of items.|`$itemleaderboards`
 Items|View a list of all items.|`$items`

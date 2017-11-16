@@ -7,7 +7,7 @@ class Inventory extends patron.Command {
   constructor() {
     super({
       names: ['inventory', 'inv'],
-      groupName: 'general',
+      groupName: 'items',
       description: 'View the inventory of anyone.',
       args: [
         new patron.Argument({
