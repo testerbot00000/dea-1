@@ -45,7 +45,7 @@ class Logger {
   }
 
   handleError(err) {
-    return this.log(err, 'ERROR');
+    return this.log(err.stack, 'ERROR');
   }
 
   waitTillWritable() {
