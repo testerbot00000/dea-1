@@ -9,11 +9,13 @@ class CrateTypeReader extends patron.TypeReader {
   }
 
   async read(command, message, argument, args, input, custom) {
-    if (input.endsWith('crate') === false) {
-      input += ' crate';
+    let lowerInput = input.toLowerCase();
+
+    if (lowerInput.endsWith('crate') === false) {
+      lowerInput += ' crate';
     }
 
-    const result = await db.select('crate_data', '*', 'name = $1;', [input.toLowerCase()]);
+    const result = await db.select('crate_data', '*', 'name = $1;', [lowerInput]);
 
     if (result.rowCount === 1) {
       return patron.TypeReaderResult.fromSuccess(result.rows[0]);
