@@ -44,10 +44,6 @@ class Constants {
       prefix: /^\$/
     };
 
-    this.intervals = {
-      restart: 86400000
-    };
-
     this.cashPerMessage = 100;
     this.leaderboardCap = 10;
     this.messageCooldown = 30000;
@@ -65,7 +61,8 @@ class Constants {
     };
 
     this.openCrate = {
-      max: 1000
+      max: 1000,
+      cooldown: 60000
     };
 
     this.transfer = {

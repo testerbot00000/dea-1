@@ -12,6 +12,7 @@ class OpenCrate extends patron.Command {
       groupName: 'items',
       description: 'Open a crate!',
       guildOnly: false,
+      cooldown: Constants.openCrate.cooldown,
       args: [
         new patron.Argument({
           name: 'crate',
