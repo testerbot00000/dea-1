@@ -4,7 +4,7 @@ class Items {
   }
 
   async crateItems(crateId) {
-    const result = await this.db.pool.query('SELECT d.name, d.crate_odds, d.id FROM crate_items i JOIN crate_item_data d ON d.id = i.item_id WHERE i.crate_id = $1;', [crateId]);
+    const result = await this.db.pool.query('SELECT d.name, d.crate_odds, d.id FROM crate_items i JOIN crate_data d ON d.id = i.item_id WHERE i.crate_id = $1;', [crateId]);
 
     return result.rows;
   }
