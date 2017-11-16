@@ -76,6 +76,8 @@
         
             <li><a class="toctree-l3" href="#general">General</a></li>
         
+            <li><a class="toctree-l3" href="#items">Items</a></li>
+        
             <li><a class="toctree-l3" href="#system">System</a></li>
         
         </ul>
@@ -130,6 +132,7 @@
 <li><a href="#crime">Crime</a></li>
 <li><a href="#gambling">Gambling</a></li>
 <li><a href="#general">General</a></li>
+<li><a href="#items">Items</a></li>
 <li><a href="#system">System</a></li>
 </ul>
 <h3 id="administration">Administration</h3>
@@ -151,6 +154,11 @@
 <td>Modifycash</td>
 <td>Allows you to modify the cash of any member.</td>
 <td><code>$modifycash &lt;amount&gt; [@member]</code></td>
+</tr>
+<tr>
+<td>Modifyinventory</td>
+<td>Add an item to your inventory.</td>
+<td><code>$modifyinventory &lt;item&gt; [quantity] [@member]</code></td>
 </tr>
 <tr>
 <td>Removerank</td>
@@ -181,6 +189,21 @@
 </thead>
 <tbody>
 <tr>
+<td>Addcrateitem</td>
+<td>Add an item to a crate.</td>
+<td><code>$addcrateitem &lt;item&gt; &lt;crate&gt;</code></td>
+</tr>
+<tr>
+<td>Addgunbullet</td>
+<td>Allow a gun to use a certain type of ammunition.</td>
+<td><code>$addgunbullet &lt;gun&gt; &lt;bullet&gt;</code></td>
+</tr>
+<tr>
+<td>Additem</td>
+<td>Add an item to the database.</td>
+<td><code>$additem &lt;table&gt; &lt;columns&gt; &lt;values&gt;</code></td>
+</tr>
+<tr>
 <td>Dm</td>
 <td>DM any user.</td>
 <td><code>$dm &lt;@user&gt; &lt;message&gt;</code></td>
@@ -196,14 +219,24 @@
 <td><code>$massannounce &lt;message&gt;</code></td>
 </tr>
 <tr>
+<td>Modifyitem</td>
+<td>Add an item to the database.</td>
+<td><code>$modifyitem &lt;table&gt; &lt;item&gt; &lt;column&gt; &lt;value&gt;</code></td>
+</tr>
+<tr>
+<td>Removecrateitem</td>
+<td>Remove an item from a crate.</td>
+<td><code>$removecrateitem &lt;item&gt; &lt;crate&gt;</code></td>
+</tr>
+<tr>
+<td>Removegunbullet</td>
+<td>Disallow the use of a type of ammunition by a gun.</td>
+<td><code>$removegunbullet &lt;gun&gt; &lt;bullet&gt;</code></td>
+</tr>
+<tr>
 <td>Send</td>
 <td>Send a message in any channel.</td>
 <td><code>$send &lt;channel&gt; &lt;message&gt;</code></td>
-</tr>
-<tr>
-<td>Updateuser</td>
-<td>Update any user in the DEA database.</td>
-<td><code>$updateuser &lt;@user&gt; &lt;guild&gt; &lt;update&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -267,9 +300,19 @@
 </thead>
 <tbody>
 <tr>
+<td>Buy</td>
+<td>Buy a crate!</td>
+<td><code>$buy [crate] [quantity]</code></td>
+</tr>
+<tr>
 <td>Cash</td>
 <td>View the wealth of anyone.</td>
 <td><code>$cash [@member]</code></td>
+</tr>
+<tr>
+<td>Inventory</td>
+<td>View the inventory of anyone.</td>
+<td><code>$inventory [@member]</code></td>
 </tr>
 <tr>
 <td>Leaderboards</td>
@@ -290,6 +333,38 @@
 <td>Transfer</td>
 <td>Transfer money to any member.</td>
 <td><code>$transfer &lt;@member&gt; &lt;transfer&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="items">Items</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crate</td>
+<td>View all information of a crate.</td>
+<td><code>$crate &lt;crate&gt;</code></td>
+</tr>
+<tr>
+<td>Item</td>
+<td>View all information of an item.</td>
+<td><code>$item &lt;item&gt;</code></td>
+</tr>
+<tr>
+<td>Items</td>
+<td>View a list of all items.</td>
+<td><code>$items</code></td>
+</tr>
+<tr>
+<td>Opencrate</td>
+<td>Open a crate!</td>
+<td><code>$opencrate &lt;crate&gt; [quantity]</code></td>
 </tr>
 </tbody>
 </table>

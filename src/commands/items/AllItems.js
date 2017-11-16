@@ -1,5 +1,5 @@
 const patron = require('patron.js');
-const USD = require('../../utility/USD.js');
+const db = require('../../database');
 const StringUtil = require('../../utility/StringUtil.js');
 
 class Items extends patron.Command {
@@ -12,25 +12,16 @@ class Items extends patron.Command {
     });
   }
 
-  run(msg, args, sender) {
+  async run(msg, args, sender) {
+    const result = await db.select('item_data', 'name', null, [], 'name');
+
     let description = '';
 
-    for (const key in args.item) {
-      if (args.item[key] !== null) {
-        switch (key) {
-          case 'price':
-            description += '**Price:** ' + USD(args.item[key]) + '\n';
-            break;
-          case 'name':
-          case 'id':
-            break;
-          default:
-            description += '**' + StringUtil.capitializeWords(key) + ':** ' + args.item[key] + '\n';
-        }
-      }
+    for (let i = 0; i < result.rows.length; i++) {
+      description += StringUtil.capitializeWords(result.rows[i].name) + ', ';
     }
 
-    return sender.send(description, { title: StringUtil.capitializeWords(args.item.name) });
+    return sender.send(description.slice(0, -2) + '.', { title: 'Items' });
   }
 }
 
