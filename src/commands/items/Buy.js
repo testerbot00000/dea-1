@@ -15,7 +15,7 @@ class Buy extends patron.Command {
           key: 'crate',
           type: 'crate',
           defaultValue: null,
-          example: 'gold crate'
+          example: 'gold'
         }),
         new patron.Argument({
           name: 'quantity',
