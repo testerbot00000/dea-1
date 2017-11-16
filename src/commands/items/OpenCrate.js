@@ -50,7 +50,7 @@ class OpenCrate extends patron.Command {
     for (const [key, value] of won) {
       await db.items.modifyInventory(msg.author.id, msg.guild.id, key.id, value);
 
-      description += StringUtil.capitializeWords(key.name) + ': ' + value + '\n';
+      description += '**' + StringUtil.capitializeWords(key.name) + ':** ' + value + '\n';
     }
 
     return Sender.send(msg.channel, description, { title: 'Items Won' });
