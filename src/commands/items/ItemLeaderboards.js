@@ -6,7 +6,7 @@ const StringUtil = require('../../utility/StringUtil.js');
 class ItemLeaderboards extends patron.Command {
   constructor() {
     super({
-      names: ['itemleaderboars', 'itemlb', 'itemleaderboard', 'invlb'],
+      names: ['itemleaderboards', 'itemlb', 'itemleaderboard', 'invlb'],
       groupName: 'general',
       description: 'View the users with the highest quantity of items.'
     });
