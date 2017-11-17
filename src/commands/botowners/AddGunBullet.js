@@ -27,7 +27,7 @@ class AddGunBullet extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    await db.insert('gun_bullets', 'gun_id, bullet_id', [args.gun.id, args.gun.id]);
+    await db.insert('gun_bullets', 'gun_id, bullet_id', [args.gun.id, args.bullet.id]);
     return sender.reply('You have successfully added ' + StringUtil.capitializeWords(args.bullet.name) + ' to the ' + StringUtil.capitializeWords(args.gun.name) + '\'s usable ammunition.');
   }
 }
