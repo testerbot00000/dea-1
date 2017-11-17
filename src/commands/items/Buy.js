@@ -2,6 +2,7 @@ const db = require('../../database');
 const patron = require('patron.js');
 const USD = require('../../utility/USD.js');
 const StringUtil = require('../../utility/StringUtil.js');
+const pluralize = require('pluralize');
 
 class Buy extends patron.Command {
   constructor() {
@@ -45,7 +46,7 @@ class Buy extends patron.Command {
     await db.users.modifyCash(msg.member, -args.crate.price * args.quantity);
     await db.items.modifyInventory(msg.author.id, msg.guild.id, args.crate.id, args.quantity);
 
-    return sender.send('You have successfully purchased ' + args.quantity + ' ' + StringUtil.capitializeWords(args.crate.name) + (args.quantity > 1 ? 's' : '') +'.');
+    return sender.send('You have successfully purchased ' + pluralize(StringUtil.capitializeWords(args.crate.name), args.quantity, true) +'.');
   }
 }
 

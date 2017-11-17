@@ -102,7 +102,6 @@
     "no-useless-return": "error",
     "no-useless-concat": "error",
     "no-useless-call": "error",
-    "no-nested-ternary": "error",
     "no-path-concat": "error",
     "no-new-require": "error",
     "no-new-wrappers": "error",

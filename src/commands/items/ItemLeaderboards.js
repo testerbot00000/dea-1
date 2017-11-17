@@ -1,6 +1,7 @@
 const db = require('../../database');
 const patron = require('patron.js');
 const Constants = require('../../utility/Constants.js');
+const num = require('../../utility/num.js');
 const StringUtil = require('../../utility/StringUtil.js');
 
 class ItemLeaderboards extends patron.Command {
@@ -28,7 +29,7 @@ class ItemLeaderboards extends patron.Command {
         continue;
       }
 
-      message += (position++) + '. ' + StringUtil.boldify(user.tag) + ': ' + result.rows[i].total_quantity + '\n';
+      message += (position++) + '. ' + StringUtil.boldify(user.tag) + ': ' + num(result.rows[i].total_quantity) + '\n';
     }
 
     if (StringUtil.isNullOrWhiteSpace(message) === true) {

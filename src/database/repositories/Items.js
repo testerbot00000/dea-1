@@ -4,7 +4,7 @@ class Items {
   }
 
   async crateItems(crateId) {
-    const result = await this.db.pool.query('SELECT d.name, d.crate_odds, d.id FROM crate_items i JOIN crate_item_data d ON d.id = i.item_id WHERE i.crate_id = $1;', [crateId]);
+    const result = await this.db.pool.query('SELECT d.name, d.crate_odds, d.id FROM crate_items i JOIN crate_item_data d ON d.id = i.item_id WHERE i.crate_id = $1 ORDER BY d.name;', [crateId]);
 
     return result.rows;
   }
@@ -21,7 +21,7 @@ class Items {
   }
 
   async inventory(userId, guildId) {
-    const result = await this.db.pool.query('SELECT d.name, quantity FROM items i JOIN item_data d ON d.id = i.data_id WHERE (user_id, guild_id) = ($1, $2);', [userId, guildId]);
+    const result = await this.db.pool.query('SELECT d.name, quantity FROM items i JOIN item_data d ON d.id = i.data_id WHERE (user_id, guild_id) = ($1, $2) ORDER BY d.name;', [userId, guildId]);
 
     return result.rows;
   }

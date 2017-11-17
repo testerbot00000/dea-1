@@ -1,9 +1,13 @@
 const patron = require('patron.js');
+const discord = require('discord.js');
 const db = require('../../database');
 const Random = require('../../utility/Random.js');
 const Constants = require('../../utility/Constants.js');
 const StringUtil = require('../../utility/StringUtil.js');
+const num = require('../../utility/num.js');
 const Sender = require('../../utility/Sender.js');
+const pluralize = require('pluralize');
+const pad = require('pad');
 
 class OpenCrate extends patron.Command {
   constructor() {
@@ -35,7 +39,7 @@ class OpenCrate extends patron.Command {
   async run(msg, args) {
     const items = await db.items.crateItems(args.crate.id);
     const totalCrateOdds = items.reduce((sum, x) => sum + x.crate_odds, 0);
-    const won = new Map();
+    let won = new discord.Collection();
 
     for (let i = 0; i < args.quantity; i++) {
       const item = Random.weighted(items, 'crate_odds', totalCrateOdds);
@@ -45,15 +49,18 @@ class OpenCrate extends patron.Command {
 
     await db.items.modifyInventory(msg.author.id, msg.guild.id, args.crate.id, -args.quantity);
 
-    let description = '';
+    won = won.sort((a, b, c, d) => (c.name > d.name) ? 1 : ((c.name > d.name) ? -1 : 0));
+
+    const max = won.reduce((a, b) => Math.max(a, num(b).length), 0);
+    let description = '```';
 
     for (const [key, value] of won) {
       await db.items.modifyInventory(msg.author.id, msg.guild.id, key.id, value);
 
-      description += '**' + StringUtil.capitializeWords(key.name) + ':** ' + value + '\n';
+      description += pad(num(value), max) + ' ' + pluralize(StringUtil.capitializeWords(key.name), value) + '\n';
     }
 
-    return Sender.send(msg.channel, description, { title: 'Items Won' });
+    return Sender.send(msg.channel, description + '```', { title: 'Items Won' });
   }
 }
 

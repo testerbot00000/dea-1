@@ -5,6 +5,9 @@ const RequireAll = require('patron.js').RequireAll;
 const Logger = require('./utility/Logger.js');
 const credentials = require('./credentials.json');
 const registry = require('./singletons/registry.js');
+const pluralize = require('pluralize');
+
+pluralize.addPluralRule(/^ar15$/i, 'Ar15s');
 
 client.registry = registry;
 
