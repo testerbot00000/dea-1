@@ -7,7 +7,7 @@ class Eat extends patron.Command {
     super({
       names: ['eat'],
       groupName: 'general',
-      description: 'Eat specified food.',
+      description: 'Eat some food.',
       args: [
         new patron.Argument({
           name: 'food',
@@ -30,7 +30,7 @@ class Eat extends patron.Command {
     }
 
     await db.items.modifyInventory(msg.author.id, msg.guild.id, args.food.id, -1);
-    const newHealth = await db.users.modifyHealth(msg.member.id, msg.guild.id, increase);
+    const newHealth = await db.users.modifyHealth(msg.member.id, msg.guild.id, increase < 0 ? args.food.health : increase);
 
     return sender.reply('You ate one ' + StringUtil.capitializeWords(args.food.name) + ' increasing your health to ' + newHealth + '.');
   }

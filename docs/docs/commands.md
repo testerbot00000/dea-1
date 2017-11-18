@@ -63,7 +63,7 @@ Command | Description | Usage
 ---------------- | -------------- | -------
 Buy|Buy a crate!|`$buy [crate] [quantity]`
 Cash|View the wealth of anyone.|`$cash [@member]`
-Eat|Eat specified food.|`$eat <food>`
+Eat|Eat some food.|`$eat <food>`
 Leaderboards|View the richest Drug Traffickers.|`$leaderboards`
 Rank|View the rank of anyone.|`$rank [@member]`
 Ranks|View all ranks in this guild.|`$ranks`
