@@ -1,4 +1,5 @@
 const db = require('../database');
+const Try = require('../utility/Try.js');
 const Constants = require('../utility/Constants.js');
 
 class ChatService {
@@ -14,7 +15,7 @@ class ChatService {
     if (isMessageCooldownOver && isLongEnough) {
       this.messages.set(msg.author.id, Date.now());
 
-      return db.users.modifyCash(msg.member, Constants.cashPerMessage);
+      return Try(db.users.modifyCash(msg.member, Constants.cashPerMessage));
     }
   }
 }

@@ -1,7 +1,6 @@
 const Logger = require('../utility/Logger.js');
 const client = require('../singletons/client.js');
 const discord = require('discord.js');
-const pg = require('pg');
 const patron = require('patron.js');
 const Try = require('../utility/Try.js');
 const Sender = require('../utility/Sender.js');
@@ -21,7 +20,7 @@ client.on('message', (msg) => {
     const inGuild = msg.guild !== null;
 
     if (Constants.regexes.prefix.test(msg.content) === false) {
-      return inGuild === true ? ChatService.applyCash(msg) : null;
+      return inGuild === true && msg.member !== null ? ChatService.applyCash(msg) : null;
     }
 
     const sender = new Sender(msg);
