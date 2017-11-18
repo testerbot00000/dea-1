@@ -37,7 +37,7 @@ class Buy extends patron.Command {
       let description = '';
 
       for (let i = 0; i < result.rows.length; i++) {
-        description += StringUtil.capitializeWords(result.rows[i].name) + ': `' + USD(result.rows[i].price) + '` - ' + result.rows[i].description + '\n';
+        description += '`$buy "' + StringUtil.capitializeWords(result.rows[i].name) + '" 1`: `' + USD(result.rows[i].price) + '` - ' + result.rows[i].description + '\n';
       }
 
       return sender.send(description, { title: 'Crates' });
