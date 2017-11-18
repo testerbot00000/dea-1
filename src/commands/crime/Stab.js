@@ -1,6 +1,7 @@
 const patron = require('patron.js');
 const db = require('../../database');
 const Random = require('../../utility/Random.js');
+const Constants = require('../../utility/Constants.js');
 const USD = require('../../utility/USD.js');
 const Sender = require('../../utility/Sender.js');
 const StringUtil = require('../../utility/StringUtil.js');
@@ -13,6 +14,7 @@ class Stab extends patron.Command {
       names: ['stab'],
       groupName: 'crime',
       description: 'Stab a user with specified knife.',
+      cooldown: Constants.stab.cooldown,
       args: [
         new patron.Argument({
           name: 'member',

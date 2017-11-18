@@ -1,6 +1,7 @@
 const patron = require('patron.js');
 const db = require('../../database');
 const Random = require('../../utility/Random.js');
+const Constants = require('../../utility/Constants.js');
 const USD = require('../../utility/USD.js');
 const Sender = require('../../utility/Sender.js');
 const StringUtil = require('../../utility/StringUtil.js');
@@ -13,6 +14,7 @@ class Shoot extends patron.Command {
       names: ['shoot'],
       groupName: 'crime',
       description: 'Shoot a user with specified gun.',
+      cooldown: Constants.shoot.cooldown,
       args: [
         new patron.Argument({
           name: 'member',
