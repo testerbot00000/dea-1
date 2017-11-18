@@ -24,11 +24,11 @@ class Eat extends patron.Command {
   async run(msg, args, sender) {
     const dbUser = await db.users.getUser(msg.author.id, msg.guild.id, 'health');
     let increase = args.food.health;
-    
+
     if (increase + dbUser.health > 100) {
       increase = 100 - dbUser.health;
     }
-    
+
     await db.items.modifyInventory(msg.author.id, msg.guild.id, args.food.id, -1);
     const newHealth = await db.users.modifyHealth(msg.member.id, msg.guild.id, increase);
 

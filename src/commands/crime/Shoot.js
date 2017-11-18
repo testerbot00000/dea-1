@@ -1,7 +1,6 @@
 const patron = require('patron.js');
 const db = require('../../database');
 const Random = require('../../utility/Random.js');
-const Constants = require('../../utility/Constants.js');
 const USD = require('../../utility/USD.js');
 const Sender = require('../../utility/Sender.js');
 const StringUtil = require('../../utility/StringUtil.js');
@@ -41,7 +40,7 @@ class Shoot extends patron.Command {
 
     if (roll <= args.gun.accuracy) {
       const newHealth = await db.users.modifyHealth(args.member.id, msg.guild.id, -damage, msg.member);
-      
+
       if (newHealth === 0) {
         await sender.reply('Woah, you just killed ' + StringUtil.boldify(args.member.user.tag) + '. You just earned ' + USD(dbUser.cash) + ' **AND** their inventory, congrats.');
         Try(Sender.send(args.member.user, 'Unfortunately, you were killed by ' + StringUtil.boldify(msg.author.tag) + '. All your data has been reset.', { guild: msg.guild }));
