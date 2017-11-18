@@ -10,7 +10,8 @@ class HealthService {
         reduce *= (100 - armour[i].damage_reduction) / 100;
       }
     }
-    return reduce;
+
+    return Math.round(reduce);
   }
 }
 
