@@ -9,6 +9,12 @@ class Items {
     return result.rows;
   }
 
+  async gunBullets(gunId) {
+    const result = await this.db.pool.query('SELECT i.name FROM gun_bullets g JOIN item_data i ON g.bullet_id = i.id WHERE g.gun_id = $1 ORDER BY i.name;', [gunId]);
+
+    return result.rows;
+  }
+
   async modifyInventory(userId, guildId, dataId, quantity) {
     const result = await this.db.pool.query('INSERT INTO items(user_id, guild_id, data_id, quantity) VALUES($1, $2, $3, $4) ON CONFLICT ON CONSTRAINT item_pk DO UPDATE SET quantity = items.quantity + $4 RETURNING quantity;', [userId, guildId, dataId, quantity]);
 
