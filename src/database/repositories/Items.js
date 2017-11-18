@@ -25,6 +25,12 @@ class Items {
 
     return result.rows;
   }
+
+  async getUserArmour(userId, guildId) {
+    const result = await this.db.pool.query('SELECT d.damage_reduction FROM items i JOIN armor_data d ON d.id = i.data_id WHERE (user_id, guild_id) = ($1, $2);', [userId, guildId]);
+
+    return result.rows;
+  }
 }
 
 module.exports = Items;

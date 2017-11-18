@@ -56,6 +56,14 @@ class Constants {
       maxLength: 32
     };
 
+    this.shoot = {
+      cooldown: 14400000
+    };
+
+    this.stab = {
+      cooldown: 14400000
+    };
+
     this.gambling = {
       minBet: 5
     };

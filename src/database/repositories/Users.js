@@ -29,6 +29,25 @@ class Users {
 
     return parsedCash;
   }
+
+  async modifyHealth(memberId, guildId, change, killer = null) {
+    const result = await this.db.pool.query('INSERT INTO users(user_id, guild_id, health) VALUES($1, $2, $3) ON CONFLICT ON CONSTRAINT user_pk DO UPDATE SET health = users.health + $3 RETURNING health;', [memberId, guildId, change]);
+
+    if (result.rows[0].health <= 0 && killer !== null) {
+      const inventory = await this.db.pool.query('DELETE FROM items WHERE (user_id, guild_id) = ($1, $2) RETURNING data_id, quantity;', [memberId, guildId]);
+      const cash = await this.db.delete('users', '(user_id, guild_id) = ($1, $2) RETURNING cash', [memberId, guildId]);
+
+      for (let i = 0; i < inventory.rows.length; i++) {
+        await this.db.items.modifyInventory(killer.id, guildId, inventory.rows[i].data_id, inventory.rows[i].quantity);
+      }
+
+      await this.db.users.modifyCash(killer, cash.rows[0].cash);
+
+      return 0;
+    }
+
+    return result.rows[0].health;
+  }
 }
 
 module.exports = Users;

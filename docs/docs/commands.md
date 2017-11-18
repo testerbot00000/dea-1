@@ -20,6 +20,7 @@ Command | Description | Usage
 ---------------- | -------------- | -------
 Addrank|Add a rank.|`$addrank <@role> <cashRequired>`
 Modifycash|Allows you to modify the cash of any member.|`$modifycash <amount> [@member]`
+Modifyhealth|Allows you to modify the health of any member.|`$modifyhealth <amount> [@member]`
 Modifyinventory|Add an item to your inventory.|`$modifyinventory <item> [quantity] [@member]`
 Removerank|Remove a rank role.|`$removerank <@role>`
 Reset|Resets all user data in your server.|`$reset`
@@ -46,6 +47,8 @@ Send|Send a message in any channel.|`$send <channel> <message>`
 Command | Description | Usage
 ---------------- | -------------- | -------
 Bully|Bully any user by changing their nickname.|`$bully <@member> <nickname>`
+Shoot|Shoot a user with specified gun.|`$shoot <@member> <gun>`
+Stab|Stab a user with specified knife.|`$stab <@member> <knife>`
 
 ### Gambling
 Command | Description | Usage
@@ -60,6 +63,7 @@ Command | Description | Usage
 ---------------- | -------------- | -------
 Buy|Buy a crate!|`$buy [crate] [quantity]`
 Cash|View the wealth of anyone.|`$cash [@member]`
+Eat|Eat specified food.|`$eat <food>`
 Leaderboards|View the richest Drug Traffickers.|`$leaderboards`
 Rank|View the rank of anyone.|`$rank [@member]`
 Ranks|View all ranks in this guild.|`$ranks`
