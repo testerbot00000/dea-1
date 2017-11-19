@@ -9,22 +9,16 @@ class AddItem extends patron.Command {
       description: 'Add an item to the database.',
       args: [
         new patron.Argument({
-          name: 'table',
-          key: 'table',
-          type: 'string',
-          example: 'weapon_data'
-        }),
-        new patron.Argument({
           name: 'columns',
           key: 'columns',
           type: 'string',
-          example: '"name, description, crate_odds"'
+          example: '"name, description, type, crate_odds"'
         }),
         new patron.Argument({
           name: 'values',
           key: 'values',
           type: 'string',
-          example: 'karambit "Slit ur nan and she won\'t even know it." 5',
+          example: 'karambit "Slit ur nan and she won\'t even know it." gun 5',
           infinite: true
         })
       ]
@@ -32,7 +26,7 @@ class AddItem extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    await db.insert(args.table, args.columns, args.values);
+    await db.insert('item_data', args.columns, args.values);
     return sender.reply('You have successfully added an item to the database.');
   }
 }
