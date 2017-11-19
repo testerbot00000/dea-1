@@ -2,17 +2,10 @@ const db = require('../database');
 
 class HealthService {
   async reduceDamage(memberId, guildId, damage) {
-    // TODO Reduce all the armor damage reduction into one var.
-    const armour = await db.items.armour(memberId, guildId);
-    let reduce = damage;
+    const armor = await db.items.armour(memberId, guildId);
+    const left = 1 - armor.reduce((a, b) => a + b.damage_reduction, 0);
 
-    if (armour.length !== 0) {
-      for (let i = 0; i < armour.length; i++) {
-        reduce *= 1 - armour[i].damage_reduction;
-      }
-    }
-
-    return Math.round(reduce);
+    return Math.round(damage * left);
   }
 }
 

@@ -30,6 +30,20 @@ class StringUtil {
   capitializeWords(str) {
     return str.replace('_', ' ').replace(Constants.regexes.capitalize, (x) => x.charAt(0).toUpperCase() + x.substr(1));
   }
+
+  listItems(arr) {
+    let description = '';
+
+    for (let i = 0; i < arr.length; i++) {
+      description += this.capitializeWords(arr[i].name);
+
+      if (i !== arr.length - 1) {
+        description += ', ';
+      }
+    }
+
+    return description;
+  }
 }
 
 module.exports = new StringUtil();

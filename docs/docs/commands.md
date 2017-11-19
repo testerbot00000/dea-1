@@ -34,11 +34,11 @@ Command | Description | Usage
 ---------------- | -------------- | -------
 Addcrateitem|Add an item to a crate.|`$addcrateitem <item> <crate>`
 Addgunbullet|Allow a gun to use a certain type of ammunition.|`$addgunbullet <gun> <bullet>`
-Additem|Add an item to the database.|`$additem <table> <columns> <values>`
+Additem|Add an item to the database.|`$additem <columns> <values>`
 Dm|DM any user.|`$dm <@user> <message>`
 Eval|Evalute JavaScript code.|`$eval <code>`
 Massannounce|Mass announce a message accross all guilds.|`$massannounce <message>`
-Modifyitem|Add an item to the database.|`$modifyitem <table> <item> <column> <value>`
+Modifyitem|Add an item to the database.|`$modifyitem <item> <column> <value>`
 Removecrateitem|Remove an item from a crate.|`$removecrateitem <item> <crate>`
 Removegunbullet|Disallow the use of a type of ammunition by a gun.|`$removegunbullet <gun> <bullet>`
 Send|Send a message in any channel.|`$send <channel> <message>`
@@ -72,7 +72,6 @@ Transfer|Transfer money to any member.|`$transfer <@member> <transfer>`
 ### Items
 Command | Description | Usage
 ---------------- | -------------- | -------
-Crate|View all information of a crate.|`$crate <crate>`
 Inventory|View the inventory of anyone.|`$inventory [@member]`
 Item|View all information of an item.|`$item <item>`
 Itemleaderboards|View the users with the highest quantity of items.|`$itemleaderboards`

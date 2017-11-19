@@ -1,11 +1,12 @@
 const patron = require('patron.js');
+const db = require('../../database');
 const USD = require('../../utility/USD.js');
 const StringUtil = require('../../utility/StringUtil.js');
 
 class Item extends patron.Command {
   constructor() {
     super({
-      names: ['item', 'iteminfo', 'damage'],
+      names: ['item', 'iteminfo', 'damage', 'accuracy', 'crate', 'gun', 'knife', 'weapon', 'food', 'fish', 'meat'],
       groupName: 'items',
       description: 'View all information of an item.',
       guildOnly: false,
@@ -21,8 +22,13 @@ class Item extends patron.Command {
     });
   }
 
-  run(msg, args, sender) {
-    // TODO: Display usuable bullets, items in crate.
+  async run(msg, args, sender) {
+    if (args.item.type === 'crate') {
+      args.item.items = '`' + StringUtil.listItems(await db.items.crateItems(args.item.id)) + '`';
+    } else if (args.item.type === 'gun') {
+      args.item.bullets = '`' + StringUtil.listItems(await db.items.gunBullets(args.item.id)) + '`';
+    }
+
     let description = '';
 
     for (const key in args.item) {
@@ -33,10 +39,10 @@ class Item extends patron.Command {
             break;
           case 'name':
           case 'id':
+          case 'type':
             break;
           default:
-
-            description += '**' + StringUtil.capitializeWords(key) + ':** ' + (typeof args.item[key] === 'string' ? StringUtil.capitializeWords(args.item[key]) : args.item[key]) + '\n';
+            description += '**' + StringUtil.capitializeWords(key) + ':** ' + args.item[key] + '\n';
         }
       }
     }
