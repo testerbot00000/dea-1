@@ -38,7 +38,7 @@ class ModifyInventory extends patron.Command {
   async run(msg, args, sender) {
     const result = await db.items.modifyInventory(args.member.id, msg.guild.id, args.item.id, args.quantity);
 
-    return sender.reply('You have successfully modified ' + (msg.author.id === args.member.id ? 'your' : StringUtil.boldify(args.member.user.tag)) + ' ' + StringUtil.capitializeWords(args.item.name) + ' count to ' + num(result) + '.');
+    return sender.reply('You have successfully modified ' + (msg.author.id === args.member.id ? 'your' : StringUtil.boldify(args.member.user.tag)) + ' ' + StringUtil.capitializeWords(args.item.names[0]) + ' count to ' + num(result) + '.');
   }
 }
 
