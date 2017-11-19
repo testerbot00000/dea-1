@@ -32,7 +32,7 @@ class Buy extends patron.Command {
 
   async run(msg, args, sender) {
     if (args.crate === null) {
-      const result = await db.select('crate_data', 'name, description, price');
+      const result = await db.select('item_data', 'name, description, price', 'type = $1', ['crate']);
 
       let description = '';
 

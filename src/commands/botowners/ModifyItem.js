@@ -10,12 +10,6 @@ class ModifyItem extends patron.Command {
       description: 'Add an item to the database.',
       args: [
         new patron.Argument({
-          name: 'table',
-          key: 'table',
-          type: 'string',
-          example: 'gun_data'
-        }),
-        new patron.Argument({
           name: 'item',
           key: 'item',
           type: 'item',
@@ -39,7 +33,7 @@ class ModifyItem extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    await db.set(args.table, args.column + ' = $1', 'id = $2;', [args.value, args.item.id]);
+    await db.set('item_data', args.column + ' = $1', 'id = $2;', [args.value, args.item.id]);
 
     return sender.reply('You have successfully modified the item: ' + StringUtil.capitializeWords(args.item.name) + '.');
   }
