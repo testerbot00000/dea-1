@@ -18,7 +18,7 @@ class Own extends patron.ArgumentPrecondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'You do not own ' + num(value) + ' ' + pluralize(StringUtil.capitializeWords(args.crate.name), value) + '.');
+    return patron.PreconditionResult.fromError(command, 'You do not own ' + num(value) + ' ' + pluralize(StringUtil.capitializeWords(args.crate.names[0]), value) + '.');
   }
 }
 

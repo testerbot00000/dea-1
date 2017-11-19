@@ -35,7 +35,7 @@ class StringUtil {
     let description = '';
 
     for (let i = 0; i < arr.length; i++) {
-      description += this.capitializeWords(arr[i].name);
+      description += this.capitializeWords(arr[i].names[0]);
 
       if (i !== arr.length - 1) {
         description += ', ';

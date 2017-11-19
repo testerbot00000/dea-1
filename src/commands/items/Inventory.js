@@ -36,7 +36,7 @@ class Inventory extends patron.Command {
     let description = '```';
 
     for (let i = 0; i < inventory.length; i++) {
-      description += pad(num(inventory[i].quantity), max) + ' ' + pluralize(StringUtil.capitializeWords(inventory[i].name), parseInt(inventory[i].quantity)) + '\n';
+      description += pad(num(inventory[i].quantity), max) + ' ' + pluralize(StringUtil.capitializeWords(inventory[i].names[0]), parseInt(inventory[i].quantity)) + '\n';
     }
 
     return sender.send(description + '```', { title: args.member.user.tag + '\'s Inventory' });

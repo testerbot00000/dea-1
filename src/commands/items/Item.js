@@ -37,7 +37,7 @@ class Item extends patron.Command {
           case 'price':
             description += '**Price:** ' + USD(args.item[key]) + '\n';
             break;
-          case 'name':
+          case 'names':
           case 'id':
           case 'type':
             break;
@@ -47,7 +47,7 @@ class Item extends patron.Command {
       }
     }
 
-    return sender.send(description, { title: StringUtil.capitializeWords(args.item.name) });
+    return sender.send(description, { title: StringUtil.capitializeWords(args.item.names[0]) });
   }
 }
 

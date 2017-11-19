@@ -15,7 +15,7 @@ class CrateTypeReader extends patron.TypeReader {
       lowerInput += ' crate';
     }
 
-    const result = await db.select('item_data', '*', '(name, type) = ($1, $2)', [lowerInput, 'crate']);
+    const result = await db.select('item_data', '*', '$1 = ANY(names) AND type = $2', [lowerInput, 'crate']);
 
     if (result.rowCount === 1) {
       return patron.TypeReaderResult.fromSuccess(result.rows[0]);

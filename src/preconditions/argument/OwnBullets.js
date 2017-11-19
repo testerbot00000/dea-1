@@ -17,7 +17,7 @@ class OwnBullets extends patron.ArgumentPrecondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'You do not own any bullets suitable for the ' + StringUtil.capitializeWords(value.name) + '.');
+    return patron.PreconditionResult.fromError(command, 'You do not own any bullets suitable for the ' + StringUtil.capitializeWords(value.names[0]) + '.');
   }
 }
 

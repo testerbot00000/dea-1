@@ -14,7 +14,7 @@ class OwnItem extends patron.ArgumentPrecondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'You do not own a ' + StringUtil.capitializeWords(value.name) + '.');
+    return patron.PreconditionResult.fromError(command, 'You do not own a ' + StringUtil.capitializeWords(value.names[0]) + '.');
   }
 }
 
