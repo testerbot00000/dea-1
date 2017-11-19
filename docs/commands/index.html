@@ -156,6 +156,11 @@
 <td><code>$modifycash &lt;amount&gt; [@member]</code></td>
 </tr>
 <tr>
+<td>Modifyhealth</td>
+<td>Allows you to modify the health of any member.</td>
+<td><code>$modifyhealth &lt;amount&gt; [@member]</code></td>
+</tr>
+<tr>
 <td>Modifyinventory</td>
 <td>Add an item to your inventory.</td>
 <td><code>$modifyinventory &lt;item&gt; [quantity] [@member]</code></td>
@@ -201,7 +206,7 @@
 <tr>
 <td>Additem</td>
 <td>Add an item to the database.</td>
-<td><code>$additem &lt;table&gt; &lt;columns&gt; &lt;values&gt;</code></td>
+<td><code>$additem &lt;columns&gt; &lt;values&gt;</code></td>
 </tr>
 <tr>
 <td>Dm</td>
@@ -221,7 +226,7 @@
 <tr>
 <td>Modifyitem</td>
 <td>Add an item to the database.</td>
-<td><code>$modifyitem &lt;table&gt; &lt;item&gt; &lt;column&gt; &lt;value&gt;</code></td>
+<td><code>$modifyitem &lt;item&gt; &lt;column&gt; &lt;value&gt;</code></td>
 </tr>
 <tr>
 <td>Removecrateitem</td>
@@ -254,6 +259,16 @@
 <td>Bully</td>
 <td>Bully any user by changing their nickname.</td>
 <td><code>$bully &lt;@member&gt; &lt;nickname&gt;</code></td>
+</tr>
+<tr>
+<td>Shoot</td>
+<td>Shoot a user with specified gun.</td>
+<td><code>$shoot &lt;@member&gt; &lt;gun&gt;</code></td>
+</tr>
+<tr>
+<td>Stab</td>
+<td>Stab a user with specified knife.</td>
+<td><code>$stab &lt;@member&gt; &lt;knife&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -310,6 +325,11 @@
 <td><code>$cash [@member]</code></td>
 </tr>
 <tr>
+<td>Eat</td>
+<td>Eat some food.</td>
+<td><code>$eat &lt;food&gt;</code></td>
+</tr>
+<tr>
 <td>Leaderboards</td>
 <td>View the richest Drug Traffickers.</td>
 <td><code>$leaderboards</code></td>
@@ -341,11 +361,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Crate</td>
-<td>View all information of a crate.</td>
-<td><code>$crate &lt;crate&gt;</code></td>
-</tr>
 <tr>
 <td>Inventory</td>
 <td>View the inventory of anyone.</td>
