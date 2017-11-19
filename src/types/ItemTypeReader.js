@@ -10,14 +10,12 @@ class ItemTypeReader extends patron.TypeReader {
   }
 
   async read(command, message, argument, args, input, custom) {
-    const originResult = await db.select('item_data', 'id, tableoid::regclass AS origin', 'name = $1', [input.toLowerCase()]);
+    const result = await db.select('item_data', '*', 'name = $1', [input.toLowerCase()]);
 
-    if (originResult.rowCount === 1) {
-      const result = await db.select(originResult.rows[0].origin, '*', 'id = $1', [originResult.rows[0].id]);
-
+    if (result.rowCount === 1) {
       // TODO: Redo. Terrible hotfix for production, go figure.
-      if (originResult.rows[0].origin === 'gun_data') {
-        const bullets = await db.items.gunBullets(originResult.rows[0].id);
+      if (result.rows[0].type === 'gun') {
+        const bullets = await db.items.gunBullets(result.rows[0].id);
         let value = '`';
 
         for (let i = 0; i < bullets.length; i++) {

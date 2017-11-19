@@ -5,7 +5,7 @@ const StringUtil = require('../../utility/StringUtil.js');
 class Item extends patron.Command {
   constructor() {
     super({
-      names: ['item', 'iteminfo'],
+      names: ['item', 'iteminfo', 'damage'],
       groupName: 'items',
       description: 'View all information of an item.',
       guildOnly: false,
@@ -35,7 +35,8 @@ class Item extends patron.Command {
           case 'id':
             break;
           default:
-            description += '**' + StringUtil.capitializeWords(key) + ':** ' + args.item[key] + '\n';
+
+            description += '**' + StringUtil.capitializeWords(key) + ':** ' + (typeof args.item[key] === 'string' ? StringUtil.capitializeWords(args.item[key]) : args.item[key]) + '\n';
         }
       }
     }
