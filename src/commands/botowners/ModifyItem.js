@@ -35,7 +35,7 @@ class ModifyItem extends patron.Command {
   async run(msg, args, sender) {
     await db.set('item_data', args.column + ' = $1', 'id = $2;', [args.value, args.item.id]);
 
-    return sender.reply('You have successfully modified the item: ' + StringUtil.capitializeWords(args.item.name) + '.');
+    return sender.reply('You have successfully modified the item: ' + StringUtil.capitializeWords(args.item.names[0]) + '.');
   }
 }
 

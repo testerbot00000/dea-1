@@ -27,7 +27,7 @@ class RemoveCrateItem extends patron.Command {
 
   async run(msg, args, sender) {
     await db.delete('crate_items', '(item_id, crate_id) = ($1, $2)', [args.item.id, args.crate.id]);
-    return sender.reply('You have successfully remove an item from the ' + args.crate.name + '.');
+    return sender.reply('You have successfully remove an item from the ' + args.crate.names[0] + '.');
   }
 }
 

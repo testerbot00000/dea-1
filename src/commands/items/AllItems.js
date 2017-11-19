@@ -18,7 +18,7 @@ class Items extends patron.Command {
     let description = '';
 
     for (let i = 0; i < result.rows.length; i++) {
-      description += StringUtil.capitializeWords(result.rows[i].name) + ', ';
+      description += StringUtil.capitializeWords(result.rows[i].names[0]) + ', ';
     }
 
     return sender.send(description.slice(0, -2) + '.', { title: 'Items' });

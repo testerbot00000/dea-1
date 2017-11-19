@@ -37,7 +37,7 @@ class Buy extends patron.Command {
       let description = '';
 
       for (let i = 0; i < result.rows.length; i++) {
-        description += USD(result.rows[i].price) + ': `$buy "' + StringUtil.capitializeWords(result.rows[i].name) + '"` - ' + result.rows[i].description + '\n';
+        description += USD(result.rows[i].price) + ': `$buy "' + StringUtil.capitializeWords(result.rows[i].names[0]) + '"` - ' + result.rows[i].description + '\n';
       }
 
       return sender.send(description, { title: 'Crates' });
@@ -46,7 +46,7 @@ class Buy extends patron.Command {
     await db.users.modifyCash(msg.member, -args.crate.price * args.quantity);
     await db.items.modifyInventory(msg.author.id, msg.guild.id, args.crate.id, args.quantity);
 
-    return sender.send('You have successfully purchased ' + pluralize(StringUtil.capitializeWords(args.crate.name), args.quantity, true) +'.');
+    return sender.send('You have successfully purchased ' + pluralize(StringUtil.capitializeWords(args.crate.names[0]), args.quantity, true) +'.');
   }
 }
 

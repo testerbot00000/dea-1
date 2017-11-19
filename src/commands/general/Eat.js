@@ -32,7 +32,7 @@ class Eat extends patron.Command {
     await db.items.modifyInventory(msg.author.id, msg.guild.id, args.food.id, -1);
     const newHealth = await db.users.modifyHealth(msg.member.id, msg.guild.id, increase < 0 ? args.food.health : increase);
 
-    return sender.reply('You ate one ' + StringUtil.capitializeWords(args.food.name) + ' increasing your health to ' + newHealth + '.');
+    return sender.reply('You ate one ' + StringUtil.capitializeWords(args.food.names[0]) + ' increasing your health to ' + newHealth + '.');
   }
 }
 

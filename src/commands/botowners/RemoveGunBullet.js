@@ -28,7 +28,7 @@ class RemoveGunBullet extends patron.Command {
 
   async run(msg, args, sender) {
     await db.delete('gun_bullets', '(gun_id, bullet_id) = ($1, $2)', [args.gun.id, args.bullet.id]);
-    return sender.reply('You have successfully removed ' + StringUtil.capitializeWords(args.bullet.name) + ' from the ' + StringUtil.capitializeWords(args.gun.name) + '\'s usable ammunition.');
+    return sender.reply('You have successfully removed ' + StringUtil.capitializeWords(args.bullet.names[0]) + ' from the ' + StringUtil.capitializeWords(args.gun.names[0]) + '\'s usable ammunition.');
   }
 }
 

@@ -49,7 +49,7 @@ class OpenCrate extends patron.Command {
 
     await db.items.modifyInventory(msg.author.id, msg.guild.id, args.crate.id, -args.quantity);
 
-    won = won.sort((a, b, c, d) => (c.name > d.name) ? 1 : ((c.name > d.name) ? -1 : 0));
+    won = won.sort((a, b, c, d) => (c.names[0] > d.names[0]) ? 1 : ((c.names[0] > d.names[0]) ? -1 : 0));
 
     const max = won.reduce((a, b) => Math.max(a, num(b).length), 0);
     let description = '```';
@@ -57,7 +57,7 @@ class OpenCrate extends patron.Command {
     for (const [key, value] of won) {
       await db.items.modifyInventory(msg.author.id, msg.guild.id, key.id, value);
 
-      description += pad(num(value), max) + ' ' + pluralize(StringUtil.capitializeWords(key.name), value) + '\n';
+      description += pad(num(value), max) + ' ' + pluralize(StringUtil.capitializeWords(key.names[0]), value) + '\n';
     }
 
     return Sender.send(msg.channel, description + '```', { title: 'Items Won' });

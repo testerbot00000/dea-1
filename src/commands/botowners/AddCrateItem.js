@@ -27,7 +27,7 @@ class AddCrateItem extends patron.Command {
 
   async run(msg, args, sender) {
     await db.insert('crate_items', 'item_id, crate_id', [args.item.id, args.crate.id]);
-    return sender.reply('You have successfully added an item to the ' + args.crate.name + '.');
+    return sender.reply('You have successfully added an item to the ' + args.crate.names[0] + '.');
   }
 }
 
