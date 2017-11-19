@@ -12,7 +12,7 @@ class AddItem extends patron.Command {
           name: 'columns',
           key: 'columns',
           type: 'string',
-          example: '"name, description, type, crate_odds"'
+          example: '"names, description, type, crate_odds"'
         }),
         new patron.Argument({
           name: 'values',
