@@ -52,7 +52,7 @@ class Shoot extends patron.Command {
       }
     } else {
       await sender.reply('The nigga fucking dodged the bullet, literally. What in the sac of nuts.');
-      Try(Sender.send(args.member.user, 'This fatass ' + StringUtil.boldify(msg.author.tag) + ' just tried to shoot you and fucking **MISSED** LMFAO :joy: :joy:! What a fat retard ammirite, up top!'));
+      Try(Sender.send(args.member.user, 'This fatass ' + StringUtil.boldify(msg.author.tag) + ' just tried to shoot you and fucking **MISSED** LMFAO :joy: :joy:! What a fat retard ammirite, up top!', { guild: msg.guild }));
     }
 
     return db.items.modifyInventory(msg.author.id, msg.guild.id, msg.bullet.data_id, -1);

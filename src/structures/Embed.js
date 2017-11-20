@@ -14,7 +14,7 @@ class Embed extends discord.RichEmbed {
 
     data.author = data.author !== undefined ? { name: data.author.name, icon_url: data.author.icon, url: data.author.url } : undefined;
     data.timestamp = data.timestamp === true ? new Date() : undefined;
-    data.footer = data.footer !== undefined ? { text: data.footer.text, icon_url: data.footer.icon } : undefined;
+    data.footer = data.footer !== undefined ? { text: data.footer.text, icon_url: data.footer.icon } : data.guild !== undefined ? { text: data.guild.name, icon_url: data.guild.iconURL } : undefined;
     data.color = data.color !== undefined ? data.color : Random.arrayElement(Constants.defaultColors);
 
     super(data);
