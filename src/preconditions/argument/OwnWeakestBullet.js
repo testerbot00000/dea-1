@@ -2,15 +2,15 @@ const patron = require('patron.js');
 const db = require('../../database');
 const StringUtil = require('../../utility/StringUtil.js');
 
-class OwnBullets extends patron.ArgumentPrecondition {
+class OwnWeakestBullet extends patron.ArgumentPrecondition {
   constructor() {
     super({
-      name: 'ownbullets'
+      name: 'ownweakestbullet'
     });
   }
 
   async run(command, msg, argument, args, value) {
-    const bullet = await db.pool.query('SELECT data_id, d.damage FROM items i JOIN gun_bullets g ON g.bullet_id = i.data_id JOIN item_data d ON d.id = i.data_id WHERE (g.gun_id, i.user_id, i.guild_id) = ($1, $2, $3) ORDER BY d.damage DESC;', [value.id, msg.author.id, msg.guild.id]);
+    const bullet = await db.pool.query('SELECT data_id, d.damage FROM items i JOIN gun_bullets g ON g.bullet_id = i.data_id JOIN item_data d ON d.id = i.data_id WHERE (g.gun_id, i.user_id, i.guild_id) = ($1, $2, $3) ORDER BY d.damage ASC;', [value.id, msg.author.id, msg.guild.id]);
 
     if (bullet.rowCount === 1) {
       msg.bullet = bullet.rows[0];
@@ -21,4 +21,4 @@ class OwnBullets extends patron.ArgumentPrecondition {
   }
 }
 
-module.exports = new OwnBullets();
+module.exports = new OwnWeakestBullet();

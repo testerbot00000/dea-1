@@ -28,7 +28,7 @@ class Shoot extends patron.Command {
           key: 'gun',
           type: 'gun',
           example: 'intervention',
-          preconditions: ['ownitem', 'ownbullets'],
+          preconditions: ['ownitem', 'ownstrongestbullet'],
           remainder: true
         })
       ]
