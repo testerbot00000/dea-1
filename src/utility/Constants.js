@@ -63,14 +63,14 @@ class Constants {
     this.stab = {
       cooldown: 14400000
     };
-    
+
     this.hunt = {
       cooldown: 3600000
     };
 
     this.fish = {
       cooldown: 3600000
-    };    
+    };
 
     this.gambling = {
       minBet: 5

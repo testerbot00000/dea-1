@@ -16,7 +16,7 @@ class Fish extends patron.Command {
           name: 'tool',
           key: 'tool',
           type: 'fishing_tool',
-          example: 'intervention',
+          example: 'fishing rod',
           preconditions: ['ownitem'],
           remainder: true
         })
