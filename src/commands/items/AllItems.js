@@ -13,7 +13,7 @@ class Items extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    const result = await db.select('item_data', 'names', null, [], 'names[0]');
+    const result = await db.select('item_data', 'names', null, [], 'names[1]');
 
     let description = '';
 
