@@ -21,7 +21,7 @@ class RemoveRank extends patron.Command {
   }
 
   async run(msg, args, sender) {
-    const result = await db.delete('ranks', 'role_id = $1', args.role.id);
+    const result = await db.delete('ranks', 'role_id = $1', [args.role.id]);
 
     if (result.rowCount === 0) {
       return sender.reply('There is no rank associated to this role.', { color: Constants.errorColor });
