@@ -8,6 +8,7 @@ class Eat extends patron.Command {
       names: ['eat'],
       groupName: 'general',
       description: 'Eat some food.',
+      cooldown: 20000,
       args: [
         new patron.Argument({
           name: 'food',
