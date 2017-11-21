@@ -53,7 +53,7 @@ class Stab extends patron.Command {
     }
 
     await sender.reply('This nigga actually did some acrobatics shit and bounced out of the way before you stabbed him.');
-    return Try(Sender.send(args.member.user, 'This fucking faggot ' + StringUtil.boldify(msg.author.tag) + ' tried to stab you and you fucking weaved his shit :joy: :joy: WHAT A SLOW BASTARD AMIRITE!'));
+    return Try(Sender.send(args.member.user, 'This fucking faggot ' + StringUtil.boldify(msg.author.tag) + ' tried to stab you and you fucking weaved his shit :joy: :joy: WHAT A SLOW BASTARD AMIRITE!', { guild: msg.guild }));
   }
 }
 
