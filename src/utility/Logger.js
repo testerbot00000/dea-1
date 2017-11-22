@@ -34,7 +34,7 @@ class Logger {
     console.log(formattedMessage);
 
     if (level === 'ERROR') {
-      return appendFile(logsPath + '/' + this.UTCDate + ' Errors.txt', formattedMessage + '\n');
+      await appendFile(logsPath + '/' + this.UTCDate + ' Errors.txt', formattedMessage + '\n');
     }
 
     return new Promise((resolve, reject) => {
