@@ -65,7 +65,14 @@ class Trade extends patron.Command {
     }
 
     console.log('awaiting dmChannel.');
-    const result = await user.dmChannel.awaitMessages((m) => m.author.id === args.member.user.id && m.content.includes(key), { time: 300000, maxMatches: 1 });
+    const authorCheck = (m) => m.author.id === args.member.user.id;
+    const keyCheck = (m) => m.content.includes(key);
+    const result = await user.dmChannel.awaitMessages((m) => {
+      console.log(authorCheck(m));
+      console.log(keyCheck(m));
+      console.log(m.content);
+      console.log(m.content.length);
+    });
     console.log('successfully awaited dmChannel.');
 
     if (result.size >= 1) {
