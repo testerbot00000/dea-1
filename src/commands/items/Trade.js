@@ -70,8 +70,9 @@ class Trade extends patron.Command {
       console.log(authorCheck(m));
       console.log(keyCheck(m));
       console.log(m.content);
-      console.log(m.content.length), { time: 300000, maxMatches: 1 };
-    });
+      console.log(m.content.length);
+      return authorCheck(m) && keyCheck(m);
+    }, { time: 300000, maxMatches: 1 });
     console.log(result);
     console.log('successfully awaited dmChannel.');
 
