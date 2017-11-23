@@ -57,6 +57,10 @@ class Trade extends patron.Command {
     Try(Sender.send(args.member.user, '**Offer:** ' + args.givenQuantity + ' ' + pluralize(StringUtil.capitializeWords(args.item.names[0]), args.givenQuantity) + '\n**Request:** ' + args.wantedQuantity + ' ' + pluralize(StringUtil.capitializeWords(args.wantedItem.names[0]), args.wantedQuantity) + '\n\nPlease respond with ' + key + ' within 5 minutes to accept this trade.\nTrade Request from ' + StringUtil.boldify(msg.author.tag), { guild: msg.guild }));
 
     await sender.reply('You\'ve successfully informed ' + args.member.user.tag + ' of your tade request.');
+    
+    if (user.dmChannel === null) {
+      await user.createDM();
+    }
 
     const result = await user.dmChannel.awaitMessages((m) => m.author.id === user.id && m.content.includes(key), { time: 300000, maxMatches: 1 });
 
