@@ -57,27 +57,43 @@ class Trade extends patron.Command {
 
     await sender.reply('You\'ve successfully informed ' + args.member.user.tag + ' of your trade request.');
 
+    console.log('checking if dm\'s are null.');
     if (user.dmChannel === null) {
+      console.log('creating dm\'s with user.');
       await user.createDM();
+      console.log('successfully created dm\'s.');
     }
 
+    console.log('awaiting dmChannel.');
     const result = await user.dmChannel.awaitMessages((m) => m.author.id === user.id && m.content.includes(key), { time: 300000, maxMatches: 1 });
+    console.log('successfully awaited dmChannel.');
 
     if (result.size >= 1) {
+      console.log('checking if item\'s exist for author.');
       if (await db.any('items', '(data_id, user_id, guild_id) = ($1, $2, $3) AND quantity >= $4', [args.item.id, msg.author.id, msg.guild.id, args.givenQuantity]) === false) {
+        console.log('author items dont exist');
         return Sender.send(args.member.user, msg.author.tag + ' does not own ' + args.givenQuantity + pluralize(StringUtil.capitializeWords(args.item.names[0]), args.givenQuantity) + ' anymore.');
-      } else if (await db.any('items', '(data_id, user_id, guild_id) = ($1, $2, $3) AND quantity >= $4', [args.wantedItem.id, args.member.user.id, msg.guild.id, args.wantedQuantity]) === false) {
+      } 
+
+      console.log('checking if arg\'d user has items.');
+      if (await db.any('items', '(data_id, user_id, guild_id) = ($1, $2, $3) AND quantity >= $4', [args.wantedItem.id, args.member.user.id, msg.guild.id, args.wantedQuantity]) === false) {
+        console.log('args user doesnt own items.');
         return Sender.send(args.member.user, 'You do not own ' + args.wantedQuantity + pluralize(StringUtil.capitializeWords(args.wantedItem.names[0]), args.wantedQuantity) + ' anymore.');
       }
+
+      console.log('modifying author inv');
 
       await db.items.modifyInventory(msg.author.id, msg.guild.id, args.wantedItem.id, args.wantedQuantity);
       await db.items.modifyInventory(msg.author.id, msg.guild.id, args.item.id, -args.givenQuantity);
 
+      console.log('modifying arg\'d user\'s inv.');
       await db.items.modifyInventory(args.member.id, msg.guild.id, args.item.id, args.givenQuantity);
       await db.items.modifyInventory(args.member.id, msg.guild.id, args.wantedItem.id, -args.wantedQuantity);
 
+      console.log('we at the message const nigga');
       const message = (tag) => '**Offer:** ' + args.givenQuantity + ' ' + pluralize(StringUtil.capitializeWords(args.item.names[0]), args.givenQuantity) + '\n**Request:** ' + args.wantedQuantity + ' ' + pluralize(StringUtil.capitializeWords(args.wantedItem.names[0]), args.wantedQuantity) + '\n\nCompleted trade with ' + StringUtil.boldify(tag) + '.';
 
+      console.log('sending successful dm\'s');
       await Sender.send(args.member.user, message(msg.author.tag), { guild: msg.guild });
       return Sender.send(msg.author, message(args.member.user.tag), { guild: msg.guild });
     }
