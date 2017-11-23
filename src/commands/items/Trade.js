@@ -4,14 +4,13 @@ const Random = require('../../utility/Random.js');
 const StringUtil = require('../../utility/StringUtil.js');
 const Sender = require('../../utility/Sender.js');
 const pluralize = require('pluralize');
-const Try = require('../../utility/Try.js');
 
 class Trade extends patron.Command {
   constructor() {
     super({
       names: ['trade'],
       groupName: 'items',
-      description: 'Trade items with a member.',
+      description: 'Trade an item with a member in this guild!',
       args: [
         new patron.Argument({
           name: 'member',
@@ -54,10 +53,10 @@ class Trade extends patron.Command {
     const key = Random.nextInt(0, 2147000000).toString();
     const user = await msg.client.users.get(args.member.user.id);
 
-    Try(Sender.send(args.member.user, '**Offer:** ' + args.givenQuantity + ' ' + pluralize(StringUtil.capitializeWords(args.item.names[0]), args.givenQuantity) + '\n**Request:** ' + args.wantedQuantity + ' ' + pluralize(StringUtil.capitializeWords(args.wantedItem.names[0]), args.wantedQuantity) + '\n\nPlease respond with ' + key + ' within 5 minutes to accept this trade.\nTrade Request from ' + StringUtil.boldify(msg.author.tag), { guild: msg.guild }));
+    await Sender.send(args.member.user, '**Offer:** ' + args.givenQuantity + ' ' + pluralize(StringUtil.capitializeWords(args.item.names[0]), args.givenQuantity) + '\n**Request:** ' + args.wantedQuantity + ' ' + pluralize(StringUtil.capitializeWords(args.wantedItem.names[0]), args.wantedQuantity) + '\n\nPlease respond with ' + key + ' within 5 minutes to accept this trade.\nTrade Request from ' + StringUtil.boldify(msg.author.tag), { guild: msg.guild });
 
-    await sender.reply('You\'ve successfully informed ' + args.member.user.tag + ' of your tade request.');
-    
+    await sender.reply('You\'ve successfully informed ' + args.member.user.tag + ' of your trade request.');
+
     if (user.dmChannel === null) {
       await user.createDM();
     }
@@ -66,9 +65,9 @@ class Trade extends patron.Command {
 
     if (result.size >= 1) {
       if (await db.any('items', '(data_id, user_id, guild_id) = ($1, $2, $3) AND quantity >= $4', [args.item.id, msg.author.id, msg.guild.id, args.givenQuantity]) === false) {
-        return Try(Sender.send(args.member.user, msg.author.tag + ' does not own ' + args.givenQuantity + pluralize(StringUtil.capitializeWords(args.item.names[0]), args.givenQuantity) + ' anymore.'));
-      } else if (await db.any('items', '(data_id, user_id, guild_id) = ($1, $2, $3) AND quantity >= $4', [args.wantedItem.id, args.member.id, msg.guild.id, args.wantedQuantity]) === false) {
-        return Try(Sender.send(args.member.user, 'You do not own ' + args.wantedQuantity + pluralize(StringUtil.capitializeWords(args.wantedItem.names[0]), args.wantedQuantity) + ' anymore.'));
+        return Sender.send(args.member.user, msg.author.tag + ' does not own ' + args.givenQuantity + pluralize(StringUtil.capitializeWords(args.item.names[0]), args.givenQuantity) + ' anymore.');
+      } else if (await db.any('items', '(data_id, user_id, guild_id) = ($1, $2, $3) AND quantity >= $4', [args.wantedItem.id, args.member.user.id, msg.guild.id, args.wantedQuantity]) === false) {
+        return Sender.send(args.member.user, 'You do not own ' + args.wantedQuantity + pluralize(StringUtil.capitializeWords(args.wantedItem.names[0]), args.wantedQuantity) + ' anymore.');
       }
 
       await db.items.modifyInventory(msg.author.id, msg.guild.id, args.wantedItem.id, args.wantedQuantity);
@@ -79,11 +78,11 @@ class Trade extends patron.Command {
 
       const message = (tag) => '**Offer:** ' + args.givenQuantity + ' ' + pluralize(StringUtil.capitializeWords(args.item.names[0]), args.givenQuantity) + '\n**Request:** ' + args.wantedQuantity + ' ' + pluralize(StringUtil.capitializeWords(args.wantedItem.names[0]), args.wantedQuantity) + '\n\nCompleted trade with ' + StringUtil.boldify(tag) + '.';
 
-      Try(Sender.send(args.member.user, message(msg.author.tag), { guild: msg.guild }));
-      return Try(Sender.send(msg.author, message(args.member.user.tag), { guild: msg.guild }));
+      await Sender.send(args.member.user, message(msg.author.tag), { guild: msg.guild });
+      return Sender.send(msg.author, message(args.member.user.tag), { guild: msg.guild });
     }
 
-    return Try(Sender.send(msg.author, StringUtil.boldify(args.member.user.tag) + ' did not respond to your trade offer.', { guild: msg.guild }));    
+    return Sender.send(msg.author, StringUtil.boldify(args.member.user.tag) + ' did not respond to your trade offer.', { guild: msg.guild });    
   }
 }
 
