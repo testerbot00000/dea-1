@@ -51,28 +51,28 @@ class Trade extends patron.Command {
 
   async run(msg, args, sender) {
     const key = Random.nextInt(0, 2147000000).toString();
-    const user = msg.client.users.get(args.member.user.id);
 
     await Sender.send(args.member.user, '**Offer:** ' + args.givenQuantity + ' ' + pluralize(StringUtil.capitializeWords(args.item.names[0]), args.givenQuantity) + '\n**Request:** ' + args.wantedQuantity + ' ' + pluralize(StringUtil.capitializeWords(args.wantedItem.names[0]), args.wantedQuantity) + '\n\nPlease respond with ' + key + ' within 5 minutes to accept this trade.\nTrade Request from ' + StringUtil.boldify(msg.author.tag), { guild: msg.guild });
 
     await sender.reply('You\'ve successfully informed ' + args.member.user.tag + ' of your trade request.');
 
     console.log('checking if dm\'s are null.');
-    if (user.dmChannel === null) {
+    if (args.member.user.dmChannel === null) {
       console.log('creating dm\'s with user.');
-      await user.createDM();
+      await args.member.user.createDM();
       console.log('successfully created dm\'s.');
     }
 
     console.log('awaiting dmChannel.');
     const authorCheck = (m) => m.author.id === args.member.user.id;
     const keyCheck = (m) => m.content.includes(key);
-    const result = await user.dmChannel.awaitMessages((m) => {
+    const result = await args.member.user.dmChannel.awaitMessages((m) => {
       console.log(authorCheck(m));
       console.log(keyCheck(m));
       console.log(m.content);
-      console.log(m.content.length);
+      console.log(m.content.length), { time: 300000, maxMatches: 1 };
     });
+    console.log(result);
     console.log('successfully awaited dmChannel.');
 
     if (result.size >= 1) {
