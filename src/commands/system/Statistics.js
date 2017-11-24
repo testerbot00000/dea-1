@@ -16,7 +16,7 @@ class Statistics extends patron.Command {
 
     await sender.dmFields(
       [
-        'Author', 'vim2meta#3630',
+        'Authors', 'vim2meta#3630\nLuner#0059',
         'Framework', 'patron.js',
         'Memory', (process.memoryUsage().rss / 1048576).toFixed(2) + ' MB',
         'Servers', (await msg.client.shard.fetchClientValues('guilds.size')).reduce((a, b) => a + b, 0),
