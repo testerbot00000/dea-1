@@ -4,7 +4,7 @@ const patron = require('patron.js');
 class Suicide extends patron.Command {
   constructor() {
     super({
-      names: ['suicide', 'kms'],
+      names: ['suicide', 'kms', 'killmyself'],
       groupName: 'crime',
       description: 'Commit suicide',
     });
