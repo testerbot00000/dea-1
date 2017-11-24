@@ -34,7 +34,7 @@ class Cooldowns extends patron.Command {
         if (remaining > 0) {
           const formattedCooldown = NumberUtil.msToTime(remaining);
 
-          cooldowns += StringUtil.boldify(StringUtil.upperFirstChar(commands[i].names[0])) + ':' + (formattedCooldown.hours > 0 ? ' Hours: ' + formattedCooldown.hours : '') + (formattedCooldown.minutes > 0 ? ' Minutes: ' + formattedCooldown.minutes : '') + ' Seconds: ' + formattedCooldown.seconds + '\n';
+          cooldowns += StringUtil.boldify(StringUtil.upperFirstChar(commands[i].names[0])) + ': ' + NumberUtil.pad(formattedCooldown.hours, 2) + ':' + NumberUtil.pad(formattedCooldown.minutes, 2) + ':' + NumberUtil.pad(formattedCooldown.seconds, 2) + '\n';
         }
       }
     }
@@ -43,7 +43,7 @@ class Cooldowns extends patron.Command {
       return sender.reply('All commands are ready to use.');
     }
 
-    return sender.send(cooldowns, { title: 'All cooldowns for ' + args.member.user.tag });
+    return sender.send(cooldowns, { title: args.member.user.tag + '\'s Cooldowns' });
   }
 }
 
