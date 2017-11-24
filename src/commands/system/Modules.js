@@ -29,7 +29,7 @@ class Modules extends patron.Command {
         message += StringUtil.upperFirstChar(msg.client.registry.groups[i].name) + ', ';
       }
 
-      return sender.reply(message.substring(0, message.length - 2) + '.');
+      return sender.send(message.substring(0, message.length - 2) + '.', { title: 'These are the current modules in DEA:' });
     } else {
       const lowerInput = args.module.toLowerCase();
 
