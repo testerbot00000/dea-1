@@ -27,6 +27,7 @@ Modifyhealth|Allows you to modify the health of any member.|`$modifyhealth <amou
 Modifyinventory|Add an item to your inventory.|`$modifyinventory <item> [quantity] [@member]`
 Removerank|Remove a rank role.|`$removerank <@role>`
 Reset|Resets all user data in your server.|`$reset`
+Resetcooldowns|Reset any member's cooldowns|`$resetcooldowns [@member]`
 Resetuser|Reset any member's data.|`$resetuser [@member]`
 
 ### Botowners
@@ -55,6 +56,7 @@ Command | Description | Usage
 Bully|Bully any user by changing their nickname.|`$bully <@member> <nickname>`
 Shoot|Shoot a user with specified gun.|`$shoot <@member> <gun>`
 Stab|Stab a user with specified knife.|`$stab <@member> <knife>`
+Suicide|Commit suicide|`$suicide`
 
 ### Gambling
 
@@ -73,8 +75,8 @@ These are the general commands, always used.
 
 Command | Description | Usage
 ---------------- | -------------- | -------
-Buy|Buy a crate!|`$buy [crate] [quantity]`
 Cash|View the wealth of anyone.|`$cash [@member]`
+Cooldowns|View all command cooldowns of a member|`$cooldowns [@member]`
 Eat|Eat some food.|`$eat <food>`
 Fish|Fish those fatass fishies.|`$fish <tool>`
 Hunt|Hunt using specified gun.|`$hunt <gun>`
@@ -89,6 +91,7 @@ The are the commands involving items.
 
 Command | Description | Usage
 ---------------- | -------------- | -------
+Buy|Buy a crate!|`$buy [crate] [quantity]`
 Inventory|View the inventory of anyone.|`$inventory [@member]`
 Item|View all information of an item.|`$item <item>`
 Itemleaderboards|View the users with the highest quantity of items.|`$itemleaderboards`

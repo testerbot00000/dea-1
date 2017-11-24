@@ -81,6 +81,8 @@ class Constants {
       cooldown: 60000
     };
 
+    this.suicideTools = ['high quality noose', 'silver axe', 'leather dildo', 'chipotle burger']
+
     this.transfer = {
       cut: 0.1,
       min: 5

@@ -40,7 +40,7 @@ class Cooldowns extends patron.Command {
     }
 
     if (StringUtil.isNullOrWhiteSpace(cooldowns) === true) {
-      return sender.reply('All commands are ready to use.');
+      return sender.reply('All ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag + '\'s') + ' commands are ready to use.');
     }
 
     return sender.send(cooldowns, { title: args.member.user.tag + '\'s Cooldowns' });
