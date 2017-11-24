@@ -34,7 +34,7 @@ class Cooldowns extends patron.Command {
         if (remaining > 0) {
           const formattedCooldown = NumberUtil.msToTime(remaining);
 
-          cooldowns += StringUtil.upperFirstChar(commands[i].names[0]) + ': ' + formattedCooldown.hours + ':' + formattedCooldown.minutes + ':' + formattedCooldown.seconds + '\n';
+          cooldowns += StringUtil.boldify(StringUtil.upperFirstChar(commands[i].names[0])) + ':' + (formattedCooldown.hours > 0 ? ' Hours: ' + formattedCooldown.hours : '') + (formattedCooldown.minutes > 0 ? ' Minutes: ' + formattedCooldown.minutes : '') + ' Seconds: ' + formattedCooldown.seconds + '\n';
         }
       }
     }
