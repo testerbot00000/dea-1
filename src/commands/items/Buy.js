@@ -8,7 +8,7 @@ class Buy extends patron.Command {
   constructor() {
     super({
       names: ['buy', 'shop', 'buycrate', 'crates'],
-      groupName: 'general',
+      groupName: 'items',
       description: 'Buy a crate!',
       args: [
         new patron.Argument({
