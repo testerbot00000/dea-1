@@ -16,6 +16,9 @@ The syntax of the command usage is:
 - [System](#system)
 
 ### Administration
+
+These commands may only be used by the administrators of the server.
+
 Command | Description | Usage
 ---------------- | -------------- | -------
 Addrank|Add a rank.|`$addrank <@role> <cashRequired>`
@@ -44,6 +47,9 @@ Removegunbullet|Disallow the use of a type of ammunition by a gun.|`$removegunbu
 Send|Send a message in any channel.|`$send <channel> <message>`
 
 ### Crime
+
+These commands are for committing crimes.
+
 Command | Description | Usage
 ---------------- | -------------- | -------
 Bully|Bully any user by changing their nickname.|`$bully <@member> <nickname>`
@@ -51,6 +57,9 @@ Shoot|Shoot a user with specified gun.|`$shoot <@member> <gun>`
 Stab|Stab a user with specified knife.|`$stab <@member> <knife>`
 
 ### Gambling
+
+These commands are used for gambling your money.
+
 Command | Description | Usage
 ---------------- | -------------- | -------
 25+|Roll 25.00 or higher on a 100.00 sided die to win 0.2X your bet.|`$25+ <bet>`
@@ -59,6 +68,9 @@ Command | Description | Usage
 99+|Roll 99.00 or higher on a 100.00 sided die to win 90X your bet.|`$99+ <bet>`
 
 ### General
+
+These are the general commands, always used.
+
 Command | Description | Usage
 ---------------- | -------------- | -------
 Buy|Buy a crate!|`$buy [crate] [quantity]`
@@ -72,6 +84,9 @@ Ranks|View all ranks in this guild.|`$ranks`
 Transfer|Transfer money to any member.|`$transfer <@member> <transfer>`
 
 ### Items
+
+The are the commands involving items.
+
 Command | Description | Usage
 ---------------- | -------------- | -------
 Inventory|View the inventory of anyone.|`$inventory [@member]`
@@ -81,8 +96,12 @@ Items|View a list of all items.|`$items`
 Opencrate|Open a crate!|`$opencrate <crate> [quantity]`
 
 ### System
+
+System commands to explain stuff, etc.
+
 Command | Description | Usage
 ---------------- | -------------- | -------
 Help|All command information.|`$help [command]`
 Invite|Add DEA to your server.|`$invite`
+Modules|View all modules or a modules information.|`$modules [module]`
 Statistics|Statistics about DEA.|`$statistics`
