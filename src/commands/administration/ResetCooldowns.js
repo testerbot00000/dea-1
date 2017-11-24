@@ -4,7 +4,7 @@ const StringUtil = require('../../utility/StringUtil.js');
 class ResetCooldowns extends patron.Command {
   constructor() {
     super({
-      names: ['resetcooldowns', 'deletecooldowns', 'resetcds'],
+      names: ['resetcooldowns', 'deletecooldowns', 'resetcds', 'resetcd'],
       groupName: 'administration',
       description: 'Reset any member\'s cooldowns',
       args: [
