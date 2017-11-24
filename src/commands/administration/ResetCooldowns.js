@@ -6,7 +6,7 @@ class ResetCooldowns extends patron.Command {
     super({
       names: ['resetcooldowns', 'deletecooldowns', 'resetcds'],
       groupName: 'administration',
-      description: 'Reset any member\'s cooldown on a command',
+      description: 'Reset any member\'s cooldowns',
       args: [
         new patron.Argument({
           name: 'member',
