@@ -15,7 +15,7 @@ class Constants {
     ];
     this.errorColor = 0xff0000;
 
-    this.botInvite = 'https://discordapp.com/oauth2/authorize?client_id=290823959669374987&scope=bot&permissions=8';
+    this.botInvite = 'https://discordapp.com/oauth2/authorize?client_id=383998740685520906&scope=bot&permissions=8';
     this.documentation = 'https://vim2meta.github.io/dea/commands/';
     this.serverInvite = 'https://discord.gg/gvyma7H';
 
@@ -81,7 +81,7 @@ class Constants {
       cooldown: 60000
     };
 
-    this.suicideTools = ['high quality noose', 'silver axe', 'leather dildo', 'chipotle burger']
+    this.suicideTools = ['high quality noose', 'silver axe', 'leather dildo', 'chipotle burger'];
 
     this.transfer = {
       cut: 0.1,

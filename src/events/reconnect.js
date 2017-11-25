@@ -1,6 +1,4 @@
 const Logger = require('../utility/Logger.js');
 const client = require('../singletons/client.js');
 
-client.on('reconnect', () => {
-  return Logger.log('Attempting to reconnect...', 'INFO');
-});
+client.on('reconnecting', () => Logger.log('Shard #' + client.shard.id + ' is attempting to reconnect...', 'INFO'));

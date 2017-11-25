@@ -8,6 +8,6 @@ const shardingManager = new discord.ShardingManager(path.join(__dirname, 'bot.js
 
 (async () => {
   await Documentation.createAndSave(registry);
-  return shardingManager.spawn(shardingManager.totalShards, 3000);
+  return shardingManager.spawn();
 })()
   .catch((err) => Logger.handleError(err));
