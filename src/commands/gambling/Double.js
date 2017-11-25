@@ -32,7 +32,7 @@ class Double extends patron.Command {
       await db.users.modifyCash(msg.member, args.bet);
     } else {
       Counts.set(key, 0);
-      await db.set('users', 'cash = $1', null, [0]);
+      await db.set('users', 'cash = $1', '(user_id, guild_id) = ($2, $3)', [0, msg.author.id, msg.guild.id]);
     }
 
     return sender.reply('I have doubled your money! Congratulations good fellow! You may have recieved the money now, or you may recieve it in 15 minutes. It depends on the circumstances. If your balance drops to zero, no worries, it will replenish itself over time.');
