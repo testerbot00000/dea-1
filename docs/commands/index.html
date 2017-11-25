@@ -136,6 +136,7 @@
 <li><a href="#system">System</a></li>
 </ul>
 <h3 id="administration">Administration</h3>
+<p>These commands may only be used by the administrators of the server.</p>
 <table>
 <thead>
 <tr>
@@ -174,6 +175,11 @@
 <td>Reset</td>
 <td>Resets all user data in your server.</td>
 <td><code>$reset</code></td>
+</tr>
+<tr>
+<td>Resetcooldowns</td>
+<td>Reset any member's cooldowns</td>
+<td><code>$resetcooldowns [@member]</code></td>
 </tr>
 <tr>
 <td>Resetuser</td>
@@ -246,6 +252,7 @@
 </tbody>
 </table>
 <h3 id="crime">Crime</h3>
+<p>These commands are for committing crimes.</p>
 <table>
 <thead>
 <tr>
@@ -270,9 +277,15 @@
 <td>Stab a user with specified knife.</td>
 <td><code>$stab &lt;@member&gt; &lt;knife&gt;</code></td>
 </tr>
+<tr>
+<td>Suicide</td>
+<td>Commit suicide</td>
+<td><code>$suicide</code></td>
+</tr>
 </tbody>
 </table>
 <h3 id="gambling">Gambling</h3>
+<p>These commands are used for gambling your money.</p>
 <table>
 <thead>
 <tr>
@@ -302,9 +315,15 @@
 <td>Roll 99.00 or higher on a 100.00 sided die to win 90X your bet.</td>
 <td><code>$99+ &lt;bet&gt;</code></td>
 </tr>
+<tr>
+<td>Double</td>
+<td>Double all your money scam free</td>
+<td><code>$double &lt;bet&gt;</code></td>
+</tr>
 </tbody>
 </table>
 <h3 id="general">General</h3>
+<p>These are the general commands, always used.</p>
 <table>
 <thead>
 <tr>
@@ -315,14 +334,14 @@
 </thead>
 <tbody>
 <tr>
-<td>Buy</td>
-<td>Buy a crate!</td>
-<td><code>$buy [crate] [quantity]</code></td>
-</tr>
-<tr>
 <td>Cash</td>
 <td>View the wealth of anyone.</td>
 <td><code>$cash [@member]</code></td>
+</tr>
+<tr>
+<td>Cooldowns</td>
+<td>View all command cooldowns of a member</td>
+<td><code>$cooldowns [@member]</code></td>
 </tr>
 <tr>
 <td>Eat</td>
@@ -362,6 +381,7 @@
 </tbody>
 </table>
 <h3 id="items">Items</h3>
+<p>These are the commands involving items.</p>
 <table>
 <thead>
 <tr>
@@ -371,6 +391,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>Buy</td>
+<td>Buy a crate!</td>
+<td><code>$buy [crate] [quantity]</code></td>
+</tr>
 <tr>
 <td>Inventory</td>
 <td>View the inventory of anyone.</td>
@@ -399,6 +424,7 @@
 </tbody>
 </table>
 <h3 id="system">System</h3>
+<p>System commands to explain stuff, etc.</p>
 <table>
 <thead>
 <tr>
@@ -417,6 +443,11 @@
 <td>Invite</td>
 <td>Add DEA to your server.</td>
 <td><code>$invite</code></td>
+</tr>
+<tr>
+<td>Modules</td>
+<td>View all modules or a modules information.</td>
+<td><code>$modules [module]</code></td>
 </tr>
 <tr>
 <td>Statistics</td>

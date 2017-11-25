@@ -81,12 +81,17 @@ class Constants {
       cooldown: 60000
     };
 
-    this.suicideTools = ['high quality noose', 'silver axe', 'leather dildo', 'chipotle burger'];
+    this.double = {
+      odds: 0.3,
+      max: 0.7
+    };
 
     this.transfer = {
       cut: 0.1,
       min: 5
     };
+
+    this.suicideTools = ['high quality noose', 'silver axe', 'leather dildo', 'chipotle burger'];
   }
 }
 
