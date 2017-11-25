@@ -4,7 +4,7 @@ class Items extends patron.Group {
   constructor() {
     super({
       name: 'items',
-      description: 'The are the commands involving items.'
+      description: 'These are the commands involving items.'
     });
   }
 }
