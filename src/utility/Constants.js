@@ -82,7 +82,7 @@ class Constants {
     };
 
     this.double = {
-      odds: 0.3,
+      odds: 30,
       max: 0.7
     };
 

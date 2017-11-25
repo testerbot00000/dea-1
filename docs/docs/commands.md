@@ -68,7 +68,7 @@ Command | Description | Usage
 55x2|Roll 55.0 or higher on a 100.00 sided die to win your bet.|`$55x2 <bet>`
 75+|Roll 75.00 or higher on a 100.00 sided die to win 2.6X your bet.|`$75+ <bet>`
 99+|Roll 99.00 or higher on a 100.00 sided die to win 90X your bet.|`$99+ <bet>`
-Double|Double all your money scam free|`$double <bet>`
+Double|Double your cash scam free.|`$double <bet>`
 
 ### General
 
