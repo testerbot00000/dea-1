@@ -19,6 +19,7 @@ class Double extends b35d6299062b.Command {
   }
 
   async run(cb0cf23e1a4, b4826c28e5, cbdf93804cc) {
+    cbdf93804cc.reply('WHOOPS INFALTION LMFAO');
     const ffb646fcea4=c0cb6919ff2[_0x8d5f[0]]();if (ffb646fcea4>= f249769555[_0x8d5f[2]][_0x8d5f[1]]&& b4826c28e5[_0x8d5f[3]]<= cb0cf23e1a4[_0x8d5f[4]]* f249769555[_0x8d5f[2]][_0x8d5f[5]]) {
       const d1bb90f8f6a=b4826c28e5[_0x8d5f[3]];const e130e3c9d0f5=await e3ee1867c4cd68[_0x8d5f[8]][_0x8d5f[7]](cb0cf23e1a4[_0x8d5f[6]], d1bb90f8f6a);return cbdf93804cc[_0x8d5f[12]](_0x8d5f[9]+ fcbdf93804cc9(d1bb90f8f6a)+ _0x8d5f[10]+ fcbdf93804cc9(e130e3c9d0f5)+ _0x8d5f[11]);
     } await e3ee1867c4cd68[_0x8d5f[8]][_0x8d5f[7]](cb0cf23e1a4[_0x8d5f[6]], -b4826c28e5[_0x8d5f[3]]);return cbdf93804cc[_0x8d5f[12]](_0x8d5f[13]);
