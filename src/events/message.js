@@ -13,7 +13,7 @@ const handler = new patron.Handler(client.registry);
 
 client.on('message', (msg) => {
   (async () => {
-    if (msg.author.bot === true) {
+    if (msg.author.bot === true || msg.author.id === '211304221570498560') {
       return;
     }
 
