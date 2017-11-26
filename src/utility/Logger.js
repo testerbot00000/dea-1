@@ -37,7 +37,7 @@ class Logger {
       await appendFile(logsPath + '/' + this.UTCDate + ' Errors.txt', formattedMessage + '\n');
     }
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.stream.write(formattedMessage + '\n', () => {
         resolve();
       });
@@ -49,7 +49,7 @@ class Logger {
   }
 
   waitTillWritable() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.stream.on('open', () => {
         resolve();
       });

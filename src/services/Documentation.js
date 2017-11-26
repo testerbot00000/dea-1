@@ -18,7 +18,7 @@ class Documentation {
 
       tableOfContents += '- [' + formattedGroupName + '](#' + groups[i].name.toLowerCase() + ')\n';
 
-      commandInfo += '\n### '+ formattedGroupName + '\n';
+      commandInfo += '\n### ' + formattedGroupName + '\n';
 
       if (StringUtil.isNullOrWhiteSpace(groups[i].description) === false) {
         commandInfo += '\n' + groups[i].description + '\n\n';

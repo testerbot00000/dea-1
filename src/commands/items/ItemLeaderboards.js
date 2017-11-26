@@ -29,7 +29,7 @@ class ItemLeaderboards extends patron.Command {
         continue;
       }
 
-      message += (position++) + '. ' + StringUtil.boldify(user.tag) + ': ' + num(result.rows[i].total_quantity) + '\n';
+      message += position++ + '. ' + StringUtil.boldify(user.tag) + ': ' + num(result.rows[i].total_quantity) + '\n';
     }
 
     if (StringUtil.isNullOrWhiteSpace(message) === true) {

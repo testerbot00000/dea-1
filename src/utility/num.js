@@ -1,5 +1,3 @@
 const formatter = Intl.NumberFormat('en-US');
 
-module.exports = (num) => {
-  return formatter.format(num);
-};
+module.exports = (num) => formatter.format(num);

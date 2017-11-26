@@ -21,7 +21,7 @@ class CashForCrate extends patron.ArgumentPrecondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'You do not have ' + USD(required) +'. Balance: ' + USD(dbUser.cash) + '.');
+    return patron.PreconditionResult.fromError(command, 'You do not have ' + USD(required) + '. Balance: ' + USD(dbUser.cash) + '.');
   }
 }
 

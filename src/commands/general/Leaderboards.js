@@ -29,7 +29,7 @@ class Leaderboards extends patron.Command {
         continue;
       }
 
-      message += (position++) + '. ' + StringUtil.boldify(user.tag) + ': ' + USD(result.rows[i].cash) + '\n';
+      message += position++ + '. ' + StringUtil.boldify(user.tag) + ': ' + USD(result.rows[i].cash) + '\n';
     }
 
     if (StringUtil.isNullOrWhiteSpace(message) === true) {

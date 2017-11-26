@@ -8,7 +8,7 @@ class BulletTypeReader extends patron.TypeReader {
     });
   }
 
-  async read(command, message, argument, args, input, custom) {
+  async read(command, message, argument, args, input) {
     const result = await db.select('item_data', '*', '$1 = ANY(names) AND type = $2', [input.toLowerCase(), 'bullet']);
 
     if (result.rowCount === 1) {

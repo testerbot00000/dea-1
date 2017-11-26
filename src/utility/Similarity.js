@@ -6,7 +6,7 @@ class Similarity {
     const distance = leven(a, b);
     const longest = a.length > b.length ? a : b;
 
-    return 1 - (distance / longest.length);
+    return 1 - distance / longest.length;
   }
 
   command(registry, input) {

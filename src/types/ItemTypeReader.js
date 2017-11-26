@@ -8,7 +8,7 @@ class ItemTypeReader extends patron.TypeReader {
     });
   }
 
-  async read(command, message, argument, args, input, custom) {
+  async read(command, message, argument, args, input) {
     const result = await db.select('item_data', '*', '$1 = ANY(names)', [input.toLowerCase()]);
 
     if (result.rowCount === 1) {

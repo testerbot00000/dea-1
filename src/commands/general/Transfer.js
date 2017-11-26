@@ -35,7 +35,7 @@ class Transfer extends patron.Command {
     const newCash = await db.users.modifyCash(msg.member, -args.transfer);
 
     await db.users.modifyCash(args.member, received);
-    return sender.reply('You have successfully transfered ' + USD(received) + ' to '+ StringUtil.boldify(args.member.user.tag) + '. Transaction fee: ' + USD(transactionFee) + '. Balance: ' + USD(newCash) + '.');
+    return sender.reply('You have successfully transfered ' + USD(received) + ' to ' + StringUtil.boldify(args.member.user.tag) + '. Transaction fee: ' + USD(transactionFee) + '. Balance: ' + USD(newCash) + '.');
   }
 }
 

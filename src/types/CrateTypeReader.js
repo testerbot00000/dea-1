@@ -8,7 +8,7 @@ class CrateTypeReader extends patron.TypeReader {
     });
   }
 
-  async read(command, message, argument, args, input, custom) {
+  async read(command, message, argument, args, input) {
     let lowerInput = input.toLowerCase();
 
     if (lowerInput.endsWith('crate') === false) {

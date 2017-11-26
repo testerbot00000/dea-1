@@ -8,7 +8,7 @@ class FoodTypeReader extends patron.TypeReader {
     });
   }
 
-  async read(command, message, argument, args, input, custom) {
+  async read(command, message, argument, args, input) {
     const result = await db.select('item_data', '*', '$1 = ANY(names) AND (type = $2 OR type = $3)', [input.toLowerCase(), 'fish', 'meat']);
 
     if (result.rowCount === 1) {

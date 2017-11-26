@@ -30,23 +30,23 @@ class Modules extends patron.Command {
       }
 
       return sender.send(message.substring(0, message.length - 2) + '.', { title: 'These are the current modules in DEA:' });
-    } else {
-      const lowerInput = args.module.toLowerCase();
-
-      const module = msg.client.registry.groups.find((x) => x.name === lowerInput);
-
-      if (module === undefined) {
-        return sender.reply('This module does not exist.', { color: Constants.errorColor });
-      }
-
-      let message = '**Description**: ' + module.description + '\n**Commands:** ';
-
-      for (let i = 0; i < module.commands.length; i++) {
-        message += StringUtil.upperFirstChar(module.commands[i].names[0]) + ', ';
-      }
-
-      return sender.send(message.substring(0, message.length - 2) + '.', { title: StringUtil.upperFirstChar(module.name) });
     }
+
+    const lowerInput = args.module.toLowerCase();
+
+    const module = msg.client.registry.groups.find((x) => x.name === lowerInput);
+
+    if (module === undefined) {
+      return sender.reply('This module does not exist.', { color: Constants.errorColor });
+    }
+
+    let message = '**Description**: ' + module.description + '\n**Commands:** ';
+
+    for (let i = 0; i < module.commands.length; i++) {
+      message += StringUtil.upperFirstChar(module.commands[i].names[0]) + ', ';
+    }
+
+    return sender.send(message.substring(0, message.length - 2) + '.', { title: StringUtil.upperFirstChar(module.name) });
   }
 }
 

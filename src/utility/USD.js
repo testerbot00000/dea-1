@@ -1,9 +1,7 @@
 const formatter = Intl.NumberFormat('en-US', {
-  style: 'currency',
   currency: 'USD',
-  minimumFractionDigits: 2
+  minimumFractionDigits: 2,
+  style: 'currency'
 });
 
-module.exports = (num) => {
-  return formatter.format(num);
-};
+module.exports = (num) => formatter.format(num);

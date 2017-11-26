@@ -38,7 +38,7 @@ class Item extends patron.Command {
             description += '**Price:** ' + USD(args.item[key]) + '\n';
             break;
           case 'damage_reduction':
-            description += '**Damage Reduction:** ' + (args.item[key] * 100) + '%\n';
+            description += '**Damage Reduction:** ' + args.item[key] * 100 + '%\n';
             break;
           case 'names':
           case 'id':

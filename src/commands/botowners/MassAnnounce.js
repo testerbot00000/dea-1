@@ -35,7 +35,7 @@ class MassAnnounce extends patron.Command {
       if (announcementsChannel !== undefined) {
         announcementsChannel.send(args.message)
           .catch(async (err) => {
-            if ((err instanceof discord.DiscordApiError) === true && err.code === 429) {
+            if (err instanceof discord.DiscordApiError === true && err.code === 429) {
               await PromiseUtil.delay(60000);
             }
           });

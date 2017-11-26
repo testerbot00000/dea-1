@@ -49,7 +49,7 @@ class OpenCrate extends patron.Command {
 
     await db.items.modifyInventory(msg.author.id, msg.guild.id, args.crate.id, -args.quantity);
 
-    won = won.sort((a, b, c, d) => (c.names[0] > d.names[0]) ? 1 : ((c.names[0] > d.names[0]) ? -1 : 0));
+    won = won.sort((a, b, c, d) => c.names[0] > d.names[0] ? 1 : c.names[0] > d.names[0] ? -1 : 0);
 
     const max = won.reduce((a, b) => Math.max(a, num(b).length), 0);
     let description = '```';

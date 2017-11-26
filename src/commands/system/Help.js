@@ -23,8 +23,7 @@ class Help extends patron.Command {
 
   async run(msg, args, sender) {
     if (StringUtil.isNullOrWhiteSpace(args.command) === true) {
-      await sender.dm(
-        'DEA is **THE** cleanest bot around, and you can have it in **YOUR** server simply by clicking here: ' + Constants.botInvite + '.\n\nFor all information about command usage and setup on your Discord Sever, view the official documentation: ' + Constants.documentation + '.\n\nThe `' + Constants.prefix + 'help <command>` command may be used for view the usage and an example of any command.\n\nIf you have **ANY** questions, you may join the **Official DEA Discord Server:** ' + Constants.serverInvite + ' for instant support along with a great community.');
+      await sender.dm('DEA is **THE** cleanest bot around, and you can have it in **YOUR** server simply by clicking here: ' + Constants.botInvite + '.\n\nFor all information about command usage and setup on your Discord Sever, view the official documentation: ' + Constants.documentation + '.\n\nThe `' + Constants.prefix + 'help <command>` command may be used for view the usage and an example of any command.\n\nIf you have **ANY** questions, you may join the **Official DEA Discord Server:** ' + Constants.serverInvite + ' for instant support along with a great community.');
 
       if (msg.channel.type !== 'dm') {
         return sender.reply('You have been DMed with all the command information!');

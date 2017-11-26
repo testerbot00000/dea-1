@@ -10,4 +10,4 @@ class Administration extends patron.Group {
   }
 }
 
-module.exports = new Administration ();
+module.exports = new Administration();

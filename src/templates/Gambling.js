@@ -7,10 +7,10 @@ const Constants = require('../utility/Constants.js');
 class Gambling extends patron.Command {
   constructor(names, description, odds, payoutMultiplier, preconditions = []) {
     super({
-      names: names,
+      names,
       groupName: 'gambling',
-      description: description,
-      preconditions: preconditions,
+      description,
+      preconditions,
       args: [
         new patron.Argument({
           name: 'bet',

@@ -29,7 +29,7 @@ class Inventory extends patron.Command {
     const inventory = await db.items.inventory(args.member.id, msg.guild.id);
 
     if (inventory.length === 0) {
-      return sender.reply((args.member.id === msg.author.id ? 'You do not have any items in your inventory.' : 'This user does not have any items in their inventory.'), { color: Constants.errorColor });
+      return sender.reply(args.member.id === msg.author.id ? 'You do not have any items in your inventory.' : 'This user does not have any items in their inventory.', { color: Constants.errorColor });
     }
 
     const max = inventory.reduce((a, b) => Math.max(a, num(b.quantity).length), 0);

@@ -4,7 +4,7 @@ class Random {
   }
 
   nextFloat(min, max) {
-    return this.nextInt(min * 100, (max * 100) + 1) / 100;
+    return this.nextInt(min * 100, max * 100 + 1) / 100;
   }
 
   roll() {

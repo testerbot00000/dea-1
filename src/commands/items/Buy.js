@@ -46,7 +46,7 @@ class Buy extends patron.Command {
     await db.users.modifyCash(msg.member, -args.crate.price * args.quantity);
     await db.items.modifyInventory(msg.author.id, msg.guild.id, args.crate.id, args.quantity);
 
-    return sender.send('You have successfully purchased ' + pluralize(StringUtil.capitializeWords(args.crate.names[0]), args.quantity, true) +'.');
+    return sender.send('You have successfully purchased ' + pluralize(StringUtil.capitializeWords(args.crate.names[0]), args.quantity, true) + '.');
   }
 }
 

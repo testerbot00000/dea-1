@@ -9,7 +9,7 @@ class Suicide extends patron.Command {
     super({
       names: ['suicide', 'kms', 'killmyself'],
       groupName: 'crime',
-      description: 'Commit suicide',
+      description: 'Commit suicide'
     });
   }
 
