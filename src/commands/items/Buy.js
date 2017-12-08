@@ -2,6 +2,7 @@ const db = require('../../database');
 const patron = require('patron.js');
 const USD = require('../../utility/USD.js');
 const StringUtil = require('../../utility/StringUtil.js');
+const Constants = require('../../utility/Constants.js');
 const pluralize = require('pluralize');
 
 class Buy extends patron.Command {
@@ -23,7 +24,7 @@ class Buy extends patron.Command {
           key: 'quantity',
           type: 'quantity',
           example: '500',
-          preconditions: ['cashforcrate'],
+          preconditions: ['cashforcrate', { name: 'minimum', options: { minimum: Constants.buyCrate.min } }],
           defaultValue: 1
         })
       ]

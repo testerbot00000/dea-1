@@ -76,6 +76,10 @@ class Constants {
       minBet: 5
     };
 
+    this.buyCrate = {
+      min: 1
+    };
+
     this.openCrate = {
       max: 1000,
       cooldown: 60000
